@@ -227,10 +227,19 @@ body {
    `backwards`, and the pre-animation state is fully visible.
    ─────────────────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: no-preference) {
+  /* Reaches full opacity at 60% of the range, so the remaining travel is pure
+     movement. Text is never *readable but under-contrast* — an axe/Lighthouse
+     contrast audit sampling mid-animation caught exactly that (measured #595a63
+     on #0a0a12 = 2.88:1, which is --color-fg at partial alpha). Someone landing
+     mid-scroll hit the same thing. Opacity now finishes before the element
+     settles. */
   @keyframes reveal-in {
     from {
       opacity: 0;
       transform: translateY(14px);
+    }
+    60% {
+      opacity: 1;
     }
     to {
       opacity: 1;
@@ -244,11 +253,13 @@ body {
   }
 
   /* Sections below the fold animate as they scroll in, where supported.
-     `animation-timeline` degrades to a plain on-load animation elsewhere. */
+     `animation-timeline` degrades to a plain on-load animation elsewhere.
+     The range ends early (cover 14%) so the element is fully opaque well before
+     it reaches a comfortable reading position. */
   @supports (animation-timeline: view()) {
     .reveal {
       animation-timeline: view();
-      animation-range: entry 5% cover 22%;
+      animation-range: entry 0% cover 14%;
       animation-delay: 0s;
     }
   }

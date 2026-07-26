@@ -1,5 +1,6 @@
 import { SiteFooter } from './components/SiteFooter'
 import { SiteNav } from './components/SiteNav'
+import { About } from './components/sections/About'
 import { Achievements } from './components/sections/Achievements'
 import { Contact } from './components/sections/Contact'
 import { Ctf } from './components/sections/Ctf'
@@ -16,6 +17,7 @@ export default function App() {
       <main>
         <Hero />
         <Pillars />
+        <About />
         <Achievements />
         <Timeline />
         <Projects />

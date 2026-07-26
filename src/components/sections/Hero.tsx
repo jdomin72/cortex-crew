@@ -36,8 +36,13 @@ export function Hero() {
               {site.university} · {site.city}
             </p>
 
+            {/* The visible words are split across two lines, but the accessible
+                name must read "Cortex Crew" — without the sr-only space the DOM
+                text serialises as "CORTEXCREW", which is what crawlers and
+                screen readers get. */}
             <h1 id="hero-title" className="mt-6 font-display text-hero font-bold">
               <span className="block text-fg">CORTEX</span>
+              <span className="sr-only"> </span>
               <span className="text-gradient block">CREW</span>
             </h1>
 

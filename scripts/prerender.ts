@@ -41,3 +41,22 @@ const words = html
   .filter(Boolean).length
 
 console.log(`prerender: injected ${(html.length / 1024).toFixed(1)} KB of markup (~${words} words)`)
+
+/* ── sitemap ──────────────────────────────────────────────────────────────
+   Written here rather than kept as a static file so `lastmod` is always the
+   real build date. A hand-maintained lastmod goes stale silently, and a stale
+   or absent one gives Google no recrawl signal after a content change.
+
+   `changefreq` and `priority` are deliberately omitted — Google has stated it
+   ignores both. */
+const today = new Date().toISOString().slice(0, 10)
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://cortexcrew.vercel.app/</loc>
+    <lastmod>${today}</lastmod>
+  </url>
+</urlset>
+`
+writeFileSync(resolve(DIST, 'sitemap.xml'), sitemap, 'utf8')
+console.log(`prerender: wrote sitemap.xml (lastmod ${today})`)

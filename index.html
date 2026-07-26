@@ -108,15 +108,16 @@
                 "addressCountry": "BD"
               }
             },
-            "sameAs": [
-              "https://www.facebook.com/teamcortexcrew",
-              "https://github.com/kawsher-hridoy"
-            ],
+            "sameAs": ["https://www.facebook.com/teamcortexcrew"],
             "member": [
               { "@id": "https://cortexcrew.vercel.app/#kawsher-ahmed" },
               { "@id": "https://cortexcrew.vercel.app/#shafiur-rahman" },
               { "@id": "https://cortexcrew.vercel.app/#arnob-paul" }
             ],
+            "memberOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "Daffodil International University"
+            },
             "award": [
               "Champion — CSAD 2026 Project Showcasing Competition, Cyber Security Centre, Daffodil International University",
               "1st Runners-up — IEEE ICADHI 2026 Project Showcase, IEEE DIU Student Branch",
@@ -167,6 +168,20 @@
             "knowsAbout": ["Frontend Development", "Design", "Data Visualisation"]
           },
           {
+            "@type": "Person",
+            "@id": "https://cortexcrew.vercel.app/#abdul-hye-zebon",
+            "name": "Md. Abdul Hye Zebon",
+            "jobTitle": "Mentor",
+            "worksFor": {
+              "@type": "CollegeOrUniversity",
+              "name": "Daffodil International University",
+              "department": {
+                "@type": "Organization",
+                "name": "Department of Software Engineering"
+              }
+            }
+          },
+          {
             "@type": "WebSite",
             "@id": "https://cortexcrew.vercel.app/#website",
             "url": "https://cortexcrew.vercel.app/",
@@ -174,6 +189,76 @@
             "description": "The official site of Cortex Crew — competition team at Daffodil International University, Dhaka.",
             "publisher": { "@id": "https://cortexcrew.vercel.app/#organization" },
             "inLanguage": "en"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://cortexcrew.vercel.app/#webpage",
+            "url": "https://cortexcrew.vercel.app/",
+            "name": "Cortex Crew — Competition Team | Daffodil International University, Dhaka",
+            "isPartOf": { "@id": "https://cortexcrew.vercel.app/#website" },
+            "about": { "@id": "https://cortexcrew.vercel.app/#organization" },
+            "primaryImageOfPage": "https://cortexcrew.vercel.app/media/og.jpg",
+            "inLanguage": "en"
+          },
+          {
+            "@type": "Event",
+            "name": "CSAD 2026 Project Showcasing Competition",
+            "startDate": "2026-01",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location": {
+              "@type": "Place",
+              "name": "Daffodil International University",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Dhaka",
+                "addressCountry": "BD"
+              }
+            },
+            "organizer": {
+              "@type": "Organization",
+              "name": "Cyber Security Centre, Daffodil International University"
+            },
+            "attendee": { "@id": "https://cortexcrew.vercel.app/#organization" }
+          },
+          {
+            "@type": "Event",
+            "name": "IEEE ICADHI 2026 Project Showcase",
+            "startDate": "2026-06",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location": {
+              "@type": "Place",
+              "name": "Daffodil International University",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Dhaka",
+                "addressCountry": "BD"
+              }
+            },
+            "organizer": { "@type": "Organization", "name": "IEEE DIU Student Branch" },
+            "attendee": { "@id": "https://cortexcrew.vercel.app/#organization" }
+          },
+          {
+            "@type": "Event",
+            "name": "AI Innovation Hackathon 2026 — From Learning to Impact",
+            "startDate": "2026-07-25",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location": {
+              "@type": "Place",
+              "name": "Daffodil Smart City, Ashulia",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Dhaka",
+                "addressCountry": "BD"
+              }
+            },
+            "organizer": {
+              "@type": "Organization",
+              "name": "Department of CSE, Daffodil International University"
+            },
+            "attendee": { "@id": "https://cortexcrew.vercel.app/#organization" }
           }
         ]
       }
