@@ -132,7 +132,7 @@ export const site: SiteConfig = {
     { value: '3', label: 'Finalist' },
   ],
 
-  contactEmail: 'teamcortexcrew@gmail.com',
+  contactEmail: 'info.cortexcrew@gmail.com',
 
   socials: [
     {
