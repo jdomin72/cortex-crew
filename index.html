@@ -3,14 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Cortex Crew — Code • Collaborate • Conquer</title>
+    <title>Cortex Crew — Competition Team | Daffodil International University, Dhaka</title>
     <meta
       name="description"
-      content="Cortex Crew is a competition team at Daffodil International University, Dhaka. Six events entered in 2026, six times on the board — one championship, one runners-up, four finals."
+      content="Cortex Crew is a student competition team at Daffodil International University, Dhaka. Six events entered in 2026, placed in all six — CSAD Champion, IEEE ICADHI 1st Runners-up, and four hackathon and project-showcase finals."
     />
-    <link rel="canonical" href="https://cortex-crew.vercel.app/" />
+    <link rel="canonical" href="https://cortexcrew.vercel.app/" />
     <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#050508" />
+    <meta name="author" content="Cortex Crew" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta
+      name="keywords"
+      content="Cortex Crew, Team Cortex Crew, Daffodil International University, DIU, hackathon team Bangladesh, CTF team Bangladesh, project showcase, Md Kawsher Ahmed, Shafiur Rahman Shafim, Arnob Kumar Paul, CSAD 2026, IEEE ICADHI 2026, Dhaka"
+    />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -20,13 +26,13 @@
          ignores a relative og:image and renders a blank card. -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Cortex Crew" />
-    <meta property="og:url" content="https://cortex-crew.vercel.app/" />
+    <meta property="og:url" content="https://cortexcrew.vercel.app/" />
     <meta property="og:title" content="Cortex Crew — Code • Collaborate • Conquer" />
     <meta
       property="og:description"
       content="A competition team at Daffodil International University, Dhaka. Building Solutions · Breaking Limits · Securing the Future."
     />
-    <meta property="og:image" content="https://cortex-crew.vercel.app/media/og.jpg" />
+    <meta property="og:image" content="https://cortexcrew.vercel.app/media/og.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Cortex Crew — Code, Collaborate, Conquer" />
@@ -38,7 +44,7 @@
       name="twitter:description"
       content="A competition team at Daffodil International University, Dhaka. Six events entered, six times on the board."
     />
-    <meta name="twitter:image" content="https://cortex-crew.vercel.app/media/og.jpg" />
+    <meta name="twitter:image" content="https://cortexcrew.vercel.app/media/og.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -62,41 +68,113 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Cortex Crew",
-        "alternateName": "Team Cortex Crew",
-        "url": "https://cortex-crew.vercel.app/",
-        "logo": "https://cortex-crew.vercel.app/media/logo-512.webp",
-        "image": "https://cortex-crew.vercel.app/media/og.jpg",
-        "slogan": "Code • Collaborate • Conquer",
-        "description": "A student competition team at Daffodil International University competing in project showcases, hackathons and CTF.",
-        "foundingDate": "2026",
-        "parentOrganization": {
-          "@type": "CollegeOrUniversity",
-          "name": "Daffodil International University",
-          "url": "https://daffodilvarsity.edu.bd/"
-        },
-        "location": {
-          "@type": "Place",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Dhaka",
-            "addressCountry": "BD"
+        "@graph": [
+          {
+            "@type": ["Organization", "SportsTeam"],
+            "@id": "https://cortexcrew.vercel.app/#organization",
+            "name": "Cortex Crew",
+            "alternateName": ["Team Cortex Crew", "CortexCrew"],
+            "url": "https://cortexcrew.vercel.app/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://cortexcrew.vercel.app/media/logo-512.webp",
+              "width": 512,
+              "height": 512
+            },
+            "image": "https://cortexcrew.vercel.app/media/og.jpg",
+            "slogan": "Code • Collaborate • Conquer",
+            "description": "A student competition team at Daffodil International University, Dhaka, competing in project showcases, hackathons and Capture the Flag.",
+            "foundingDate": "2026",
+            "email": "teamcortexcrew@gmail.com",
+            "knowsAbout": [
+              "Machine Learning",
+              "Artificial Intelligence",
+              "Cyber Security",
+              "Capture the Flag",
+              "Full-stack Development",
+              "Cloud Infrastructure",
+              "Kubernetes"
+            ],
+            "parentOrganization": {
+              "@type": "CollegeOrUniversity",
+              "name": "Daffodil International University",
+              "url": "https://daffodilvarsity.edu.bd/"
+            },
+            "location": {
+              "@type": "Place",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Dhaka",
+                "addressCountry": "BD"
+              }
+            },
+            "sameAs": [
+              "https://www.facebook.com/teamcortexcrew",
+              "https://github.com/kawsher-hridoy"
+            ],
+            "member": [
+              { "@id": "https://cortexcrew.vercel.app/#kawsher-ahmed" },
+              { "@id": "https://cortexcrew.vercel.app/#shafiur-rahman" },
+              { "@id": "https://cortexcrew.vercel.app/#arnob-paul" }
+            ],
+            "award": [
+              "Champion — CSAD 2026 Project Showcasing Competition, Cyber Security Centre, Daffodil International University",
+              "1st Runners-up — IEEE ICADHI 2026 Project Showcase, IEEE DIU Student Branch",
+              "Finalist — AI Innovation Hackathon 2026, Daffodil International University",
+              "Finalist — AI Project Competition 2026, Daffodil International University",
+              "Finalist — The Infinity AI Buildfest 2026, CloudCamp Bangladesh and BRAC University",
+              "Finalist — 5th Data Science Summit, Daffodil International University"
+            ]
+          },
+          {
+            "@type": "Person",
+            "@id": "https://cortexcrew.vercel.app/#kawsher-ahmed",
+            "name": "Md Kawsher Ahmed",
+            "jobTitle": "Team Lead — Machine Learning & Systems",
+            "memberOf": { "@id": "https://cortexcrew.vercel.app/#organization" },
+            "affiliation": {
+              "@type": "CollegeOrUniversity",
+              "name": "Daffodil International University"
+            },
+            "knowsAbout": ["Machine Learning", "Backend Development", "Cyber Security"],
+            "sameAs": [
+              "https://github.com/kawsher-hridoy",
+              "https://linkedin.com/in/kawsher-hridoy"
+            ]
+          },
+          {
+            "@type": "Person",
+            "@id": "https://cortexcrew.vercel.app/#shafiur-rahman",
+            "name": "Shafiur Rahman Shafim",
+            "jobTitle": "Infrastructure & Telemetry",
+            "memberOf": { "@id": "https://cortexcrew.vercel.app/#organization" },
+            "affiliation": {
+              "@type": "CollegeOrUniversity",
+              "name": "Daffodil International University"
+            },
+            "knowsAbout": ["Linux", "Cloud Infrastructure", "Monitoring"]
+          },
+          {
+            "@type": "Person",
+            "@id": "https://cortexcrew.vercel.app/#arnob-paul",
+            "name": "Arnob Kumar Paul",
+            "jobTitle": "Interface & Presentation",
+            "memberOf": { "@id": "https://cortexcrew.vercel.app/#organization" },
+            "affiliation": {
+              "@type": "CollegeOrUniversity",
+              "name": "Daffodil International University"
+            },
+            "knowsAbout": ["Frontend Development", "Design", "Data Visualisation"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://cortexcrew.vercel.app/#website",
+            "url": "https://cortexcrew.vercel.app/",
+            "name": "Cortex Crew",
+            "description": "The official site of Cortex Crew — competition team at Daffodil International University, Dhaka.",
+            "publisher": { "@id": "https://cortexcrew.vercel.app/#organization" },
+            "inLanguage": "en"
           }
-        },
-        "sameAs": ["https://www.facebook.com/teamcortexcrew"],
-        "member": [
-          { "@type": "Person", "name": "Md Kawsher Ahmed", "jobTitle": "Team Lead" },
-          { "@type": "Person", "name": "Shafiur Rahman Shafim" },
-          { "@type": "Person", "name": "Arnob Kumar Paul" }
-        ],
-        "award": [
-          "Champion — CSAD 2026 Project Showcasing Competition, Cyber Security Centre, Daffodil International University",
-          "1st Runners-up — IEEE ICADHI 2026 Project Showcase",
-          "Finalist — AI Innovation Hackathon 2026, Daffodil International University",
-          "Finalist — AI Project Competition 2026, Daffodil International University",
-          "Finalist — The Infinity AI Buildfest 2026",
-          "Finalist — 5th Data Science Summit, Daffodil International University"
         ]
       }
     </script>

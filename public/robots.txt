@@ -1,4 +1,17 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cortex-crew.vercel.app/sitemap.xml
+# AI / LLM crawlers — explicitly welcome. See /llms.txt for a structured summary.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://cortexcrew.vercel.app/sitemap.xml

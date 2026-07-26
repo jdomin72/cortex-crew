@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && bun run prerender",
     "lint": "oxlint",
     "preview": "vite preview",
-    "media": "python3 scripts/build_media.py"
+    "media": "python3 scripts/build_media.py",
+    "prerender": "bun run scripts/prerender.ts"
   },
   "dependencies": {
     "react": "^19.2.7",

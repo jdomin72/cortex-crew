@@ -1,47 +1,45 @@
-import { useEffect, useRef, useState, type ElementType, type ReactNode } from 'react'
+import type { ElementType, ReactNode } from 'react'
 import { cn } from '@/lib/cn'
-import { observeOnce, prefersReducedMotion } from '@/lib/observer'
 
 export interface RevealProps {
   children: ReactNode
   as?: ElementType
-  /** ms. Stagger a list with `index * 70`. */
+  /** ms — offsets the entrance animation so siblings cascade. */
   delay?: number
-  threshold?: number
   className?: string
 }
 
 /**
- * Scroll-reveal wrapper. The visual transition itself lives in index.css, gated
- * behind `prefers-reduced-motion: no-preference` — so a reduced-motion user
- * never receives the hidden state at all.
+ * Section wrapper. Applies a pure-CSS entrance animation and nothing else.
  *
- * The matchMedia check here is the second belt: it skips the observer entirely
- * so nothing depends on JS running for the content to be visible.
+ * ## Why there is no JavaScript here
  *
- * Never wrap hero content in this — a hidden LCP element defers LCP paint.
+ * This used to hide each block and reveal it via IntersectionObserver. That
+ * design put the site's own content behind a JS success condition, and it
+ * stranded content three separate times under real conditions: a fast scroll,
+ * a scrollbar drag, and the gap between mount and the observer attaching.
+ * Every fix moved the race rather than removing it.
+ *
+ * Content is the product; the animation is decoration. Decoration must never be
+ * able to hide the product. So:
+ *
+ * - **No hidden initial state.** Nothing can get stuck invisible, because
+ *   nothing is ever set to `opacity: 0` from script.
+ * - **Prerender-safe.** The static HTML shipped to crawlers is visible markup,
+ *   not `opacity: 0` markup that would read as cloaking.
+ * - **No-JS safe.** The page is fully readable if the bundle never loads.
+ * - **Cheaper.** One CSS animation per block, no observers, no state, no
+ *   re-renders.
+ *
+ * The animation itself is defined in `index.css` under
+ * `@media (prefers-reduced-motion: no-preference)`, so reduced-motion users get
+ * plain static content.
  */
-export function Reveal({
-  children,
-  as: Tag = 'div',
-  delay = 0,
-  threshold = 0.15,
-  className,
-}: RevealProps) {
-  const ref = useRef<HTMLElement>(null)
-  const [shown, setShown] = useState(() => prefersReducedMotion())
-
-  useEffect(() => {
-    if (shown || !ref.current) return
-    return observeOnce(ref.current, () => setShown(true), { threshold })
-  }, [shown, threshold])
-
+export function Reveal({ children, as: Tag = 'div', delay = 0, className }: RevealProps) {
   return (
     <Tag
-      ref={ref}
-      data-reveal={shown ? 'in' : ''}
+      className={cn('reveal', className)}
       style={delay ? ({ '--reveal-delay': `${delay}ms` } as React.CSSProperties) : undefined}
-      className={cn(className)}
     >
       {children}
     </Tag>

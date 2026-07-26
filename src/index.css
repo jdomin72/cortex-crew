@@ -214,25 +214,42 @@ body {
   line-gap-override: 0%;
 }
 
-/* ═══════════════════════════════ scroll reveal ═══════════════════════════════
-   The ENTIRE mechanism lives inside the motion query. Reduced-motion users never
-   receive the hidden state at all, so there is no override to forget and no way
-   for content to end up stuck invisible. This is the most important block here.
+/* ═══════════════════════════════ entrance ═══════════════════════════════
+   Pure CSS, no JavaScript. Runs once on load.
 
-   Written unlayered so it wins against Tailwind's `utilities` layer — a stray
-   `opacity-100` in a className can't fight it.
-   ─────────────────────────────────────────────────────────────────────────── */
+   This is deliberately NOT scroll-triggered. The previous IntersectionObserver
+   version stranded content invisible three times under real conditions (fast
+   scroll, scrollbar drag, mount/attach race). Content is the product and the
+   animation is decoration — decoration must never be able to hide the product.
+
+   Because the animation only ever moves *toward* the visible state, a failure
+   mode where content stays hidden does not exist: `animation-fill-mode` is not
+   `backwards`, and the pre-animation state is fully visible.
+   ─────────────────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: no-preference) {
-  [data-reveal] {
-    opacity: 0;
-    transform: translateY(14px);
-    transition:
-      opacity 620ms var(--ease-out-quint),
-      transform 620ms var(--ease-out-quint);
-    transition-delay: var(--reveal-delay, 0ms);
+  @keyframes reveal-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
-  [data-reveal="in"] {
-    opacity: 1;
-    transform: none;
+
+  .reveal {
+    animation: reveal-in 620ms var(--ease-out-quint) both;
+    animation-delay: var(--reveal-delay, 0ms);
+  }
+
+  /* Sections below the fold animate as they scroll in, where supported.
+     `animation-timeline` degrades to a plain on-load animation elsewhere. */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation-timeline: view();
+      animation-range: entry 5% cover 22%;
+      animation-delay: 0s;
+    }
   }
 }

@@ -77,7 +77,7 @@ export const site: SiteConfig = {
   city: 'Dhaka',
   country: 'Bangladesh',
   founded: '2026',
-  url: 'https://cortex-crew.vercel.app',
+  url: 'https://cortexcrew.vercel.app',
   description:
     'Cortex Crew is a competition team at Daffodil International University, Dhaka. Six events entered, six placed — one championship, one runners-up, four finals.',
 
