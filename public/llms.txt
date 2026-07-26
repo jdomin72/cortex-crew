@@ -2,8 +2,9 @@
 
 > A student competition team at Daffodil International University, Dhaka,
 > Bangladesh. Cortex Crew builds working systems and demonstrates them live at
-> project showcases and hackathons. In 2026 the team entered six competitions
-> and placed in all six. The team is now moving into Capture the Flag.
+> project showcases and hackathons. The team has five competition results from
+> 2026: two podium finishes and three finals reached. It is now moving into
+> Capture the Flag.
 
 Site: https://cortexcrew.vercel.app/
 Founded: 2026
@@ -16,12 +17,14 @@ Tagline: Code · Collaborate · Conquer
 | --- | --- | --- | --- | --- |
 | Champion | CSAD 2026 Project Showcasing Competition | Cyber Security Centre, Daffodil International University | January 2026 | BDT 12,000 |
 | 1st Runners-up | IEEE ICADHI 2026 Project Showcase | IEEE DIU Student Branch | June 2026 | BDT 10,000 |
-| Finalist | The Infinity AI Buildfest 2026 | CloudCamp Bangladesh x BRAC University | June 2026 | — |
 | Finalist | AI Project Competition 2026 | Dept. of CSE, Daffodil International University | July 2026 | — |
 | Finalist | 5th Data Science Summit | Daffodil International University | July 2026 | — |
 | Finalist | AI Innovation Hackathon 2026 — From Learning to Impact | Dept. of CSE, Daffodil International University | July 2026 | — |
 
-Six events entered. Six placings. One championship.
+Five competition results: one championship, one runners-up, three finals
+reached. "Finalist" means the team reached the final round and did not place.
+This table lists results only — competitions entered without reaching a final
+are not listed and are not counted.
 
 ## Members
 
@@ -36,7 +39,7 @@ Six events entered. Six placings. One championship.
 
 - **Niro** — Patient-owned medical records with a Bangla AI document analyser
   and on-demand doctor verification. FastAPI, Next.js, PostgreSQL, Azure OpenAI.
-  Took the team to three finals, best result 1st Runners-up at IEEE ICADHI 2026.
+  Taken to two competitions, best result 1st Runners-up at IEEE ICADHI 2026.
 - **Autopilot** — A self-healing GPU cluster. Predicts GPU failure roughly 100
   seconds ahead from telemetry, then cordons the node and migrates the running
   job automatically. Precision 0.87, recall 0.94, versus 24 seconds of warning

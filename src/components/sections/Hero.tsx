@@ -28,19 +28,11 @@ export function Hero() {
         <div className="grid w-full items-center gap-12 lg:grid-cols-12 lg:gap-8">
           {/* ── copy ── */}
           <div className="lg:col-span-7">
-            <p className="inline-flex items-center gap-2 rounded-chip border border-base-700 bg-base-900/70 px-3 py-1.5 font-mono text-label uppercase tracking-[0.16em] text-fg-subtle">
-              <span
-                aria-hidden="true"
-                className="hex block h-2.5 w-2.5 bg-[linear-gradient(135deg,#22d3ee,#a855f7)]"
-              />
-              {site.university} · {site.city}
-            </p>
-
             {/* The visible words are split across two lines, but the accessible
                 name must read "Cortex Crew" — without the sr-only space the DOM
                 text serialises as "CORTEXCREW", which is what crawlers and
                 screen readers get. */}
-            <h1 id="hero-title" className="mt-6 font-display text-hero font-bold">
+            <h1 id="hero-title" className="font-display text-hero font-bold">
               <span className="block text-fg">CORTEX</span>
               <span className="sr-only"> </span>
               <span className="text-gradient block">CREW</span>
@@ -60,8 +52,8 @@ export function Hero() {
             </p>
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-fg-muted">
-              Six competitions entered in 2026. We placed in every one — one championship, one
-              runners-up, four finals. {site.secondaryTagline}.
+              Five competition results in 2026 — one championship, one runners-up, and three finals
+              reached. {site.secondaryTagline}.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">

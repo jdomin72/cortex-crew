@@ -9,7 +9,7 @@
 The official site of Cortex Crew — a competition team at
 Daffodil International University, Dhaka.
 
-[![Live site](https://img.shields.io/badge/live-cortex--crew.vercel.app-22d3ee?style=flat-square)](https://cortex-crew.vercel.app)
+[![Live site](https://img.shields.io/badge/live-cortexcrew.vercel.app-22d3ee?style=flat-square)](https://cortexcrew.vercel.app)
 ![React 19](https://img.shields.io/badge/React-19-3b82f6?style=flat-square)
 ![Vite 8](https://img.shields.io/badge/Vite-8-a855f7?style=flat-square)
 ![Tailwind 4](https://img.shields.io/badge/Tailwind-4-22d3ee?style=flat-square)
@@ -21,17 +21,17 @@ Daffodil International University, Dhaka.
 
 ## About
 
-Cortex Crew builds working systems and takes them on stage. In 2026 the team
-entered six project showcases and hackathons and placed in every one — one
-championship, one runners-up, and four finals — across Daffodil International
-University, IEEE, BRAC University, and CloudCamp Bangladesh. The team is now
-moving into Capture the Flag competition.
+Cortex Crew builds working systems and takes them on stage. The team has five
+competition results from 2026 — Champion at CSAD 2026, 1st Runners-up at IEEE
+ICADHI 2026, and three more finals reached — across Daffodil International
+University and the IEEE DIU Student Branch. The team is now moving into
+Capture the Flag competition.
 
 This repository holds the source for the team's public site: a single-page
 application presenting the record, the projects behind it, the people, and
 what comes next.
 
-**→ [cortex-crew.vercel.app](https://cortex-crew.vercel.app)**
+**→ [cortexcrew.vercel.app](https://cortexcrew.vercel.app)**
 
 ## Highlights
 
@@ -40,8 +40,8 @@ what comes next.
   set, scroll reveals, and component kit are all hand-built.
 - **74 KB of JavaScript, gzipped.** Well inside a mobile budget.
 - **Perfect Lighthouse scores** for accessibility, best practices, and SEO.
-- **No layout shift.** CLS measures 0.00 — every image carries intrinsic
-  dimensions and the webfonts have metric-matched fallbacks.
+- **No layout shift.** CLS measures 0 — every image carries intrinsic
+  dimensions, and the display and body faces ship metric-matched fallbacks.
 - **Motion is opt-in.** Nothing animates at rest, and the entire scroll-reveal
   mechanism is gated behind `prefers-reduced-motion`.
 - **Content is data.** Every word on the page lives in one typed module, so the

@@ -79,7 +79,7 @@ export const site: SiteConfig = {
   founded: '2026',
   url: 'https://cortexcrew.vercel.app',
   description:
-    'Cortex Crew is a competition team at Daffodil International University, Dhaka. Six events entered, six placed — one championship, one runners-up, four finals.',
+    'Cortex Crew is a competition team at Daffodil International University, Dhaka. Five competition results in 2026 — one championship, one runners-up, three finals.',
 
   logo: {
     src: '/media/logo-512.webp',
@@ -123,10 +123,13 @@ export const site: SiteConfig = {
     },
   ],
 
+  /* Must partition cleanly: 2 + 3 = 5, no double-counting. An earlier version
+     read "6 entered / 6 placed", which reads as having WON all six. Two of these
+     are wins; three are finals we reached and did not place in. Say so. */
   heroStats: [
-    { value: '6', label: 'Events entered' },
-    { value: '6', label: 'Times placed' },
-    { value: '1', label: 'Championship' },
+    { value: '5', label: 'Competitions' },
+    { value: '2', label: 'Podium finishes' },
+    { value: '3', label: 'Finalist' },
   ],
 
   contactEmail: 'teamcortexcrew@gmail.com',
@@ -149,7 +152,13 @@ export const site: SiteConfig = {
 }
 
 /* ───────────────────────────── achievements ─────────────────────────────
-   Six events entered in 2026. Placed in all six.
+   Five results from 2026: one Champion, one 1st Runners-up, three Finalist.
+
+   ⚠️ ONLY list events with a real result. Reaching the final counts; merely
+   entering does not. Infinity AI Buildfest 2026 and both IUT Techathon rounds
+   are deliberately absent — the team took part and did not reach a final, so
+   they are not results and must not be counted anywhere on the site.
+
    Copy leads with the RESULT and the TEAM; `builtWith` is a small meta chip.
    ─────────────────────────────────────────────────────────────────────── */
 
@@ -217,18 +226,6 @@ export const achievements: Achievement[] = [
       'Selected for the final assessment round and demoed live at our own booth to a judging panel.',
   },
   {
-    id: 'buildfest-2026',
-    event: 'The Infinity AI Buildfest 2026',
-    organizer: 'CloudCamp Bangladesh × BRAC University',
-    rankLabel: 'Finalist',
-    tier: 'finalist',
-    kind: 'hackathon',
-    date: '2026-06',
-    location: 'Bangladesh',
-    builtWith: 'Niro',
-    summary: 'A national AI build competition — build locally, lead globally. We reached the finals.',
-  },
-  {
     id: 'dss-2026',
     event: '5th Data Science Summit',
     organizer: 'Daffodil International University',
@@ -257,15 +254,6 @@ export const timeline: TimelineEvent[] = [
     detail: 'First competition as Cortex Crew. First trophy.',
     status: 'done',
     tier: 'gold',
-  },
-  {
-    id: 't-buildfest',
-    date: '2026-06',
-    title: 'Finalist — Infinity AI Buildfest 2026',
-    kind: 'hackathon',
-    detail: 'National AI build competition, CloudCamp Bangladesh × BRAC University.',
-    status: 'done',
-    tier: 'finalist',
   },
   {
     id: 't-icadhi',
@@ -327,10 +315,12 @@ export const projects: Project[] = [
     stack: ['FastAPI', 'Next.js', 'PostgreSQL', 'Azure OpenAI', 'Alembic'],
     status: 'archived',
     year: '2026',
-    builtFor: 'Took the team to three finals',
+    builtFor: 'IEEE ICADHI 2026 · 1st Runners-up',
     accent: 'cyan',
+    /* Two, not three — Niro was also entered at Infinity AI Buildfest 2026,
+       which the team did not reach a final at, so it is not counted. */
     metrics: [
-      { label: 'Competitions', value: '3' },
+      { label: 'Competitions', value: '2' },
       { label: 'Best result', value: '1st Runners-up' },
     ],
   },
@@ -449,7 +439,7 @@ export const ctf: CtfConfig = {
     'cortex-crew · Daffodil International University · Dhaka',
     '',
     '$ cat record.txt',
-    '6 events entered · 6 placed · 1 championship',
+    '5 competitions · 2 podium · 3 finalist',
     '',
     '$ cat roadmap.txt',
     '- weekly HTB + picoCTF drills          [ in progress ]',

@@ -76,8 +76,8 @@ export function Achievements() {
     <Section
       id="achievements"
       eyebrow="The record"
-      title="Six competitions. Six times on the board."
-      lead="Every event Cortex Crew has entered, and where we finished. One championship, one runners-up, four finals — across project showcases and hackathons at Daffodil International University and beyond."
+      title="Five competitions. Two podiums, three finals."
+      lead="Where Cortex Crew finished, event by event — one championship, one runners-up, and three finals reached, across project showcases and hackathons at Daffodil International University and beyond."
     >
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
         {/* ── feature card ── */}

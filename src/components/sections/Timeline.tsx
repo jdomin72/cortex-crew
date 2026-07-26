@@ -27,7 +27,7 @@ export function Timeline() {
     <Section
       id="timeline"
       eyebrow="How we got here"
-      title="One year, six stages."
+      title="One year, five competitions."
       lead="From a first competition in January to the hackathon final in July — and what comes next."
       band
     >
