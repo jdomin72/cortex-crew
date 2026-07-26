@@ -1,0 +1,238 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════ design tokens ═══════════════════════════════
+   Contrast ratios below are computed against --color-base-950 (#050508), not
+   estimated. --color-fg-subtle is the FLOOR for real text; anything fainter is
+   decorative only.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* surfaces */
+  --color-base-950: #050508;
+  --color-base-900: #0a0a12;
+  --color-base-850: #0e1018;
+  --color-base-800: #131725;
+  --color-base-700: #1c2133;
+  --color-base-600: #2b3350;
+
+  /* foreground */
+  --color-fg: #e9edf7;        /* 15.9:1  headings */
+  --color-fg-muted: #9aa4b8;  /*  8.1:1  body copy */
+  --color-fg-subtle: #78829e; /*  5.2:1  meta / labels — the floor */
+  --color-fg-faint: #4d5670;  /*  2.4:1  DECORATIVE ONLY, never text */
+
+  /* brand — split by role. The two -deep values are the blues people reach for
+     by instinct, and both FAIL AA as text on this background. */
+  --color-brand-cyan: #22d3ee;         /* 11.3:1  text-safe */
+  --color-brand-blue: #3b82f6;         /*  5.5:1  text-safe */
+  --color-brand-violet: #a855f7;       /*  5.2:1  text-safe */
+  --color-brand-blue-deep: #2563eb;    /*  4.0:1  FILL ONLY */
+  --color-brand-violet-deep: #7c3aed;  /*  3.6:1  FILL ONLY */
+
+  /* medal tiers */
+  --color-tier-gold: #fbbf24;     /* 12.2:1 */
+  --color-tier-silver: #cbd5e1;   /* 12.9:1 */
+  --color-tier-bronze: #cd7f32;   /*  6.4:1 */
+  --color-tier-finalist: #22d3ee;
+
+  /* type */
+  --font-display: "Chakra Petch", "Chakra Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: Inter, "Inter Fallback", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --text-hero: clamp(2.75rem, 9vw, 6.5rem);
+  --text-hero--line-height: 0.92;
+  --text-hero--letter-spacing: -0.03em;
+
+  --text-section: clamp(1.75rem, 4vw, 2.75rem);
+  --text-section--line-height: 1.08;
+  --text-section--letter-spacing: -0.02em;
+
+  --text-label: 0.6875rem;
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.18em;
+
+  /* shape — angular, not pill. The brand is hexagons and slashes. */
+  --radius-card: 0.25rem;
+  --radius-chip: 0.1875rem;
+
+  --ease-out-quint: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ═══════════════════════════════ utilities ═══════════════════════════════ */
+
+/* Tailwind 4 removed the configurable container — redefine it. */
+@utility container {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 76rem;
+  padding-inline: 1.25rem;
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-brand-cyan) 0%,
+    var(--color-brand-blue) 45%,
+    var(--color-brand-violet) 100%
+  );
+  background-clip: text;
+  color: transparent;
+  /* stops descenders being shaved by background-clip */
+  padding-bottom: 0.06em;
+}
+
+@utility rule-gradient {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-brand-cyan) 18%,
+    var(--color-brand-blue) 50%,
+    var(--color-brand-violet) 82%,
+    transparent
+  );
+  opacity: 0.5;
+}
+
+/* PCB motif, layer 1: trace grid */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* PCB motif, layer 2: the glowing junction dots from the logo */
+@utility bg-nodes {
+  background-image: radial-gradient(circle at 1px 1px, rgb(34 211 238 / 0.16) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+@utility mask-radial-fade {
+  mask-image: radial-gradient(ellipse 78% 62% at 50% 32%, #000 30%, transparent 78%);
+}
+
+/* Regular pointy-top hexagon inscribed in a square box — matches the logo C-frame. */
+@utility hex {
+  clip-path: polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%);
+}
+
+/* Angular corner cut — the "slash" motif from the wordmark.
+   NOTE: only ever applied to a decorative ::before layer, never to a focusable
+   element, because clip-path also clips the element's own focus outline. */
+@utility notch-tr {
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+}
+@utility notch-br {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+}
+
+@utility glow-cyan {
+  box-shadow: 0 0 0 1px rgb(34 211 238 / 0.22), 0 22px 60px -28px rgb(34 211 238 / 0.55);
+}
+@utility glow-violet {
+  box-shadow: 0 0 0 1px rgb(168 85 247 / 0.22), 0 22px 60px -28px rgb(168 85 247 / 0.55);
+}
+
+/* The ONE blurred element on the page — the sticky nav. Budgeted deliberately:
+   the audience is largely on mid-range Android, where blur is the most
+   expensive thing in a scroll. */
+@utility glass {
+  background-color: color-mix(in oklab, var(--color-base-950) 88%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+}
+
+@utility tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+@utility focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--color-brand-cyan);
+    outline-offset: 3px;
+    border-radius: var(--radius-chip);
+  }
+}
+
+/* ═══════════════════════════════════ base ═══════════════════════════════════ */
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background-color: var(--color-base-950);
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-fg);
+  background-color: var(--color-base-950);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+/* Sticky-header offset so #anchor jumps don't hide the heading underneath it. */
+:where(section[id]) {
+  scroll-margin-top: 5.5rem;
+}
+
+::selection {
+  background: rgb(34 211 238 / 0.28);
+  color: #fff;
+}
+
+/* Metric-matched fallbacks so the webfont swap costs ~0 CLS. */
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial");
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Chakra Fallback";
+  src: local("Arial Narrow"), local("Arial");
+  size-adjust: 94%;
+  ascent-override: 96%;
+  descent-override: 26%;
+  line-gap-override: 0%;
+}
+
+/* ═══════════════════════════════ scroll reveal ═══════════════════════════════
+   The ENTIRE mechanism lives inside the motion query. Reduced-motion users never
+   receive the hidden state at all, so there is no override to forget and no way
+   for content to end up stuck invisible. This is the most important block here.
+
+   Written unlayered so it wins against Tailwind's `utilities` layer — a stray
+   `opacity-100` in a className can't fight it.
+   ─────────────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 620ms var(--ease-out-quint),
+      transform 620ms var(--ease-out-quint);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  [data-reveal="in"] {
+    opacity: 1;
+    transform: none;
+  }
+}

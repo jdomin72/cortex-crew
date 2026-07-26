@@ -1,0 +1,23 @@
+# deps / build
+node_modules/
+dist/
+*.tsbuildinfo
+
+# original full-resolution source images — never shipped.
+# Everything the site needs is generated into public/media/ by scripts/build_media.py.
+assets-src/
+
+# internal engineering notes — never published
+CLAUDE.md
+AGENTS.md
+
+# local tooling
+.remember/
+.claude/settings.local.json
+.DS_Store
+*.local
+.vercel
+
+# screenshot scratch
+.shots/
+.playwright-mcp/
