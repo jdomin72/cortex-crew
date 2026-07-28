@@ -37,6 +37,11 @@ are not listed and are not counted.
 
 ## Projects
 
+- **Darktrace3** — A breach-exposure checker built from malware and infostealer
+  logs. Unlike breach-notification services, it can tell a person they were
+  compromised by a stealer and show which sites and accounts were exposed, so
+  they know exactly what to secure. Passwords are masked; built for awareness.
+  Python, Flask, SQLite. Champion at CSAD 2026.
 - **Niro** — Patient-owned medical records with a Bangla AI document analyser
   and on-demand doctor verification. FastAPI, Next.js, PostgreSQL, Azure OpenAI.
   Taken to two competitions, best result 1st Runners-up at IEEE ICADHI 2026.

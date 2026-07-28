@@ -48,6 +48,11 @@ function Meta({ item }: { item: Achievement }) {
         </span>
       ) : null}
       {item.prize ? <span className={TIER_TEXT[item.tier]}>{item.prize}</span> : null}
+      {item.builtWith ? (
+        <Badge variant="outline" mono>
+          built · {item.builtWith}
+        </Badge>
+      ) : null}
     </div>
   )
 }

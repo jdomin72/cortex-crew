@@ -174,6 +174,7 @@ export const achievements: Achievement[] = [
     location: 'Dhaka, Bangladesh',
     prize: 'BDT 12,000',
     featured: true,
+    builtWith: 'Darktrace3',
     summary:
       'Our first competition as a team, and we took the top prize. Cyber Security Awareness Day put every project on one stage in front of a judging panel — Cortex Crew came away Champion.',
     photo: award(
@@ -306,6 +307,21 @@ export const timeline: TimelineEvent[] = [
    ───────────────────────────────────────────────────────────────────────── */
 
 export const projects: Project[] = [
+  {
+    id: 'darktrace3',
+    name: 'Darktrace3',
+    tagline: 'Tells stealer-malware victims exactly what to lock down',
+    description:
+      'Most breach checkers only tell you an email address turned up in a leak. Darktrace3 works from malware and infostealer logs instead, so it can tell a person they were compromised by a stealer at all — and show which sites and accounts were exposed, so they know precisely what to change. Passwords are always masked in results; the tool is built for awareness, not harvesting.',
+    stack: ['Python', 'Flask', 'SQLite', 'Flask-CORS', 'Gunicorn'],
+    status: 'archived',
+    year: '2026',
+    builtFor: 'CSAD 2026 · Champion',
+    accent: 'violet',
+    /* No metrics and no repo/demo link, by design: the working build runs on
+       real stealer-log data, so a public number, source tree or live search
+       would expose real people. Describe the capability, never the corpus. */
+  },
   {
     id: 'niro',
     name: 'Niro',

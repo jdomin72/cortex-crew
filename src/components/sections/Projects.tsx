@@ -65,7 +65,7 @@ export function Projects() {
       id="projects"
       eyebrow="The work"
       title="What we build to compete."
-      lead="Three systems the team designed, built and demoed live. Each one exists because a competition asked a hard question — and each one is the evidence behind a result above."
+      lead="Four systems the team designed, built and demoed live. Each one exists because a competition asked a hard question — and each one is the evidence behind a result above."
     >
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {projects.map((project, index) => (
