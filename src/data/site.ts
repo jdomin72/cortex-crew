@@ -34,14 +34,11 @@ function award(slug: string, alt: string) {
 /**
  * Build a member portrait reference.
  *
- * Currently unused — nobody on the team has a published photo yet, so every
- * member renders the gradient monogram <Avatar> instead. Kept (and exported so
- * `noUnusedLocals` stays happy) because it is the exact call you need when a
- * photo arrives:
- *
- *   1. save it as assets-src/team/<member-id>.jpg
- *   2. bun run media
- *   3. add to that member:  photo: portrait('<member-id>', 'Name, role'),
+ * To add one: save the original as assets-src/team/<member-id>.jpg (that folder
+ * is gitignored — originals never ship), run `bun run media`, then set
+ * `photo: portrait('<member-id>', 'Name, role')` on that member. Members
+ * without a photo render the monogram <Avatar>, which is a designed variant
+ * rather than a placeholder, so a mixed row still reads as a system.
  */
 export function portrait(slug: string, alt: string) {
   return {
@@ -308,18 +305,20 @@ export const projects: Project[] = [
 
 export const members: Member[] = [
   {
-    id: 'kawsher-ahmed',
-    name: 'Md Kawsher Ahmed',
-    initials: 'KA',
+    id: 'kawsher-hridoy',
+    name: 'Kawsher HRidoy',
+    initials: 'KH',
     role: 'Team Lead · ML & Systems',
     kind: 'member',
-    department: 'Daffodil International University',
     focus: ['Machine Learning', 'Backend', 'Security', 'Integration'],
     accent: 'cyan',
+    photo: portrait('kawsher-hridoy', 'Kawsher HRidoy, Team Lead'),
     links: [
+      { platform: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/KawsherHRidooy/' },
       { platform: 'github', label: 'GitHub', href: 'https://github.com/kawsher-hridoy' },
       { platform: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com/in/kawsher-hridoy' },
-      { platform: 'telegram', label: 'Telegram', href: 'https://t.me/hridooy' },
+      { platform: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/kawsherhridoy/' },
+      { platform: 'email', label: 'Email', href: 'mailto:kawsher@hridoy.xyz' },
     ],
   },
   {
@@ -328,9 +327,28 @@ export const members: Member[] = [
     initials: 'SR',
     role: 'Infrastructure & Telemetry',
     kind: 'member',
-    department: 'Daffodil International University',
     focus: ['Linux', 'Cloud Infrastructure', 'Monitoring', 'Deployment'],
     accent: 'blue',
+    links: [
+      {
+        platform: 'facebook',
+        label: 'Facebook',
+        href: 'https://www.facebook.com/shafiurrahaman.shafim',
+      },
+      { platform: 'github', label: 'GitHub', href: 'https://github.com/Shafiur0' },
+      {
+        platform: 'linkedin',
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/shafiur-rahman-shafim/',
+      },
+      { platform: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/shafiurshafim' },
+      { platform: 'x', label: 'X', href: 'https://x.com/Shafiur792' },
+      {
+        platform: 'website',
+        label: 'Portfolio',
+        href: 'https://shafiur-rahaman-shafim.vercel.app/',
+      },
+    ],
   },
   {
     id: 'arnob-paul',
@@ -338,19 +356,43 @@ export const members: Member[] = [
     initials: 'AP',
     role: 'Interface & Presentation',
     kind: 'member',
-    department: 'Daffodil International University',
     focus: ['Frontend', 'Design', 'Dashboards', 'Demo & Pitch'],
     accent: 'violet',
   },
   {
-    id: 'zebon',
-    name: 'Md. Abdul Hye Zebon',
-    initials: 'AZ',
-    role: 'Mentor',
-    kind: 'mentor',
-    department: 'Dept. of Software Engineering, Daffodil International University',
-    focus: ['Guidance', 'Review', 'Competition Strategy'],
+    id: 'al-fahad',
+    name: 'AL Fahad',
+    initials: 'AF',
+    role: 'UI/UX Designer',
+    kind: 'member',
     accent: 'cyan',
+    photo: portrait('al-fahad', 'AL Fahad, UI/UX Designer'),
+    links: [
+      {
+        platform: 'facebook',
+        label: 'Facebook',
+        href: 'https://www.facebook.com/al.fahad.official01',
+      },
+      { platform: 'behance', label: 'Behance', href: 'https://www.behance.net/alfahad19' },
+      { platform: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/alfahad7960/' },
+      { platform: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/alfahad19' },
+    ],
+  },
+  {
+    id: 'abdullah-al-khalil',
+    name: 'Abdullah Al Khalil',
+    initials: 'AK',
+    role: 'Developer',
+    kind: 'member',
+    accent: 'blue',
+  },
+  {
+    id: 'arvin-ahmed-alok',
+    name: 'Arvin Ahmed Alok',
+    initials: 'AA',
+    role: 'Developer',
+    kind: 'member',
+    accent: 'violet',
   },
 ]
 

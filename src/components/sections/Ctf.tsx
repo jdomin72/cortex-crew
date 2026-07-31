@@ -67,8 +67,13 @@ export function Ctf() {
       band
     >
       <div className="grid gap-6 lg:grid-cols-2 lg:gap-10">
+        {/* min-w-0 on both columns: a grid item defaults to min-width:auto, so the
+            terminal <pre>'s longest unbreakable line set a 438px floor for the
+            entire page at every viewport. `body { overflow-x: clip }` then hid
+            the overflow instead of allowing a scroll, so the content was simply
+            cut off on any phone. */}
         {/* ── focus areas ── */}
-        <Reveal>
+        <Reveal className="min-w-0">
           <ul className="space-y-5">
             {ctf.focusAreas.map((area) => (
               <li key={area.label} className="flex gap-3">
@@ -110,7 +115,7 @@ export function Ctf() {
         </Reveal>
 
         {/* ── terminal panel — static text, no typewriter, no blinking cursor ── */}
-        <Reveal delay={100}>
+        <Reveal delay={100} className="min-w-0">
           {/* The three fake traffic-light dots are gone: they are the most
               copied ornament in developer marketing, and they were dressing
               this block up as a macOS window, which it is not. A plain

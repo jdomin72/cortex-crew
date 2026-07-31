@@ -92,17 +92,20 @@ export interface Member {
   name: string
   /**
    * EXPLICIT initials — never auto-derived. Bangladeshi naming conventions
-   * ('Md Kawsher Ahmed', 'Md. Abdul Hye Zebon') produce wrong or ugly results
-   * from any generic first-letter algorithm.
+   * ('Kawsher HRidoy', 'Shafiur Rahman Shafim') produce wrong or ugly results
+   * from any generic first-letter algorithm, and the styling of a person's own
+   * name is theirs to choose, not an algorithm's.
    */
   initials: string
   role: string
   kind: MemberKind
   department?: string
-  focus: string[]
+  /** Omitted where the member has not told us their specialisms — the card
+      simply shows fewer chips rather than the site inventing any. */
+  focus?: string[]
   /** Absent → <Avatar> renders the gradient monogram hexagon instead. */
   photo?: ResponsiveImage
-  /** cyan → blue → violet across the three members, so the row reads as the brand gradient. */
+  /** cyan → blue → violet, cycling, so the roster reads as the brand gradient. */
   accent: BrandAccent
   links?: SocialLink[]
 }
@@ -114,6 +117,9 @@ export type SocialPlatform =
   | 'github'
   | 'linkedin'
   | 'telegram'
+  | 'instagram'
+  | 'behance'
+  | 'x'
   | 'email'
   | 'ctftime'
   | 'website'

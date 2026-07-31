@@ -27,17 +27,13 @@ import { Reveal } from '../ui/Reveal'
  */
 export function About() {
   const crew = members.filter((member) => member.kind === 'member')
-  const mentors = members.filter((member) => member.kind === 'mentor')
 
   const facts: { label: string; value: string }[] = [
     { label: 'Founded', value: site.founded },
     { label: 'Based', value: `${site.city}, ${site.country}` },
     { label: 'University', value: site.university },
     { label: 'Competes in', value: site.pillars.map((pillar) => pillar.label).join(' · ') },
-    {
-      label: 'Crew',
-      value: `${crew.length} members · ${mentors.length} mentor`,
-    },
+    { label: 'Crew', value: `${crew.length} members` },
   ]
 
   return (
@@ -73,11 +69,11 @@ export function About() {
             </p>
 
             <p className="mt-4 text-lg leading-relaxed text-fg-muted">
-              The team is led by Md Kawsher Ahmed, with Shafiur Rahman Shafim on infrastructure and
-              telemetry and Arnob Kumar Paul on interface and presentation, mentored by Md. Abdul
-              Hye Zebon of the Department of Software Engineering. Cortex Crew builds working
-              systems and demonstrates them live rather than presenting concepts, and is now moving
-              into competitive Capture the Flag.
+              The team is led by Kawsher HRidoy, with Shafiur Rahman Shafim on infrastructure and
+              telemetry, Arnob Kumar Paul on interface and presentation, Abdullah Al Khalil and
+              Arvin Ahmed Alok on development, and AL Fahad on UI and UX design. Cortex Crew builds
+              working systems and demonstrates them live rather than presenting concepts, and is now
+              moving into competitive Capture the Flag.
             </p>
           </Reveal>
 

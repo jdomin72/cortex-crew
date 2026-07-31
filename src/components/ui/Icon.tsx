@@ -20,10 +20,15 @@ export type IconName =
   | 'github'
   | 'linkedin'
   | 'telegram'
+  | 'instagram'
+  | 'behance'
+  | 'x'
   | 'mail'
   | 'globe'
   | 'menu'
   | 'close'
+  | 'pause'
+  | 'play'
 
 /* Stroked glyphs — inherit currentColor, share stroke-width. */
 const STROKE: Partial<Record<IconName, string>> = {
@@ -42,6 +47,13 @@ const STROKE: Partial<Record<IconName, string>> = {
   globe: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z M3.5 9.5h17 M3.5 14.5h17 M12 3c2.4 2.4 3.6 5.4 3.6 9S14.4 18.6 12 21 8.4 15.6 8.4 12 9.6 5.4 12 3Z',
   menu: 'M4 7h16 M4 12h16 M4 17h16',
   close: 'M6 6l12 12 M18 6 6 18',
+  pause: 'M9.5 5.5v13 M14.5 5.5v13',
+  play: 'M8 5.4 19 12 8 18.6Z',
+  /* Instagram's mark is an outline in the official guidelines, so it belongs
+     with the stroked glyphs rather than the filled brand marks. The trailing
+     zero-length segment renders as the lens dot under `stroke-linecap: round`. */
+  instagram:
+    'M7.5 3.2h9a4.3 4.3 0 0 1 4.3 4.3v9a4.3 4.3 0 0 1-4.3 4.3h-9a4.3 4.3 0 0 1-4.3-4.3v-9A4.3 4.3 0 0 1 7.5 3.2Z M12 8.35a3.65 3.65 0 1 0 0 7.3 3.65 3.65 0 0 0 0-7.3Z M17.05 7h.01',
 }
 
 /* Filled brand marks — official glyph shapes, so they must be paths not strokes. */
@@ -54,6 +66,9 @@ const FILL: Partial<Record<IconName, string>> = {
     'M6.94 8.5H3.56V21h3.38V8.5ZM5.25 3a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92ZM20.44 13.7c0-3.3-1.76-4.83-4.11-4.83-1.9 0-2.74 1.04-3.22 1.78V8.5H9.73V21h3.38v-6.98c0-1.53.29-3.02 2.19-3.02 1.87 0 1.9 1.75 1.9 3.12V21h3.24v-7.3Z',
   telegram:
     'M21.6 4.3 2.9 11.5c-.9.34-.9 1.62.02 1.93l4.63 1.55 1.79 5.6c.24.75 1.2.95 1.72.36l2.5-2.83 4.7 3.45c.66.48 1.6.13 1.78-.68l3.1-14.5c.2-.9-.7-1.66-1.54-1.35ZM8.6 14.1l9.14-5.62-7.5 6.9-.3 3.2-1.34-4.48Z',
+  x: 'M17.53 3H20.5l-6.49 7.42L21.64 21h-5.97l-4.68-6.12L5.6 21H2.63l6.94-7.93L2.36 3h6.12l4.23 5.59L17.53 3Zm-1.04 16.2h1.64L7.6 4.7H5.84l10.65 14.5Z',
+  behance:
+    'M8.2 6.4c1.9 0 3.3.63 3.3 2.5 0 1.1-.55 1.8-1.45 2.2 1.3.33 2 1.3 2 2.7 0 2.2-1.8 3.2-3.9 3.2H2V6.4h6.2Zm-.4 4.1c.8 0 1.3-.3 1.3-1.05 0-.8-.6-1.05-1.3-1.05H4.7v2.1h3.1Zm.2 4.4c.9 0 1.6-.3 1.6-1.3 0-1-.6-1.3-1.5-1.3H4.7v2.6h3.3Z M14.6 7.6h5.6v1.4h-5.6z M17.9 10.2c2.3 0 3.8 1.6 3.8 4v.5h-5.6c.13 1.2.8 1.9 1.9 1.9.8 0 1.4-.3 1.6-.9h2c-.4 1.6-1.8 2.5-3.7 2.5-2.5 0-4-1.7-4-4s1.6-4 4-4Zm1.7 3.2c-.1-1-.7-1.6-1.7-1.6s-1.6.6-1.8 1.6h3.5Z',
 }
 
 export interface IconProps extends Omit<SVGProps<SVGSVGElement>, 'name'> {

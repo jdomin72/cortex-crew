@@ -28,12 +28,14 @@ are not listed and are not counted.
 
 ## Members
 
-- **Md Kawsher Ahmed** — Team Lead, machine learning and systems integration.
+- **Kawsher HRidoy** — Team Lead, machine learning and systems integration.
   GitHub: https://github.com/kawsher-hridoy
 - **Shafiur Rahman Shafim** — Infrastructure and telemetry.
+  GitHub: https://github.com/Shafiur0
 - **Arnob Kumar Paul** — Interface, design and presentation.
-- **Md. Abdul Hye Zebon** — Mentor, Department of Software Engineering,
-  Daffodil International University.
+- **AL Fahad** — UI/UX design. Behance: https://www.behance.net/alfahad19
+- **Abdullah Al Khalil** — Development.
+- **Arvin Ahmed Alok** — Development.
 
 ## Projects
 
@@ -67,7 +69,7 @@ development.
 - [Facebook page](https://facebook.com/teamcortexcrew): announcements and competition updates.
 - [Autopilot — source](https://github.com/kawsher-hridoy/autopilot): self-healing GPU cluster, built for the AI Innovation Hackathon 2026.
 - [AI Mentor — source](https://github.com/kawsher-hridoy/DIU-AI-Mentor): student early-warning system, built for the AI Project Competition 2026.
-- [Md Kawsher Ahmed — GitHub](https://github.com/kawsher-hridoy): team lead.
+- [Kawsher HRidoy — GitHub](https://github.com/kawsher-hridoy): team lead.
 - [Daffodil International University](https://daffodilvarsity.edu.bd/): the team's university.
 
 ## Contact

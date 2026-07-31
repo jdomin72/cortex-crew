@@ -290,12 +290,10 @@ body {
      ─────────────────────────────────────────────────────────────────── */
 
   .wipe {
-    display: block;
     overflow: hidden;
   }
 
   .wipe > * {
-    display: block;
     animation: wipe-rise 720ms var(--ease-out-quint) both;
     animation-delay: var(--wipe-delay, 0ms);
   }
@@ -370,6 +368,16 @@ body {
       transform: none;
     }
   }
+}
+
+/* ── the wipe's LAYOUT, outside the reduced-motion guard ──
+   Only the animation is motion; `display: block` is structure. With both inside
+   the guard, a reduced-motion visitor got inline spans, so CORTEX and CREW ran
+   together on one line and overflowed the viewport on every phone. The mask and
+   the movement stay guarded; the two lines being two lines does not. */
+.wipe,
+.wipe > * {
+  display: block;
 }
 
 /* ── hover affordance ──

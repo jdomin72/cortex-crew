@@ -4,7 +4,7 @@ import { Section } from '../Section'
 import { Badge } from '../ui/Badge'
 import { Button } from '../ui/Button'
 import { Card } from '../ui/Card'
-import { Reveal } from '../ui/Reveal'
+import { CAROUSEL_ITEM, Carousel } from '../ui/Carousel'
 
 const STATUS_DOT = {
   live: 'bg-tier-finalist',
@@ -41,31 +41,13 @@ export function Projects() {
       title="What we build to compete."
       lead="Four systems the team designed, built and demoed live. Each one exists because a competition asked a hard question — and each one is the evidence behind a result above."
     >
-      {/* ── mobile: a swipeable rail. desktop: the grid. ──
-          This is the "slideshow" without the thing that makes slideshows bad.
-          Every card is in the DOM, visible, and reachable by scroll, keyboard
-          and screen reader — nothing is hidden behind a control that most
-          people never press, and the prerendered HTML still contains all four.
-          It is native scroll-snap: no JS, no state, no ARIA live region, and
-          it gets the platform's own momentum and rubber-banding for free.
-
-          The negative margin cancels the container's inset so the rail runs
-          edge to edge, and `scroll-pl-5` restores it for the snapped card. At
-          86vw the next card peeks, which is the only swipe affordance needed. */}
-      <div
-        className={cn(
-          'max-md:-mx-5 max-md:flex max-md:snap-x max-md:snap-mandatory max-md:gap-4',
-          'max-md:overflow-x-auto max-md:px-5 max-md:pb-2 max-md:scroll-pl-5',
-          'md:grid md:grid-cols-2 md:gap-5',
-        )}
-      >
-        {projects.map((project, index) => (
-          <Reveal
-            key={project.id}
-            as="div"
-            delay={index * 70}
-            className="max-md:w-[86vw] max-md:shrink-0 max-md:snap-start"
-          >
+      {/* A slideshow at every width now, not just on phones — see `Carousel`
+          for why it is a scroll container rather than a slide swapper. All four
+          cards stay in the DOM and in the prerendered HTML; the buttons and dots
+          are a convenience layer that only appears once the bundle has run. */}
+      <Carousel label="our projects">
+        {projects.map((project) => (
+          <div key={project.id} className={CAROUSEL_ITEM}>
             <Card
               as="article"
               notch="br"
@@ -144,9 +126,9 @@ export function Projects() {
                 ) : null}
               </div>
             </Card>
-          </Reveal>
+          </div>
         ))}
-      </div>
+      </Carousel>
     </Section>
   )
 }
