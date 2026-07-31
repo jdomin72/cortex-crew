@@ -70,10 +70,10 @@ export function About() {
 
             <p className="mt-4 text-lg leading-relaxed text-fg-muted">
               The team is led by Kawsher HRidoy, with Shafiur Rahman Shafim on infrastructure and
-              telemetry, Arnob Kumar Paul on interface and presentation, Abdullah Al Khalil and
-              Arvin Ahmed Alok on development, and AL Fahad on UI and UX design. Cortex Crew builds
-              working systems and demonstrates them live rather than presenting concepts, and is now
-              moving into competitive Capture the Flag.
+              telemetry, Arnob Kumar Paul on interface and presentation, Abdullah Al Khalil on
+              systems and algorithms, Arvin Ahmed Alok on frontend development, and AL Fahad on UI,
+              UX and brand design. Cortex Crew builds working systems and demonstrates them live
+              rather than presenting concepts, and is now moving into competitive Capture the Flag.
             </p>
           </Reveal>
 

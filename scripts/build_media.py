@@ -106,6 +106,34 @@ AWARD_ASPECT = (16, 10)
 TEAM_WIDTHS = [160, 240, 336]
 PROJECT_WIDTHS = [400, 640, 900]
 
+# ──────────────────── per-portrait square crop config ────────────────────
+#
+# Portraits arrive framed however the person framed them, so one global
+# centering cannot serve all of them — a head-and-shoulders shot and a
+# full-body outdoor shot need different windows to land the face at the same
+# size in an 88px avatar, and a row of avatars at mismatched face scales reads
+# as a mistake. Same reasoning as the per-photo crops in AWARDS.
+#
+# Anything absent from here uses the default centering, which is correct for
+# most supplied portraits. Set a window by eye at the REAL render size against
+# the rest of the row, not against the full-resolution original.
+#
+#   x    horizontal centre of the crop, as a fraction of source width
+#   y    top edge of the crop, as a fraction of source height
+#   side crop side length, as a fraction of source width
+
+TEAM_CROPS = {
+    # Full-body shot in a wide outdoor frame. The default square crop left his
+    # face ~15 px tall at 88 px — half of everyone else's.
+    #
+    # NOTE this window belongs to the PHOTO, not to the person. The Shafim and
+    # Alok files were swapped on 2026-08-01 after being wired up the wrong way
+    # round, and this key had to move with the image. If two portraits are ever
+    # reassigned, move their crop windows too, or you silently apply one
+    # person's framing to another person's photo.
+    "shafiur-rahman": {"x": 0.565, "y": 0.275, "side": 0.55},
+}
+
 
 def crop_fractional(im: Image.Image, spec, aspect) -> Image.Image:
     x0f, x1f, y0f = spec
@@ -114,6 +142,17 @@ def crop_fractional(im: Image.Image, spec, aspect) -> Image.Image:
     tw, th = aspect
     y1 = min(y0 + round((x1 - x0) * th / tw), im.height)
     return im.crop((x0, y0, x1, y1))
+
+
+def crop_square(im: Image.Image, spec) -> Image.Image:
+    """Explicit square window, for portraits the default centering frames badly.
+
+    Clamped to the source on every edge, so an over-generous `side` yields the
+    largest square that actually fits rather than a black border."""
+    side = min(round(im.width * spec["side"]), im.width, im.height)
+    x0 = max(0, min(round(im.width * spec["x"] - side / 2), im.width - side))
+    y0 = max(0, min(round(im.height * spec["y"]), im.height - side))
+    return im.crop((x0, y0, x0 + side, y0 + side))
 
 
 # ─────────────────────────────── pipeline ───────────────────────────────
@@ -171,7 +210,7 @@ def build_awards() -> None:
         ladder(im, AWARD_WIDTHS, OUT / "awards", path.stem, 78)
 
 
-def build_square(src_sub: str, out_sub: str, widths, quality: int, centering) -> None:
+def build_square(src_sub: str, out_sub: str, widths, quality: int, centering, crops=None) -> None:
     print(f"{src_sub} ->")
     directory = SRC / src_sub
     if not directory.exists() or not any(directory.iterdir()):
@@ -181,8 +220,13 @@ def build_square(src_sub: str, out_sub: str, widths, quality: int, centering) ->
         if path.suffix.lower() not in {".jpg", ".jpeg", ".png"}:
             continue
         im = load(path).convert("RGB")
-        side = min(im.width, im.height)
-        im = ImageOps.fit(im, (side, side), method=Image.LANCZOS, centering=centering)
+        spec = (crops or {}).get(path.stem)
+        if spec:
+            im = crop_square(im, spec)
+            print(f"  · {path.stem}: explicit crop window")
+        else:
+            side = min(im.width, im.height)
+            im = ImageOps.fit(im, (side, side), method=Image.LANCZOS, centering=centering)
         ladder(im, widths, OUT / out_sub, path.stem, quality)
 
 
@@ -210,7 +254,8 @@ def main() -> None:
     build_banner_and_og()
     build_awards()
     # centering 0.35 vertically: a centred square crop of a portrait cuts the face.
-    build_square("team", "team", TEAM_WIDTHS, 80, (0.5, 0.35))
+    # TEAM_CROPS overrides that per file where the default frames the face badly.
+    build_square("team", "team", TEAM_WIDTHS, 80, (0.5, 0.35), TEAM_CROPS)
     build_projects()
     total = sum(p.stat().st_size for p in OUT.rglob("*") if p.is_file())
     print(f"\ndone. public/media total: {total // 1024} KB")

@@ -33,9 +33,16 @@ are not listed and are not counted.
 - **Shafiur Rahman Shafim** — Infrastructure and telemetry.
   GitHub: https://github.com/Shafiur0
 - **Arnob Kumar Paul** — Interface, design and presentation.
-- **AL Fahad** — UI/UX design. Behance: https://www.behance.net/alfahad19
-- **Abdullah Al Khalil** — Development.
-- **Arvin Ahmed Alok** — Development.
+- **AL Fahad** — UI/UX and brand design: interface design, brand identity,
+  print and packaging, social media design.
+  Behance: https://www.behance.net/alfahad19
+- **Abdullah Al Khalil** — Development, systems and algorithms. C, Java, data
+  structures.
+  GitHub: https://github.com/gutibazz-gabbar
+  LinkedIn: https://www.linkedin.com/in/abdullahalkhalil
+- **Arvin Ahmed Alok** — Frontend development. React, JavaScript, UI
+  implementation.
+  LinkedIn: https://www.linkedin.com/in/arvin-ahmed-52b22a3a8
 
 ## Projects
 

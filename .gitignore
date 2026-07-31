@@ -8,7 +8,13 @@ dist/
 assets-src/
 member_pic/
 
-# screenshot scratch in the working tree
+# screenshot scratch in the working tree.
+# `/*.png` is ROOT-ONLY on purpose — that is where stray screenshots land, and
+# the two PNGs the site actually ships (apple-touch-icon, favicon-32) live under
+# public/ and stay tracked. An unignored image in the root of a public repo that
+# auto-deploys is how the 2026-07-26 incident started; the narrower `cc-*.png`
+# below did not catch a file named anything else.
+/*.png
 cc-*.png
 
 # internal engineering notes — never published

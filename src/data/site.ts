@@ -329,6 +329,7 @@ export const members: Member[] = [
     kind: 'member',
     focus: ['Linux', 'Cloud Infrastructure', 'Monitoring', 'Deployment'],
     accent: 'blue',
+    photo: portrait('shafiur-rahman', 'Shafiur Rahman Shafim, Infrastructure & Telemetry'),
     links: [
       {
         platform: 'facebook',
@@ -363,10 +364,15 @@ export const members: Member[] = [
     id: 'al-fahad',
     name: 'AL Fahad',
     initials: 'AF',
-    role: 'UI/UX Designer',
+    role: 'UI/UX & Brand Design',
     kind: 'member',
+    /* Taken from his own Behance, not assumed: brand identity systems (ExShip,
+       a tennis school, a design agency), book covers, conversion-focused
+       product UI, social templates, and print/packaging, which he lists as his
+       own specialism. */
+    focus: ['UI Design', 'Brand Identity', 'Print & Packaging', 'Social Media'],
     accent: 'cyan',
-    photo: portrait('al-fahad', 'AL Fahad, UI/UX Designer'),
+    photo: portrait('al-fahad', 'AL Fahad, UI/UX and brand designer'),
     links: [
       {
         platform: 'facebook',
@@ -382,17 +388,51 @@ export const members: Member[] = [
     id: 'abdullah-al-khalil',
     name: 'Abdullah Al Khalil',
     initials: 'AK',
-    role: 'Developer',
+    role: 'Developer · Systems & Algorithms',
     kind: 'member',
+    /* From his public repos: console systems in C built on arrays, linked
+       lists, stacks and queues, one with XOR encryption, plus a Java build. */
+    focus: ['C', 'Java', 'Data Structures', 'Algorithms'],
     accent: 'blue',
+    photo: portrait('abdullah-al-khalil', 'Abdullah Al Khalil, Developer'),
+    links: [
+      {
+        platform: 'facebook',
+        label: 'Facebook',
+        href: 'https://www.facebook.com/abdullahalkhalil.rafi',
+      },
+      { platform: 'github', label: 'GitHub', href: 'https://github.com/gutibazz-gabbar' },
+      { platform: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/abdullahalkhalil' },
+      { platform: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/alkhalil.rafi' },
+    ],
   },
   {
     id: 'arvin-ahmed-alok',
     name: 'Arvin Ahmed Alok',
     initials: 'AA',
-    role: 'Developer',
+    role: 'Developer · Frontend',
     kind: 'member',
+    /* Three chips, not four: given by the team on 2026-08-01. He has no public
+       repo or portfolio to check these against, so a fourth would be invented
+       rather than shortened. Fewer chips is the documented behaviour. */
+    focus: ['React', 'JavaScript', 'UI Implementation'],
     accent: 'violet',
+    photo: portrait('arvin-ahmed-alok', 'Arvin Ahmed Alok, Developer'),
+    /* No email here on purpose. The address supplied for him was a university
+       one — a @diu.edu.bd host AND a student ID in the local part — so it is
+       both halves of what the publishing rules forbid, and what the standing
+       `dist/` grep is there to catch. It stays off the site until he gives a
+       personal address; the team address in `site.contactEmail` reaches him
+       meanwhile. Do not add it back. */
+    links: [
+      { platform: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/arvinahmed.alok' },
+      {
+        platform: 'linkedin',
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/arvin-ahmed-52b22a3a8',
+      },
+      { platform: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/arvin_alok19' },
+    ],
   },
 ]
 
