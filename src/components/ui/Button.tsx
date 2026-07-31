@@ -2,15 +2,21 @@ import type { MouseEventHandler, ReactNode } from 'react'
 import { cn } from '@/lib/cn'
 import { Icon, type IconName } from './Icon'
 
-type Variant = 'gradient' | 'outline' | 'ghost'
+type Variant = 'solid' | 'outline' | 'ghost'
 type Size = 'sm' | 'md' | 'lg'
 
+/**
+ * The primary button used to be the brand gradient with a cyan glow shadow.
+ * Two problems: it was the third place on one screen where that gradient
+ * appeared, and a glowing gradient CTA is the most templated control on the
+ * dark web. Solid near-white on near-black is the highest contrast available
+ * here (15.9:1 inverted), reads as deliberate rather than decorative, and
+ * leaves colour to mean what it means everywhere else on this page — a result.
+ */
 const VARIANTS: Record<Variant, string> = {
-  gradient:
-    'text-white bg-[linear-gradient(100deg,#22d3ee_0%,#2563eb_50%,#7c3aed_100%)] ' +
-    'hover:brightness-110 shadow-[0_10px_30px_-14px_rgb(34_211_238/0.7)]',
-  outline: 'border border-base-600 text-fg hover:border-brand-cyan/60 hover:text-brand-cyan',
-  ghost: 'text-fg-muted hover:text-brand-cyan hover:bg-base-800',
+  solid: 'bg-fg text-base-950 hover:bg-white',
+  outline: 'border border-line-strong text-fg hover:border-fg-subtle hover:bg-base-850',
+  ghost: 'text-fg-muted hover:text-fg hover:bg-base-800',
 }
 
 const SIZES: Record<Size, string> = {
@@ -35,7 +41,7 @@ export interface ButtonProps {
 
 export function Button({
   href,
-  variant = 'gradient',
+  variant = 'solid',
   size = 'md',
   icon,
   iconPosition = 'right',

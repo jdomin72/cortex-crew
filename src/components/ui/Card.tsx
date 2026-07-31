@@ -1,32 +1,21 @@
 import type { HTMLAttributes } from 'react'
 import { cn } from '@/lib/cn'
-import type { BrandAccent, MedalTier } from '@/data/types'
-
-type Accent = 'none' | BrandAccent | MedalTier
-
-/** Top-rule gradients. `none` renders no rule at all. */
-const RULE: Record<Accent, string> = {
-  none: '',
-  cyan: 'from-brand-cyan to-brand-blue',
-  blue: 'from-brand-blue to-brand-violet',
-  violet: 'from-brand-violet to-brand-cyan',
-  gold: 'from-tier-gold to-tier-gold/20',
-  silver: 'from-tier-silver to-tier-silver/20',
-  bronze: 'from-tier-bronze to-tier-bronze/20',
-  finalist: 'from-tier-finalist to-tier-finalist/20',
-  participant: 'from-base-600 to-base-600/20',
-}
 
 export interface CardProps extends HTMLAttributes<HTMLElement> {
   as?: 'div' | 'article' | 'li' | 'section'
-  accent?: Accent
   notch?: 'none' | 'tr' | 'br'
-  topRule?: boolean
   interactive?: boolean
 }
 
 /**
  * Angular surface.
+ *
+ * ── What was removed ──
+ * `accent` and `topRule` painted a two-pixel brand gradient across the top of
+ * every card. Applied to results, projects and the CTF panel alike, that was
+ * the same three colours on five sections, and on the project cards the accent
+ * was assigned arbitrarily per project — so it looked like a code and decoded
+ * to nothing. Colour on this page now means a result tier and nothing else.
  *
  * IMPORTANT: the clip-path notch is applied to an absolutely-positioned
  * decorative layer, never to the card root. Clipping the root would also clip
@@ -35,9 +24,7 @@ export interface CardProps extends HTMLAttributes<HTMLElement> {
  */
 export function Card({
   as: Tag = 'div',
-  accent = 'none',
   notch = 'none',
-  topRule = false,
   interactive = false,
   className,
   children,
@@ -46,9 +33,9 @@ export function Card({
   return (
     <Tag
       className={cn(
-        'relative isolate rounded-card border border-base-700 bg-base-850',
+        'relative isolate rounded-card border border-line bg-base-900',
         interactive &&
-          'transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-base-600',
+          'transition-[transform,border-color] duration-200 hover:-translate-y-0.5 hover:border-line-strong',
         className,
       )}
       {...rest}
@@ -58,18 +45,8 @@ export function Card({
         <span
           aria-hidden="true"
           className={cn(
-            'pointer-events-none absolute inset-0 -z-10 rounded-card bg-base-850',
+            'pointer-events-none absolute inset-0 -z-10 rounded-card bg-base-900',
             notch === 'tr' ? 'notch-tr' : 'notch-br',
-          )}
-        />
-      ) : null}
-
-      {topRule && accent !== 'none' ? (
-        <span
-          aria-hidden="true"
-          className={cn(
-            'pointer-events-none absolute inset-x-0 top-0 h-0.5 rounded-t-card bg-gradient-to-r',
-            RULE[accent],
           )}
         />
       ) : null}

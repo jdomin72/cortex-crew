@@ -87,17 +87,20 @@ export function SiteNav() {
         Skip to content
       </a>
 
-      <header className="glass fixed inset-x-0 top-0 z-50 border-b border-base-700/50">
+      <header className="glass fixed inset-x-0 top-0 z-50 border-b border-line-strong">
         <nav aria-label="Primary" className="container flex h-16 items-center justify-between">
           <a href="#hero" className="focus-ring flex items-center gap-2.5">
             <HexMark />
-            <span className="font-display text-sm font-bold tracking-tight text-fg">
+            <span className="semiwide font-display text-sm font-bold tracking-[0.06em] text-fg">
               {site.shortName}
             </span>
           </a>
 
-          {/* Mono lowercase links — the terminal register, deliberately not the
-              Inter-nav look every SaaS marketing site uses. */}
+          {/* Display caps, matching the letterhead register the hero sets.
+              These were mono lowercase, which read as a terminal — a register
+              this page no longer uses outside the CTF block, where mono means
+              actual terminal output. The active marker is now near-white, not
+              cyan: cyan means "reached the final" on this page. */}
           <ul className="hidden items-center gap-1 md:flex">
             {site.nav.map((item) => (
               <li key={item.id}>
@@ -105,15 +108,15 @@ export function SiteNav() {
                   href={`#${item.id}`}
                   aria-current={active === item.id ? 'true' : undefined}
                   className={cn(
-                    'focus-ring relative block px-3 py-2 font-mono text-xs tracking-[0.08em] transition-colors',
-                    active === item.id ? 'text-brand-cyan' : 'text-fg-subtle hover:text-fg',
+                    'focus-ring semiwide relative block px-3 py-2 font-display text-label font-semibold uppercase tracking-[0.16em] transition-colors',
+                    active === item.id ? 'text-fg' : 'text-fg-subtle hover:text-fg',
                   )}
                 >
                   {item.label}
                   {active === item.id ? (
                     <span
                       aria-hidden="true"
-                      className="absolute inset-x-3 -bottom-px h-0.5 bg-brand-cyan"
+                      className="absolute inset-x-3 -bottom-px h-0.5 bg-fg"
                     />
                   ) : null}
                 </a>
@@ -161,7 +164,7 @@ export function SiteNav() {
                 <a
                   href={`#${item.id}`}
                   onClick={() => setOpen(false)}
-                  className="focus-ring block border-b border-base-800 py-4 font-mono text-lg tracking-[0.06em] text-fg"
+                  className="focus-ring semiwide block border-b border-line py-4 font-display text-lg font-bold uppercase tracking-[0.08em] text-fg"
                 >
                   {item.label}
                 </a>

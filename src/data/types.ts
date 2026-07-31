@@ -48,27 +48,9 @@ export interface Achievement {
   date: IsoDate
   location?: string
   summary?: string
-  prize?: string
   /** Small meta chip only — the project never leads an achievement card. */
   builtWith?: string
   photo?: ResponsiveImage
-  /** Exactly one should be true; it gets the wide bento card. */
-  featured?: boolean
-}
-
-/* ──────────────────────────────── timeline ──────────────────────────────── */
-
-export type TimelineStatus = 'done' | 'ongoing' | 'upcoming'
-
-export interface TimelineEvent {
-  id: string
-  date: IsoDate
-  title: string
-  kind: CompetitionKind | 'milestone'
-  detail: string
-  /** 'upcoming' renders a DASHED rail segment. */
-  status: TimelineStatus
-  tier?: MedalTier
 }
 
 /* ──────────────────────────────── projects ──────────────────────────────── */
@@ -206,11 +188,6 @@ export interface Pillar {
   accent: BrandAccent
 }
 
-export interface HeroStat {
-  value: string
-  label: string
-}
-
 export interface SiteConfig {
   name: string
   shortName: string
@@ -229,7 +206,6 @@ export interface SiteConfig {
   logo: ResponsiveImage
   nav: NavItem[]
   pillars: [Pillar, Pillar, Pillar]
-  heroStats: HeroStat[]
   socials: SocialLink[]
   contactEmail: string
 }

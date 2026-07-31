@@ -6,6 +6,10 @@ dist/
 # original full-resolution source images — never shipped.
 # Everything the site needs is generated into public/media/ by scripts/build_media.py.
 assets-src/
+member_pic/
+
+# screenshot scratch in the working tree
+cc-*.png
 
 # internal engineering notes — never published
 CLAUDE.md

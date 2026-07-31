@@ -11,43 +11,40 @@ const PLATFORM_ICON: Record<string, IconName> = {
   website: 'globe',
 }
 
+/**
+ * The close.
+ *
+ * ── What was removed ──
+ * A 42rem double-hexagon outline sat behind this section at 25% opacity in
+ * `--color-fg-faint`, a colour the tokens document as decorative-only at 2.4:1.
+ * At that size and opacity it did not read as a hexagon; it was a smudge behind
+ * the type, and it was the largest element on the page. The gradient rule above
+ * the heading went with it — a record sheet closes on a hairline.
+ *
+ * The one piece of colour left is `we make an impact` in tier gold. Gold means
+ * "won" everywhere else here, so the closing claim is tied to the result that
+ * backs it rather than tinted for effect.
+ */
 export function Contact() {
   const secondary = site.socials.filter((social) => !social.primary)
+  const primary = site.socials.find((social) => social.primary) ?? site.socials[0]
 
   return (
-    <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden py-24 md:py-32">
-      {/* oversized hexagon outline, purely decorative */}
-      <svg
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[42rem] w-[42rem] -translate-x-1/2 -translate-y-1/2 text-fg-faint opacity-25"
-        viewBox="0 0 100 100"
-        fill="none"
-      >
-        <path
-          d="M50 3 91 26.5v47L50 97 9 73.5v-47Z"
-          stroke="currentColor"
-          strokeWidth="0.4"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M50 15 80 32.5v35L50 85 20 67.5v-35Z"
-          stroke="currentColor"
-          strokeWidth="0.3"
-          strokeLinejoin="round"
-        />
-      </svg>
-
-      <div className="container relative">
-        <hr className="rule-gradient mb-14" />
+    // Asymmetric padding on purpose: the CTF band above closes on its own
+    // border, so a further 128px before this section's rule left ~190px of
+    // nothing. The bottom stays generous — the page should end on air.
+    <section id="contact" aria-labelledby="contact-title" className="pb-24 pt-16 md:pb-32 md:pt-20">
+      <div className="container">
+        <hr className="mb-14 border-0 border-t border-line-strong" />
 
         <Reveal className="mx-auto max-w-3xl text-center">
-          <p className="font-mono text-label uppercase tracking-[0.18em] text-brand-cyan">
+          <p className="mb-4 flex items-center justify-center gap-3 font-display semiwide text-label font-semibold uppercase tracking-[0.16em] text-fg-subtle">
+            <span aria-hidden="true" className="h-px w-8 bg-line-strong" />
             Work with us
           </p>
 
-          <h2 id="contact-title" className="mt-5 font-display text-section font-bold text-fg">
-            We don't just participate,{' '}
-            <span className="text-gradient">we make an impact.</span>
+          <h2 id="contact-title" className="semiwide font-display text-section font-bold text-fg">
+            We don't just participate, <span className="text-tier-gold">we make an impact.</span>
           </h2>
 
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-fg-muted">
@@ -56,13 +53,7 @@ export function Contact() {
           </p>
 
           <div className="mt-9 flex flex-wrap justify-center gap-3">
-            <Button
-              href="https://facebook.com/teamcortexcrew"
-              size="lg"
-              icon="facebook"
-              iconPosition="left"
-              external
-            >
+            <Button href={primary.href} size="lg" icon="facebook" iconPosition="left" external>
               Message us on Facebook
             </Button>
             <Button
@@ -84,7 +75,7 @@ export function Contact() {
                     href={social.href}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="focus-ring flex h-10 w-10 items-center justify-center rounded-chip border border-base-700 text-fg-subtle transition-colors hover:border-brand-cyan/50 hover:text-brand-cyan"
+                    className="focus-ring flex h-10 w-10 items-center justify-center rounded-chip border border-line text-fg-subtle transition-colors hover:border-fg-subtle hover:text-fg"
                   >
                     <Icon name={PLATFORM_ICON[social.platform] ?? 'globe'} size={17} />
                     <span className="sr-only">{social.label} (opens in a new tab)</span>

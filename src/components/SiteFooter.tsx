@@ -15,7 +15,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-base-700/60 bg-base-900">
+    <footer className="border-t border-line-strong bg-base-900">
       <div className="container py-14">
         <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr]">
           <div>
@@ -24,7 +24,7 @@ export function SiteFooter() {
                 aria-hidden="true"
                 className="hex block h-6 w-6 bg-[linear-gradient(135deg,#22d3ee,#a855f7)]"
               />
-              <span className="font-display text-sm font-bold tracking-tight text-fg">
+              <span className="semiwide font-display text-sm font-bold tracking-[0.06em] text-fg">
                 {site.shortName}
               </span>
             </div>
@@ -32,13 +32,13 @@ export function SiteFooter() {
               A competition team at {site.university}. We build working systems, take them on stage,
               and defend every number.
             </p>
-            <p className="mt-4 font-mono text-label uppercase tracking-[0.16em] text-fg-subtle">
+            <p className="semiwide mt-4 font-display text-label font-semibold uppercase tracking-[0.16em] text-fg-subtle">
               {site.city}, {site.country}
             </p>
           </div>
 
           <nav aria-label="Footer">
-            <h2 className="font-mono text-label uppercase tracking-[0.18em] text-fg-subtle">
+            <h2 className="semiwide font-display text-label font-semibold uppercase tracking-[0.16em] text-fg-subtle">
               Explore
             </h2>
             <ul className="mt-4 space-y-2.5">
@@ -46,7 +46,7 @@ export function SiteFooter() {
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
-                    className="focus-ring font-mono text-xs tracking-[0.06em] text-fg-muted transition-colors hover:text-brand-cyan"
+                    className="focus-ring semiwide font-display text-label font-semibold uppercase tracking-[0.16em] text-fg-muted transition-colors hover:text-fg"
                   >
                     {item.label}
                   </a>
@@ -56,7 +56,7 @@ export function SiteFooter() {
           </nav>
 
           <div>
-            <h2 className="font-mono text-label uppercase tracking-[0.18em] text-fg-subtle">
+            <h2 className="semiwide font-display text-label font-semibold uppercase tracking-[0.16em] text-fg-subtle">
               Connect
             </h2>
             <ul className="mt-4 space-y-2.5">
@@ -66,7 +66,7 @@ export function SiteFooter() {
                     href={social.href}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="focus-ring inline-flex items-center gap-2 text-sm text-fg-muted transition-colors hover:text-brand-cyan"
+                    className="focus-ring inline-flex items-center gap-2 text-sm text-fg-muted transition-colors hover:text-fg"
                   >
                     <Icon name={PLATFORM_ICON[social.platform] ?? 'globe'} size={15} />
                     {social.label}
@@ -77,7 +77,7 @@ export function SiteFooter() {
               <li>
                 <a
                   href={`mailto:${site.contactEmail}`}
-                  className="focus-ring inline-flex items-center gap-2 text-sm text-fg-muted transition-colors hover:text-brand-cyan"
+                  className="focus-ring inline-flex items-center gap-2 text-sm text-fg-muted transition-colors hover:text-fg"
                 >
                   <Icon name="mail" size={15} />
                   Email
@@ -87,13 +87,13 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <hr className="rule-gradient my-10" />
+        <hr className="my-10 border-0 border-t border-line" />
 
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-fg-subtle">
             © {year} {site.name}. All rights reserved.
           </p>
-          <p className="font-mono text-label uppercase tracking-[0.18em] text-fg-subtle">
+          <p className="semiwide font-display text-label font-semibold uppercase tracking-[0.16em] text-fg-subtle">
             {site.tagline}
           </p>
         </div>

@@ -4,6 +4,14 @@
    Contrast ratios below are computed against --color-base-950 (#050508), not
    estimated. --color-fg-subtle is the FLOOR for real text; anything fainter is
    decorative only.
+
+   ── The accent system is the RESULT TIERS, not the brand gradient ──
+   Gold and silver mean "won". Cyan means "reached the final". Because those
+   three colours carry the page's single most important distinction, they are
+   not available for decoration: a cyan hairline somewhere unrelated would say
+   "finalist" to a reader who has learned the system, and dilute it for one who
+   hasn't. The brand gradient survives in exactly one place — the emblem — which
+   is the team's own artwork, not a device this site invented.
    ─────────────────────────────────────────────────────────────────────────── */
 
 @theme {
@@ -15,44 +23,64 @@
   --color-base-700: #1c2133;
   --color-base-600: #2b3350;
 
+  /* rules — the page's primary structural device, so they get their own names.
+     A record is a ruled sheet; the hairline does the work a card border used
+     to do, at a fraction of the visual weight. */
+  --color-line: #1e2334;
+  --color-line-strong: #313a57;
+
   /* foreground */
-  --color-fg: #e9edf7;        /* 15.9:1  headings */
-  --color-fg-muted: #9aa4b8;  /*  8.1:1  body copy */
+  --color-fg: #e9edf7; /* 15.9:1  headings */
+  --color-fg-muted: #9aa4b8; /*  8.1:1  body copy */
   --color-fg-subtle: #78829e; /*  5.2:1  meta / labels — the floor */
-  --color-fg-faint: #4d5670;  /*  2.4:1  DECORATIVE ONLY, never text */
+  --color-fg-faint: #4d5670; /*  2.4:1  DECORATIVE ONLY, never text */
 
-  /* brand — split by role. The two -deep values are the blues people reach for
-     by instinct, and both FAIL AA as text on this background. */
-  --color-brand-cyan: #22d3ee;         /* 11.3:1  text-safe */
-  --color-brand-blue: #3b82f6;         /*  5.5:1  text-safe */
-  --color-brand-violet: #a855f7;       /*  5.2:1  text-safe */
-  --color-brand-blue-deep: #2563eb;    /*  4.0:1  FILL ONLY */
-  --color-brand-violet-deep: #7c3aed;  /*  3.6:1  FILL ONLY */
+  /* result tiers — the accent system */
+  --color-tier-gold: #fbbf24; /* 12.2:1 */
+  --color-tier-silver: #cbd5e1; /* 12.9:1 */
+  --color-tier-bronze: #cd7f32; /*  6.4:1 */
+  --color-tier-finalist: #22d3ee; /* 11.3:1 */
 
-  /* medal tiers */
-  --color-tier-gold: #fbbf24;     /* 12.2:1 */
-  --color-tier-silver: #cbd5e1;   /* 12.9:1 */
-  --color-tier-bronze: #cd7f32;   /*  6.4:1 */
-  --color-tier-finalist: #22d3ee;
+  /* brand — emblem only. The two -deep values FAIL AA as text and are fill-only. */
+  --color-brand-cyan: #22d3ee; /* 11.3:1  text-safe */
+  --color-brand-blue: #3b82f6; /*  5.5:1  text-safe */
+  --color-brand-violet: #a855f7; /*  5.2:1  text-safe */
+  --color-brand-blue-deep: #2563eb; /*  4.0:1  FILL ONLY */
+  --color-brand-violet-deep: #7c3aed; /*  3.6:1  FILL ONLY */
 
-  /* type */
-  --font-display: "Chakra Petch", "Chakra Fallback", ui-sans-serif, system-ui, sans-serif;
+  /* ── type ──
+     Archivo is a variable grotesque with a WIDTH axis (wdth 100–125). Set
+     expanded and heavy it is the lettering of a results board or a title fight,
+     which is what this team's content actually is. It replaced Chakra Petch,
+     which reads "cyber/esports" generically and says nothing about competing.
+
+     JetBrains Mono is restricted to DATA — dates, prizes, counts, the terminal.
+     It used to label everything on the page (~30 uses), at which point it
+     encoded nothing. Eyebrows and headings are now set in the display face. */
+  --font-display: Archivo, "Archivo Fallback", ui-sans-serif, system-ui, sans-serif;
   --font-sans: Inter, "Inter Fallback", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --text-hero: clamp(2.75rem, 9vw, 6.5rem);
-  --text-hero--line-height: 0.92;
-  --text-hero--letter-spacing: -0.03em;
+  /* The masthead and the rank share a scale — the team's name and the team's
+     results are the same size of statement. */
+  --text-masthead: clamp(3rem, 12vw, 8.5rem);
+  --text-masthead--line-height: 0.85;
+  --text-masthead--letter-spacing: -0.02em;
+
+  --text-rank: clamp(1.75rem, 5.5vw, 4rem);
+  --text-rank--line-height: 0.9;
+  --text-rank--letter-spacing: -0.015em;
 
   --text-section: clamp(1.75rem, 4vw, 2.75rem);
-  --text-section--line-height: 1.08;
+  --text-section--line-height: 1.05;
   --text-section--letter-spacing: -0.02em;
 
   --text-label: 0.6875rem;
   --text-label--line-height: 1.2;
-  --text-label--letter-spacing: 0.18em;
+  --text-label--letter-spacing: 0.16em;
 
-  /* shape — angular, not pill. The brand is hexagons and slashes. */
+  /* shape — angular, not pill. Small but non-zero: a 0-radius sheet is its own
+     genre cliché, and the brand is hexagons and slashes, not newsprint. */
   --radius-card: 0.25rem;
   --radius-chip: 0.1875rem;
 
@@ -72,50 +100,20 @@
   }
 }
 
-@utility text-gradient {
-  background-image: linear-gradient(
-    100deg,
-    var(--color-brand-cyan) 0%,
-    var(--color-brand-blue) 45%,
-    var(--color-brand-violet) 100%
-  );
-  background-clip: text;
-  color: transparent;
-  /* stops descenders being shaved by background-clip */
-  padding-bottom: 0.06em;
+/* Archivo's width axis. `font-stretch` is used rather than
+   `font-variation-settings` so it inherits and so the metric-matched fallback
+   still applies while the webfont is in flight. */
+@utility wide {
+  font-stretch: 125%;
+}
+@utility semiwide {
+  font-stretch: 112%;
 }
 
-@utility rule-gradient {
-  height: 1px;
-  border: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--color-brand-cyan) 18%,
-    var(--color-brand-blue) 50%,
-    var(--color-brand-violet) 82%,
-    transparent
-  );
-  opacity: 0.5;
-}
-
-/* PCB motif, layer 1: trace grid */
-@utility bg-grid {
-  background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
-  background-size: 64px 64px;
-}
-
-/* PCB motif, layer 2: the glowing junction dots from the logo */
-@utility bg-nodes {
-  background-image: radial-gradient(circle at 1px 1px, rgb(34 211 238 / 0.16) 1px, transparent 0);
-  background-size: 24px 24px;
-}
-
-@utility mask-radial-fade {
-  mask-image: radial-gradient(ellipse 78% 62% at 50% 32%, #000 30%, transparent 78%);
-}
+/* `text-gradient` used to live here, for the masthead and the closing line. It
+   is gone on purpose: the brand gradient now appears only inside the emblem
+   artwork and the nav mark, which are the logo, and nowhere as a device this
+   site applies to type. */
 
 /* Regular pointy-top hexagon inscribed in a square box — matches the logo C-frame. */
 @utility hex {
@@ -130,13 +128,6 @@
 }
 @utility notch-br {
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
-}
-
-@utility glow-cyan {
-  box-shadow: 0 0 0 1px rgb(34 211 238 / 0.22), 0 22px 60px -28px rgb(34 211 238 / 0.55);
-}
-@utility glow-violet {
-  box-shadow: 0 0 0 1px rgb(168 85 247 / 0.22), 0 22px 60px -28px rgb(168 85 247 / 0.55);
 }
 
 /* The ONE blurred element on the page — the sticky nav. Budgeted deliberately:
@@ -196,7 +187,12 @@ body {
   color: #fff;
 }
 
-/* Metric-matched fallbacks so the webfont swap costs ~0 CLS. */
+/* Metric-matched fallbacks so the webfont swap costs ~0 CLS. Values are
+   measured against the real faces in a browser, not guessed — see the change
+   log. `--font-mono` deliberately has none: JetBrains Mono and generic
+   `monospace` measured 0.34% apart on the same string with an identical line
+   box, because monospace faces are all ~0.6em advance. A guessed size-adjust
+   there would introduce the shift it was meant to remove. */
 @font-face {
   font-family: "Inter Fallback";
   src: local("Arial");
@@ -205,12 +201,16 @@ body {
   descent-override: 22%;
   line-gap-override: 0%;
 }
+/* Measured, not guessed: on `CHAMPION Handgloves 1st Runners-up` at 100px/700,
+   Archivo is 1899.69px and Arial 1775.20px — a ratio of 1.0701. With
+   size-adjust: 107% Arial resolves to 1899.5px, i.e. 0.01% off, and the line
+   box was already identical at 120px in both. */
 @font-face {
-  font-family: "Chakra Fallback";
-  src: local("Arial Narrow"), local("Arial");
-  size-adjust: 94%;
-  ascent-override: 96%;
-  descent-override: 26%;
+  font-family: "Archivo Fallback";
+  src: local("Arial");
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
   line-gap-override: 0%;
 }
 
@@ -262,5 +262,134 @@ body {
       animation-range: entry 0% cover 14%;
       animation-delay: 0s;
     }
+  }
+
+  /* ═══════════════════════════ motion system ═══════════════════════════
+     Three devices, and no more: the masthead rises from behind a mask on load,
+     the results sheet inks its rail in as you scroll, and interactive cards
+     draw a rule on hover or focus. A page with one small motion vocabulary
+     reads as designed; a page with a different effect per section reads as
+     generated.
+
+     ── Why there is no animation library ──
+     framer-motion is ~40 KB gzipped and GSAP ~25 KB, against a bundle that is
+     73 KB in total. The audience is mid-range Android in Dhaka. Scroll-driven
+     CSS animations run off the main thread in Chromium, so they cost
+     effectively nothing during a scroll, and they cost zero bytes. Everything
+     below is CSS; the JS bundle did not grow by a single byte.
+
+     ── Why overflow:hidden does not clip the caps ──
+     Measured, not assumed. Archivo's content area is ~1.26em tall against a
+     0.85 line box on the masthead, so half-leading is negative and the content
+     box overhangs the line box by ~28px at 136px. But the cap top still lands
+     ~8px BELOW the line-box top, because the overhang is mostly ascender space
+     Archivo does not use. Caps have no descenders. So the mask edge sits
+     outside the glyphs at both ends and no padding compensation is needed —
+     which matters, because negative margins to compensate would have pulled
+     CORTEX and CREW into each other by 0.24em.
+     ─────────────────────────────────────────────────────────────────── */
+
+  .wipe {
+    display: block;
+    overflow: hidden;
+  }
+
+  .wipe > * {
+    display: block;
+    animation: wipe-rise 720ms var(--ease-out-quint) both;
+    animation-delay: var(--wipe-delay, 0ms);
+  }
+
+  @keyframes wipe-rise {
+    from {
+      transform: translateY(110%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  /* ── the rail inks itself ──
+     A tier-coloured segment scales down over the results sheet's STATIC
+     `border-l` as each row enters view, so the sheet appears to be written as
+     you scroll. Strictly additive by construction: this span sits on top of a
+     rule that is always painted, so a timeline that never resolves costs the
+     colour, never the structure.
+
+     That construction is load-bearing rather than belt-and-braces. Scroll-driven
+     state could not be measured reliably in this environment — two harnesses
+     returned contradictory values for this very element, and headless Chrome
+     returns a blank frame for any scrolled viewport — so the animation was built
+     so that being unverifiable and being unsafe are not the same thing.
+
+     `linear` because a view() timeline is already driven by scroll position;
+     easing it a second time makes the draw lag the finger. */
+  .rail-draw {
+    transform-origin: top;
+    animation: rail-down 900ms var(--ease-out-quint) both;
+  }
+
+  @keyframes rail-down {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  @supports (animation-timeline: view()) {
+    .rail-draw {
+      animation-timeline: view();
+      animation-range: entry 6% cover 30%;
+      animation-timing-function: linear;
+      animation-delay: 0s;
+    }
+  }
+
+  /* ── load entrance ──
+     Deliberately NOT given the `animation-timeline: view()` treatment that
+     `.reveal` gets. Everything using this is above the fold, and a view timeline
+     resolves an already-visible element to the middle of its range, which would
+     snap it to the end state and cancel the entrance entirely. */
+  .enter {
+    animation: enter-up 700ms var(--ease-out-quint) both;
+    animation-delay: var(--enter-delay, 0ms);
+  }
+
+  @keyframes enter-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    60% {
+      opacity: 1;
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* ── hover affordance ──
+   Outside the reduced-motion guard on purpose: the transition is suppressed for
+   reduced-motion users by the block below, but the END state must still apply,
+   or a keyboard user tabbing through the project cards would get no focus
+   feedback at all. */
+.draw-x {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 340ms var(--ease-out-quint);
+}
+
+.group:hover .draw-x,
+.group:focus-within .draw-x {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .draw-x {
+    transition: none;
   }
 }

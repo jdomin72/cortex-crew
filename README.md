@@ -104,10 +104,10 @@ The site runs at `http://localhost:5173`.
 ```
 src/
 ├─ data/            typed site content and models
-├─ lib/             class names, intersection observer, formatting
+├─ lib/             class names, active-section tracking, formatting
 ├─ components/
 │  ├─ ui/           Reveal · Img · Avatar · Badge · Button · Card · Icon
-│  └─ sections/     Hero · Pillars · Achievements · Timeline
+│  └─ sections/     Hero · Pillars · About · Achievements
 │                   Projects · Team · CTF · Contact
 └─ index.css        design tokens and utilities
 scripts/            image optimisation pipeline

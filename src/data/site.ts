@@ -9,14 +9,7 @@
       Projects are evidence of what the team can do, not the headline.
    ══════════════════════════════════════════════════════════════════════════ */
 
-import type {
-  Achievement,
-  CtfConfig,
-  Member,
-  Project,
-  SiteConfig,
-  TimelineEvent,
-} from './types'
+import type { Achievement, CtfConfig, Member, Project, SiteConfig } from './types'
 
 export * from './types'
 
@@ -84,7 +77,7 @@ export const site: SiteConfig = {
   logo: {
     src: '/media/logo-512.webp',
     srcSet: '/media/logo-256.webp 256w, /media/logo-512.webp 512w, /media/logo-768.webp 768w',
-    sizes: '(min-width: 1024px) 380px, 240px',
+    sizes: '(min-width: 1024px) 224px, (min-width: 640px) 160px, 80px',
     width: 512,
     height: 512,
     alt: 'Cortex Crew emblem — a circuit-board letter C inside a hexagon',
@@ -92,7 +85,6 @@ export const site: SiteConfig = {
 
   nav: [
     { id: 'achievements', label: 'record' },
-    { id: 'timeline', label: 'timeline' },
     { id: 'projects', label: 'work' },
     { id: 'team', label: 'crew' },
     { id: 'ctf', label: 'ctf' },
@@ -121,15 +113,6 @@ export const site: SiteConfig = {
       icon: 'shield',
       accent: 'violet',
     },
-  ],
-
-  /* Must partition cleanly: 2 + 3 = 5, no double-counting. An earlier version
-     read "6 entered / 6 placed", which reads as having WON all six. Two of these
-     are wins; three are finals we reached and did not place in. Say so. */
-  heroStats: [
-    { value: '5', label: 'Competitions' },
-    { value: '2', label: 'Podium finishes' },
-    { value: '3', label: 'Finalist' },
   ],
 
   contactEmail: 'info.cortexcrew@gmail.com',
@@ -172,8 +155,6 @@ export const achievements: Achievement[] = [
     kind: 'project-showcase',
     date: '2026-01',
     location: 'Dhaka, Bangladesh',
-    prize: 'BDT 12,000',
-    featured: true,
     builtWith: 'Darktrace3',
     summary:
       'Our first competition as a team, and we took the top prize. Cyber Security Awareness Day put every project on one stage in front of a judging panel — Cortex Crew came away Champion.',
@@ -191,13 +172,12 @@ export const achievements: Achievement[] = [
     kind: 'project-showcase',
     date: '2026-06',
     location: 'Dhaka, Bangladesh',
-    prize: 'BDT 10,000',
     builtWith: 'Niro',
     summary:
       'An IEEE international congress on AI and digital health. We placed second overall against a national field.',
     photo: award(
       'icadhi-2026',
-      'Cortex Crew holding the 1st Runners-up cheque for BDT 10,000 at the IEEE ICADHI 2026 closing and award ceremony',
+      'Cortex Crew holding the 1st Runners-up cheque at the IEEE ICADHI 2026 closing and award ceremony',
     ),
   },
   {
@@ -238,67 +218,6 @@ export const achievements: Achievement[] = [
     builtWith: 'Niro',
     summary:
       'Judged on the data story: turning unstructured paper records into structured, longitudinal health data.',
-  },
-]
-
-/* ──────────────────────────────── timeline ────────────────────────────────
-   The rail renders solid for 'done' and DASHED for 'upcoming' — so the line
-   visibly stops being solid exactly where the CTF ambition begins.
-   ───────────────────────────────────────────────────────────────────────── */
-
-export const timeline: TimelineEvent[] = [
-  {
-    id: 't-csad',
-    date: '2026-01',
-    title: 'Champion — CSAD 2026',
-    kind: 'project-showcase',
-    detail: 'First competition as Cortex Crew. First trophy.',
-    status: 'done',
-    tier: 'gold',
-  },
-  {
-    id: 't-icadhi',
-    date: '2026-06',
-    title: '1st Runners-up — IEEE ICADHI 2026',
-    kind: 'project-showcase',
-    detail: 'IEEE international congress on AI and digital health innovation.',
-    status: 'done',
-    tier: 'silver',
-  },
-  {
-    id: 't-diuai',
-    date: '2026-07',
-    title: 'Finalist — AI Project Competition 2026',
-    kind: 'project-showcase',
-    detail: 'Live booth demo to the judging panel, Dept. of CSE.',
-    status: 'done',
-    tier: 'finalist',
-  },
-  {
-    id: 't-dss',
-    date: '2026-07',
-    title: 'Finalist — 5th Data Science Summit',
-    kind: 'project-showcase',
-    detail: 'Judged on the data story behind the system.',
-    status: 'done',
-    tier: 'finalist',
-  },
-  {
-    id: 't-hackathon',
-    date: '2026-07',
-    title: 'Finalist — AI Innovation Hackathon 2026',
-    kind: 'hackathon',
-    detail: 'On-site final with a 2.5-hour surprise task on top of the existing build.',
-    status: 'done',
-    tier: 'finalist',
-  },
-  {
-    id: 't-ctf',
-    date: '2026',
-    title: 'Entering CTF',
-    kind: 'ctf',
-    detail: 'Weekly practice underway. CTFtime team registration next.',
-    status: 'upcoming',
   },
 ]
 

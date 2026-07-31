@@ -1,6 +1,4 @@
-import { achievements, site } from '@/data/site'
-import { formatShort } from '@/lib/format'
-import { Card } from '../ui/Card'
+import { members, site } from '@/data/site'
 import { Reveal } from '../ui/Reveal'
 
 /**
@@ -15,21 +13,32 @@ import { Reveal } from '../ui/Reveal'
  * these three paragraphs are the highest-leverage text on the site. Keep them
  * factual and self-contained — they should make sense quoted with no context.
  *
- * ── Why the ledger exists ──
- * The record is five results of two different kinds, and the difference matters:
- * two were won, three were finals the team reached without placing. Stating that
- * as one number ("6 placed") overclaims, and a bare claim has no structure —
- * which is exactly why this section used to read as a floating slab of grey text.
+ * ── Why the panel beside it is NOT the record ──
+ * This slot used to hold a ledger of all five results, tiered. That ledger was
+ * the right idea in the wrong place: the Achievements section below now renders
+ * the same five results as a full results sheet, with the same labelled
+ * `REACHED THE FINAL` hairline, at ten times the size. Two renderings of one
+ * record, four hundred pixels apart, made the page repeat itself and left this
+ * column short against a much taller prose block.
  *
- * So the podium rows are set large and in tier colour, and the finals sit below
- * a labelled hairline, smaller and quieter. The typography carries the
- * distinction; nobody has to read a qualifier to see that three of these were
- * not wins. Both groups derive from `achievements` by tier, so adding a result
- * never means touching this file.
+ * So the panel carries what the sheet does not: who the team *is*, as a spec
+ * sheet — founded, based, university, what it competes in, how many people.
+ * Every row derives from `site`/`members`, so it cannot drift.
  */
 export function About() {
-  const podium = achievements.filter((a) => a.tier !== 'finalist')
-  const finals = achievements.filter((a) => a.tier === 'finalist')
+  const crew = members.filter((member) => member.kind === 'member')
+  const mentors = members.filter((member) => member.kind === 'mentor')
+
+  const facts: { label: string; value: string }[] = [
+    { label: 'Founded', value: site.founded },
+    { label: 'Based', value: `${site.city}, ${site.country}` },
+    { label: 'University', value: site.university },
+    { label: 'Competes in', value: site.pillars.map((pillar) => pillar.label).join(' · ') },
+    {
+      label: 'Crew',
+      value: `${crew.length} members · ${mentors.length} mentor`,
+    },
+  ]
 
   return (
     <section id="about" aria-labelledby="about-title" className="py-20 md:py-28">
@@ -38,7 +47,7 @@ export function About() {
             page's structure rather than a one-off. */}
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-7">
-            <h2 id="about-title" className="font-display text-section font-bold text-fg">
+            <h2 id="about-title" className="semiwide font-display text-section font-bold text-fg">
               Who we are
             </h2>
 
@@ -72,64 +81,35 @@ export function About() {
             </p>
           </Reveal>
 
-          {/* ── the ledger ── */}
+          {/* ── the spec sheet ──
+              Sticky on desktop. The panel is five rows against three long
+              paragraphs, so pinned to the top of the viewport it stays beside
+              the prose it annotates instead of leaving a 500px dead band under
+              itself. `position: sticky` sits on the inner element, not on the
+              <Reveal>: the reveal animation drives `transform`, and a
+              transformed ancestor would become the containing block and break
+              the stick. */}
           <Reveal as="aside" delay={90} className="lg:col-span-5">
-            {/* Sizes to its content — no h-full. Stretching it to match the
-                prose column left a dead band under the last row. */}
-            <Card notch="tr" className="p-6 md:p-7">
-              <p className="font-mono text-label uppercase tracking-[0.18em] text-fg-subtle">
-                Record · {site.founded}
-              </p>
+            <div className="lg:sticky lg:top-24">
+              <h3 className="flex items-center gap-3 font-display semiwide text-label font-semibold uppercase tracking-[0.16em] text-fg-subtle">
+                <span aria-hidden="true" className="h-px w-8 bg-line-strong" />
+                At a glance
+              </h3>
 
-              <ol className="mt-6 space-y-5">
-                {podium.map((item) => (
-                  <li key={item.id}>
-                    <p
-                      className={
-                        item.tier === 'gold'
-                          ? 'font-display text-2xl font-bold leading-none text-tier-gold'
-                          : 'font-display text-2xl font-bold leading-none text-tier-silver'
-                      }
-                    >
-                      {item.rankLabel}
-                    </p>
-                    <p className="mt-2 text-sm leading-snug text-fg-muted">{item.event}</p>
-                    <p className="tnum mt-1.5 font-mono text-label uppercase tracking-[0.16em] text-fg-subtle">
-                      {formatShort(item.date)}
-                      {item.prize ? ` · ${item.prize}` : ''}
-                    </p>
-                  </li>
+              <dl className="mt-6 border-t border-line-strong">
+                {facts.map((fact) => (
+                  <div
+                    key={fact.label}
+                    className="grid gap-x-6 gap-y-1 border-b border-line py-4 sm:grid-cols-[8rem_1fr]"
+                  >
+                    <dt className="font-display semiwide text-label font-semibold uppercase tracking-[0.16em] text-fg-subtle">
+                      {fact.label}
+                    </dt>
+                    <dd className="text-sm leading-snug text-fg">{fact.value}</dd>
+                  </div>
                 ))}
-              </ol>
-
-              {/* The labelled hairline IS the honesty. Everything above it was
-                  won; everything below it was a final the team did not place in.
-                  Said once, structurally, instead of qualified in every row. */}
-              <p className="mt-7 flex items-center gap-3 font-mono text-label uppercase tracking-[0.16em] text-fg-subtle">
-                <span aria-hidden="true" className="h-px flex-1 bg-base-700" />
-                Reached the final
-                <span aria-hidden="true" className="h-px flex-1 bg-base-700" />
-              </p>
-
-              <ol className="mt-5 space-y-3">
-                {finals.map((item) => (
-                  <li key={item.id} className="flex items-baseline gap-3">
-                    {/* 10px, not 8 — below that the hexagon reads as a dot and
-                        the brand motif is wasted. */}
-                    <span
-                      aria-hidden="true"
-                      className="hex mt-1 block h-2.5 w-2.5 shrink-0 bg-tier-finalist"
-                    />
-                    <span className="min-w-0 flex-1 text-sm leading-snug text-fg-muted">
-                      {item.event}
-                    </span>
-                    <span className="tnum shrink-0 font-mono text-label uppercase tracking-[0.16em] text-fg-subtle">
-                      {formatShort(item.date)}
-                    </span>
-                  </li>
-                ))}
-              </ol>
-            </Card>
+              </dl>
+            </div>
           </Reveal>
         </div>
       </div>

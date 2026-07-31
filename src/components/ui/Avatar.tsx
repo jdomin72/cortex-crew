@@ -2,10 +2,20 @@ import { cn } from '@/lib/cn'
 import type { BrandAccent, ResponsiveImage } from '@/data/types'
 import { Img } from './Img'
 
+/**
+ * Interior wash. Deliberately faint.
+ *
+ * These used to be full-strength brand gradients, which made three 112px
+ * saturated hexagons the loudest colour anywhere on the page — louder than
+ * CHAMPION in tier gold, on a page where colour means a competition result and
+ * nothing else. The gradient now survives at the badge's EDGE, where it reads
+ * as a brand mark, and the interior is near-black so the person's name is the
+ * loudest thing on their own card.
+ */
 const GRADIENT: Record<BrandAccent, string> = {
-  cyan: 'linear-gradient(135deg, #22d3ee 0%, #2563eb 100%)',
-  blue: 'linear-gradient(135deg, #3b82f6 0%, #7c3aed 100%)',
-  violet: 'linear-gradient(135deg, #a855f7 0%, #2563eb 100%)',
+  cyan: 'linear-gradient(135deg, rgb(34 211 238 / 0.22) 0%, rgb(37 99 235 / 0.10) 100%)',
+  blue: 'linear-gradient(135deg, rgb(59 130 246 / 0.22) 0%, rgb(124 58 237 / 0.10) 100%)',
+  violet: 'linear-gradient(135deg, rgb(168 85 247 / 0.22) 0%, rgb(37 99 235 / 0.10) 100%)',
 }
 
 const RING: Record<BrandAccent, string> = {
@@ -57,12 +67,12 @@ export function Avatar({ name, initials, photo, accent = 'cyan', size = 112, cla
           <Img image={{ ...photo, alt: '' }} className="h-full w-full" />
         ) : (
           <div
-            className="relative flex h-full w-full items-center justify-center"
+            className="relative flex h-full w-full items-center justify-center bg-base-900"
             style={{ backgroundImage: GRADIENT[accent] }}
           >
             {/* circuit-trace texture, matching the logo art */}
             <svg
-              className="absolute inset-0 h-full w-full opacity-[0.14]"
+              className="absolute inset-0 h-full w-full opacity-[0.18]"
               viewBox="0 0 100 100"
               aria-hidden="true"
               focusable="false"
@@ -77,10 +87,12 @@ export function Avatar({ name, initials, photo, accent = 'cyan', size = 112, cla
                 <circle cx="78" cy="74" r="2.4" />
               </g>
             </svg>
+            {/* Near-white, not the accent: cyan means "reached the final" on
+                this page, and a cyan monogram would teach the reader otherwise. */}
             <span
               aria-hidden="true"
-              className="relative font-display font-bold text-white"
-              style={{ fontSize: size * 0.34, letterSpacing: '0.08em' }}
+              className="semiwide relative font-display font-bold text-fg"
+              style={{ fontSize: size * 0.34, letterSpacing: '0.06em' }}
             >
               {initials}
             </span>

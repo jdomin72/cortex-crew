@@ -13,13 +13,13 @@ Tagline: Code · Collaborate · Conquer
 
 ## Competition record (2026)
 
-| Result | Event | Organiser | Date | Prize |
-| --- | --- | --- | --- | --- |
-| Champion | CSAD 2026 Project Showcasing Competition | Cyber Security Centre, Daffodil International University | January 2026 | BDT 12,000 |
-| 1st Runners-up | IEEE ICADHI 2026 Project Showcase | IEEE DIU Student Branch | June 2026 | BDT 10,000 |
-| Finalist | AI Project Competition 2026 | Dept. of CSE, Daffodil International University | July 2026 | — |
-| Finalist | 5th Data Science Summit | Daffodil International University | July 2026 | — |
-| Finalist | AI Innovation Hackathon 2026 — From Learning to Impact | Dept. of CSE, Daffodil International University | July 2026 | — |
+| Result | Event | Organiser | Date |
+| --- | --- | --- | --- |
+| Champion | CSAD 2026 Project Showcasing Competition | Cyber Security Centre, Daffodil International University | January 2026 |
+| 1st Runners-up | IEEE ICADHI 2026 Project Showcase | IEEE DIU Student Branch | June 2026 |
+| Finalist | AI Project Competition 2026 | Dept. of CSE, Daffodil International University | July 2026 |
+| Finalist | 5th Data Science Summit | Daffodil International University | July 2026 |
+| Finalist | AI Innovation Hackathon 2026 — From Learning to Impact | Dept. of CSE, Daffodil International University | July 2026 |
 
 Five competition results: one championship, one runners-up, three finals
 reached. "Finalist" means the team reached the final round and did not place.

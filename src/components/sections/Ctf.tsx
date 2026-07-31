@@ -12,7 +12,7 @@ import { Reveal } from '../ui/Reveal'
 function CtfTimeSlot() {
   if (!ctfWidgetEnabled || !ctf.stats || !ctfTeamUrl) {
     return (
-      <div className="flex min-h-[7.5rem] flex-col items-center justify-center rounded-card border border-dashed border-base-600 p-6 text-center">
+      <div className="flex min-h-[7.5rem] flex-col items-center justify-center rounded-card border border-dashed border-line-strong p-6 text-center">
         <Icon name="flag" size={20} className="text-fg-subtle" />
         <p className="mt-3 font-mono text-label uppercase tracking-[0.16em] text-fg-subtle">
           CTFtime team profile — registration pending
@@ -24,7 +24,7 @@ function CtfTimeSlot() {
   const { stats } = ctf
 
   return (
-    <Card accent="cyan" topRule className="min-h-[7.5rem] p-6">
+    <Card className="min-h-[7.5rem] p-6">
       <dl className="grid grid-cols-3 gap-4">
         <div>
           <dt className="font-mono text-label uppercase tracking-[0.14em] text-fg-subtle">
@@ -72,11 +72,11 @@ export function Ctf() {
           <ul className="space-y-5">
             {ctf.focusAreas.map((area) => (
               <li key={area.label} className="flex gap-3">
-                <span aria-hidden="true" className="mt-0.5 font-mono text-brand-cyan">
+                <span aria-hidden="true" className="mt-0.5 font-mono text-fg-subtle">
                   &gt;
                 </span>
                 <div>
-                  <h3 className="font-display text-base font-bold text-fg">{area.label}</h3>
+                  <h3 className="semiwide font-display text-base font-bold text-fg">{area.label}</h3>
                   <p className="mt-1 text-sm text-fg-muted">{area.detail}</p>
                 </div>
               </li>
@@ -91,7 +91,7 @@ export function Ctf() {
                   target="_blank"
                   rel="noreferrer noopener"
                   className={
-                    'focus-ring flex items-center justify-between rounded-chip border border-base-700 px-4 py-3 transition-colors hover:border-brand-cyan/50 ' +
+                    'focus-ring flex items-center justify-between rounded-chip border border-line px-4 py-3 transition-colors hover:border-fg-subtle ' +
                     (platform.status === 'planned' ? 'opacity-60' : '')
                   }
                 >
@@ -111,12 +111,15 @@ export function Ctf() {
 
         {/* ── terminal panel — static text, no typewriter, no blinking cursor ── */}
         <Reveal delay={100}>
-          <Card accent="cyan" className="overflow-hidden">
-            <div className="flex items-center gap-2 border-b border-base-700 bg-base-900 px-4 py-3">
-              <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-base-600" />
-              <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-base-600" />
-              <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-base-600" />
-              <span className="ml-2 font-mono text-xs text-fg-subtle">cortex@ctf: ~</span>
+          {/* The three fake traffic-light dots are gone: they are the most
+              copied ornament in developer marketing, and they were dressing
+              this block up as a macOS window, which it is not. A plain
+              labelled header says the same thing without the costume. */}
+          <Card className="overflow-hidden">
+            <div className="border-b border-line bg-base-850 px-5 py-3">
+              <span className="font-mono text-label uppercase tracking-[0.16em] text-fg-subtle">
+                cortex@ctf : ~
+              </span>
             </div>
 
             <pre className="overflow-x-auto bg-base-950 p-5 font-mono text-xs leading-relaxed text-fg-muted">
@@ -124,7 +127,7 @@ export function Ctf() {
                 {ctf.terminalLines.map((line, index) => (
                   <span
                     key={`${index}-${line}`}
-                    className={line.startsWith('$') ? 'block text-brand-cyan' : 'block'}
+                    className={line.startsWith('$') ? 'block text-fg' : 'block'}
                   >
                     {line || ' '}
                   </span>

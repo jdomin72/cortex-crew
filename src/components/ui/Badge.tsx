@@ -6,8 +6,8 @@ import { Icon, type IconName } from './Icon'
 type Variant = 'neutral' | 'outline' | BrandAccent | MedalTier
 
 const VARIANTS: Record<Variant, string> = {
-  neutral: 'bg-base-800 text-fg-muted border-base-700',
-  outline: 'bg-transparent text-fg-subtle border-base-600',
+  neutral: 'bg-base-800 text-fg-muted border-line',
+  outline: 'bg-transparent text-fg-subtle border-line-strong',
   cyan: 'bg-brand-cyan/10 text-brand-cyan border-brand-cyan/30',
   blue: 'bg-brand-blue/10 text-brand-blue border-brand-blue/30',
   violet: 'bg-brand-violet/10 text-brand-violet border-brand-violet/30',
@@ -15,7 +15,7 @@ const VARIANTS: Record<Variant, string> = {
   silver: 'bg-tier-silver/10 text-tier-silver border-tier-silver/30',
   bronze: 'bg-tier-bronze/10 text-tier-bronze border-tier-bronze/30',
   finalist: 'bg-tier-finalist/10 text-tier-finalist border-tier-finalist/30',
-  participant: 'bg-base-800 text-fg-subtle border-base-700',
+  participant: 'bg-base-800 text-fg-subtle border-line',
 }
 
 export interface BadgeProps {

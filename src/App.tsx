@@ -8,7 +8,6 @@ import { Hero } from './components/sections/Hero'
 import { Pillars } from './components/sections/Pillars'
 import { Projects } from './components/sections/Projects'
 import { Team } from './components/sections/Team'
-import { Timeline } from './components/sections/Timeline'
 
 export default function App() {
   return (
@@ -19,7 +18,6 @@ export default function App() {
         <Pillars />
         <About />
         <Achievements />
-        <Timeline />
         <Projects />
         <Team />
         <Ctf />

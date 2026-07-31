@@ -2,26 +2,20 @@ import { site } from '@/data/site'
 import { Icon } from '../ui/Icon'
 import { Reveal } from '../ui/Reveal'
 
-const ACCENT_TEXT = {
-  cyan: 'text-brand-cyan',
-  blue: 'text-brand-blue',
-  violet: 'text-brand-violet',
-} as const
-
-const ACCENT_BG = {
-  cyan: 'bg-brand-cyan/10',
-  blue: 'bg-brand-blue/10',
-  violet: 'bg-brand-violet/10',
-} as const
-
 /**
  * The three icons are the exact glyphs printed along the bottom of the team's
  * own logo, so this band reads as inherited from the brand rather than invented
  * for the website.
+ *
+ * The three markers used to be tinted cyan / blue / violet, one per pillar.
+ * That collided with the page's accent system, where cyan means "reached the
+ * final" — a cyan badge on an unrelated band teaches the reader the colour is
+ * decorative, and then the record sheet's colour stops carrying information.
+ * The markers are neutral now; the hexagon alone does the brand work.
  */
 export function Pillars() {
   return (
-    <section aria-labelledby="pillars-title" className="border-y border-base-700/60 bg-base-900">
+    <section aria-labelledby="pillars-title" className="border-y border-line-strong bg-base-900">
       <div className="container">
         <h2 id="pillars-title" className="sr-only">
           What we compete in
@@ -32,32 +26,15 @@ export function Pillars() {
               key={pillar.id}
               delay={index * 90}
               className={
-                'relative px-0 py-10 md:px-8 ' +
-                (index > 0
-                  ? 'border-t border-base-800 md:border-l md:border-t-0 md:border-base-800'
-                  : '')
+                'relative py-10 md:px-8 md:first:pl-0 ' +
+                (index > 0 ? 'border-t border-line md:border-l md:border-t-0' : '')
               }
             >
-              {/* vertical gradient hairline between cells */}
-              {index > 0 ? (
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-y-0 left-0 hidden w-px bg-gradient-to-b from-transparent via-brand-cyan/25 to-transparent md:block"
-                />
-              ) : null}
-
-              <span
-                className={
-                  'hex mb-5 flex h-11 w-11 items-center justify-center ' +
-                  ACCENT_BG[pillar.accent] +
-                  ' ' +
-                  ACCENT_TEXT[pillar.accent]
-                }
-              >
+              <span className="hex mb-5 flex h-11 w-11 items-center justify-center bg-base-800 text-fg-muted">
                 <Icon name={pillar.icon} size={20} />
               </span>
 
-              <h3 className="font-display text-lg font-bold uppercase tracking-wide text-fg">
+              <h3 className="semiwide font-display text-lg font-bold uppercase tracking-wide text-fg">
                 {pillar.label}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-fg-muted">{pillar.detail}</p>
