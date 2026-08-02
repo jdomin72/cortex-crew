@@ -2,8 +2,76 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { cn } from '@/lib/cn'
 import { Icon } from './Icon'
 
-/** Matches the track's `gap-5` (20px), with a little slack for sub-pixel widths. */
-const PAGE_EPSILON = 32
+/** Slack for sub-pixel item widths, so a card that fits by a hair still counts. */
+const FIT_EPSILON = 2
+
+/**
+ * The scroll positions of each page, read from the items themselves.
+ *
+ * ── Why this is not arithmetic on clientWidth ──
+ * It used to be `ceil(scrollWidth / clientWidth)` pages at `index * clientWidth`
+ * each, which assumes a page is exactly one track-width of scroll. The LAST page
+ * is almost never a full width, and that broke the controls outright: Projects at
+ * 1440px has `clientWidth 1152` but can only scroll to **391**, so page 2's target
+ * clamped to 391 and `round(391 / 1152)` reported page **0**. The dot stayed on 1,
+ * `Previous` stayed disabled, and a reader who pressed Next could not get back.
+ * The same rounding dropped the crew's last dot at every width below 1024, and
+ * invented a phantom page at 820 and 640.
+ *
+ * Every item is `snap-start`, so the item boundaries ARE the only positions the
+ * track can come to rest at. Reading them means the dots cannot disagree with
+ * where the browser actually stopped — the failure mode above becomes unreachable
+ * rather than patched. (The old 32px `PAGE_EPSILON` was a patch on that
+ * arithmetic; with real offsets there is no trailing gap left to absorb.)
+ *
+ * A page starts at an item boundary and greedily takes every item that fits
+ * entirely inside `clientWidth`; the final offset is clamped to `maxScroll`.
+ *
+ * `offsetLeft` is taken relative to the FIRST child, not raw: the track is not
+ * `position: relative`, so `offsetParent` is some ancestor above it and the raw
+ * values carry an unrelated origin.
+ */
+function pageOffsets(el: HTMLElement): number[] {
+  const items = Array.from(el.children) as HTMLElement[]
+  if (items.length === 0 || el.clientWidth === 0) return [0]
+
+  const maxScroll = Math.max(0, el.scrollWidth - el.clientWidth)
+  if (maxScroll === 0) return [0]
+
+  const base = items[0].offsetLeft
+  const starts = items.map((item) => item.offsetLeft - base)
+  const offsets: number[] = []
+
+  let index = 0
+  while (index < items.length) {
+    const start = Math.min(starts[index], maxScroll)
+    if (offsets.length === 0 || start > offsets[offsets.length - 1] + FIT_EPSILON) {
+      offsets.push(start)
+    }
+    if (start >= maxScroll) break
+
+    // Advance past every item whose right edge is still inside this page.
+    let last = index
+    while (last + 1 < items.length) {
+      const next = items[last + 1]
+      const right = next.offsetLeft - base + next.offsetWidth
+      if (right > start + el.clientWidth + FIT_EPSILON) break
+      last++
+    }
+    index = Math.max(last + 1, index + 1)
+  }
+
+  return offsets.length > 0 ? offsets : [0]
+}
+
+/** Active page = the offset the track is closest to. Replaces a division. */
+function nearestPage(offsets: number[], scrollLeft: number): number {
+  let best = 0
+  for (let i = 1; i < offsets.length; i++) {
+    if (Math.abs(offsets[i] - scrollLeft) < Math.abs(offsets[best] - scrollLeft)) best = i
+  }
+  return best
+}
 
 export interface CarouselProps {
   /** Announced to screen readers as the name of the scrollable region. */
@@ -33,17 +101,23 @@ export interface CarouselProps {
  * `tabIndex={0}` on the track is deliberate: a scrollable region that is not
  * focusable cannot be scrolled by keyboard, which is a WCAG 2.1.1 failure.
  *
- * ── Auto-rotation, and the four ways it stops ──
+ * ── Auto-rotation, and the five ways it stops ──
  * `autoRotate` advances a page on a timer so every card is seen without input.
  * Content that moves on its own is a genuine accessibility hazard, so it:
  *
  * 1. **never starts** under `prefers-reduced-motion: reduce`;
- * 2. **pauses** while the pointer is over it or focus is inside it — otherwise it
+ * 2. **only runs while the track is on screen** — the timer used to start at page
+ *    load, so by the time a reader scrolled down to the crew it had already
+ *    advanced and the first three members were never reliably what they saw
+ *    first. Leaving the viewport also resets it to page one, which happens while
+ *    nobody is looking, so arriving is always a clean start;
+ * 3. **pauses** while the pointer is over it or focus is inside it — otherwise it
  *    would yank a card away mid-read, or mid-tab through someone's links;
- * 3. **pauses** while the tab is hidden, so a backgrounded page is not animating
+ * 4. **pauses** while the tab is hidden, so a backgrounded page is not animating
  *    on a phone battery;
- * 4. **stops for good** the moment the reader takes control — a swipe, a wheel,
- *    a key, or any button here. Once you have steered, it does not fight you.
+ * 5. **stops for good** the moment the reader takes control — a swipe, a wheel,
+ *    a key, or any button here. Once you have steered, it does not fight you,
+ *    and the off-screen reset defers to it too.
  *
  * It also renders an explicit pause/play toggle, which is what WCAG 2.2.2
  * actually requires for anything that auto-starts and runs longer than five
@@ -53,14 +127,22 @@ export function Carousel({ label, autoRotate, children, className }: CarouselPro
   const track = useRef<HTMLDivElement>(null)
   const [mounted, setMounted] = useState(false)
   const [page, setPage] = useState(0)
-  const [pages, setPages] = useState(1)
+  /** Scroll position of each page. Length is the page count. */
+  const [offsets, setOffsets] = useState<number[]>([0])
 
   /** Auto-rotation is possible at all: mounted, requested, motion allowed. */
   const [canRotate, setCanRotate] = useState(false)
   /** Transient — pointer is over it, focus is inside it, or the tab is hidden. */
   const [suspended, setSuspended] = useState(false)
+  /** Transient — the track is scrolled into view. */
+  const [onScreen, setOnScreen] = useState(false)
   /** Sticky — the reader took control, or pressed pause. */
   const [stopped, setStopped] = useState(false)
+  /** Same value, readable from inside an observer callback without re-subscribing. */
+  const stoppedRef = useRef(false)
+  stoppedRef.current = stopped
+
+  const pages = offsets.length
 
   useEffect(() => setMounted(true), [])
 
@@ -70,25 +152,20 @@ export function Carousel({ label, autoRotate, children, className }: CarouselPro
     setCanRotate(true)
   }, [autoRotate])
 
+  /**
+   * Recompute the page offsets. Layout-reading, so it runs on mount and on
+   * resize only — never per scroll frame.
+   */
   const measure = useCallback(() => {
     const el = track.current
     if (!el || el.clientWidth === 0) return
-
-    // Page count is derived from how far the track can actually SCROLL, not
-    // from its total width. `ceil(scrollWidth / clientWidth)` looks right and
-    // is wrong: six cards three-up measured 2324/1152 → 3, but the third page
-    // sits at 2304px and the track only scrolls to 1172px, so it clamped onto
-    // page two. Auto-rotation advanced once and then sat still, forever trying
-    // to reach a page that does not exist.
-    //
-    // The epsilon absorbs the trailing gap — the last card contributes a 20px
-    // gap that is not content, and without it every full track reports one
-    // phantom page too many.
-    const maxScroll = Math.max(0, el.scrollWidth - el.clientWidth)
-    const count = Math.max(1, Math.ceil((maxScroll - PAGE_EPSILON) / el.clientWidth) + 1)
-
-    setPages(count)
-    setPage(Math.min(count - 1, Math.round(el.scrollLeft / el.clientWidth)))
+    const next = pageOffsets(el)
+    setOffsets((current) =>
+      current.length === next.length && current.every((value, i) => value === next[i])
+        ? current
+        : next,
+    )
+    setPage(nearestPage(next, el.scrollLeft))
   }, [])
 
   useEffect(() => {
@@ -98,13 +175,35 @@ export function Carousel({ label, autoRotate, children, className }: CarouselPro
 
     const observer = new ResizeObserver(measure)
     observer.observe(el)
+    // Cards are content-sized, so a card growing (a wrapped chip row, a late
+    // webfont) moves every boundary after it without the track itself resizing.
+    Array.from(el.children).forEach((child) => observer.observe(child))
+
+    return () => observer.disconnect()
+  }, [measure])
+
+  // Scrolling only re-derives the active index from the cached offsets. No
+  // layout is read here, which is what keeps a scroll frame cheap.
+  useEffect(() => {
+    const el = track.current
+    if (!el) return
 
     let frame = 0
     const onScroll = () => {
       cancelAnimationFrame(frame)
-      frame = requestAnimationFrame(measure)
+      frame = requestAnimationFrame(() => setPage(nearestPage(offsets, el.scrollLeft)))
     }
     el.addEventListener('scroll', onScroll, { passive: true })
+
+    return () => {
+      el.removeEventListener('scroll', onScroll)
+      cancelAnimationFrame(frame)
+    }
+  }, [offsets])
+
+  useEffect(() => {
+    const el = track.current
+    if (!el) return
 
     // A real gesture — not our own scrollTo, which fires 'scroll' but none of
     // these. This is why takeover is detected from input events, not scrolling.
@@ -112,13 +211,8 @@ export function Carousel({ label, autoRotate, children, className }: CarouselPro
     const gestures = ['pointerdown', 'wheel', 'touchstart', 'keydown'] as const
     gestures.forEach((type) => el.addEventListener(type, takeOver, { passive: true }))
 
-    return () => {
-      observer.disconnect()
-      el.removeEventListener('scroll', onScroll)
-      gestures.forEach((type) => el.removeEventListener(type, takeOver))
-      cancelAnimationFrame(frame)
-    }
-  }, [measure])
+    return () => gestures.forEach((type) => el.removeEventListener(type, takeOver))
+  }, [])
 
   useEffect(() => {
     const onVisibility = () => setSuspended(document.hidden)
@@ -126,20 +220,48 @@ export function Carousel({ label, autoRotate, children, className }: CarouselPro
     return () => document.removeEventListener('visibilitychange', onVisibility)
   }, [])
 
-  const scrollToPage = useCallback((index: number) => {
+  const scrollToPage = useCallback(
+    (index: number, smooth = true) => {
+      const el = track.current
+      if (!el) return
+      const target = offsets[Math.max(0, Math.min(index, offsets.length - 1))] ?? 0
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      el.scrollTo({ left: target, behavior: smooth && !reduced ? 'smooth' : 'auto' })
+    },
+    [offsets],
+  )
+
+  /**
+   * Rotation only runs while the track is on screen, and leaving the viewport
+   * rewinds it to page one.
+   *
+   * Resetting on EXIT rather than on entry is deliberate: the jump happens while
+   * the section is out of frame, so a reader arriving always finds page one
+   * already in place and never sees it snap back under them.
+   *
+   * `stopped` is honoured — someone who navigated by hand keeps their position.
+   * The threshold is a bare 0 so "on screen" means the same thing a reader would
+   * mean; there is no need for the track to be substantially visible to justify
+   * running a timer.
+   */
+  useEffect(() => {
     const el = track.current
-    if (!el) return
-    const maxScroll = Math.max(0, el.scrollWidth - el.clientWidth)
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    // Clamped, so the last page lands on the true end of the track rather than
-    // on a position the browser would silently pull back from.
-    el.scrollTo({
-      left: Math.min(index * el.clientWidth, maxScroll),
-      behavior: reduced ? 'auto' : 'smooth',
-    })
+    if (!el || typeof IntersectionObserver === 'undefined') return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setOnScreen(entry.isIntersecting)
+        if (!entry.isIntersecting && !stoppedRef.current) {
+          el.scrollTo({ left: 0, behavior: 'auto' })
+        }
+      },
+      { threshold: 0 },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
   }, [])
 
-  const rotating = canRotate && !stopped && !suspended && pages > 1
+  const rotating = canRotate && !stopped && !suspended && onScreen && pages > 1
 
   useEffect(() => {
     if (!rotating || !autoRotate) return
@@ -154,13 +276,12 @@ export function Carousel({ label, autoRotate, children, className }: CarouselPro
     const timer = setInterval(() => {
       const el = track.current
       if (!el) return
-      const maxScroll = Math.max(0, el.scrollWidth - el.clientWidth)
-      const atEnd = el.scrollLeft >= maxScroll - PAGE_EPSILON
-      scrollToPage(atEnd ? 0 : Math.round(el.scrollLeft / el.clientWidth) + 1)
+      const current = nearestPage(offsets, el.scrollLeft)
+      scrollToPage(current >= offsets.length - 1 ? 0 : current + 1)
     }, autoRotate)
 
     return () => clearInterval(timer)
-  }, [rotating, autoRotate, scrollToPage])
+  }, [rotating, autoRotate, offsets, scrollToPage])
 
   const goTo = (index: number) => {
     setStopped(true)

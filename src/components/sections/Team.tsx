@@ -43,11 +43,17 @@ export function Team() {
       title="Six people, one team name."
       lead="We split the work the way a competition demands it — someone owns the model, someone owns the machine it runs on, someone owns what the judges see."
     >
-      {/* Auto-rotates so all six are seen without anyone having to swipe. It
-          stops the instant the reader takes control, pauses on hover, focus and
-          when the tab is hidden, never starts under reduced motion, and ships a
-          pause button — see `Carousel`. */}
-      <Carousel label="the crew" autoRotate={5000}>
+      {/* Auto-rotates so all six are seen without anyone having to swipe. The
+          timer only runs while the section is on screen — it used to start at
+          page load, so a reader arriving here found it already on page two and
+          never reliably saw the first three. It stops the instant the reader
+          takes control, pauses on hover, focus and when the tab is hidden, never
+          starts under reduced motion, and ships a pause button — see `Carousel`.
+
+          2s per page is the team's call (2026-08-02). Smooth scrolling eats
+          ~0.4s of it, so a card holds still for ~1.6s. The pause button is what
+          keeps WCAG 2.2.2 satisfied, not the interval length. */}
+      <Carousel label="the crew" autoRotate={2000}>
         {crew.map((member) => (
           <div key={member.id} className={CAROUSEL_ITEM}>
             <Card interactive className="group flex h-full flex-col p-6 md:p-7">
