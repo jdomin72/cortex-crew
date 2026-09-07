@@ -293,6 +293,23 @@ export const projects: Project[] = [
       { label: 'Source', href: 'https://github.com/kawsher-hridoy/DIU-AI-Mentor', kind: 'repo' },
     ],
   },
+  {
+    id: 'bd-krishibid',
+    name: 'BD Krishibid',
+    tagline: 'Bangla-first, voice-enabled farming for low-literacy Android',
+    description:
+      'Cortex Crew built a Bangla-first farming platform for low-literacy Android: an AI agronomist you can talk to, leaf-photo disease diagnosis, weather-aware irrigation advice, and an ESP32 soil-moisture loop that can run the pump. Every farmer screen has voice in and voice out. Shipped outside the competition sheet — it is not a result.',
+    stack: ['Next.js', 'TypeScript', 'Tailwind', 'Supabase', 'ESP32'],
+    status: 'live',
+    year: '2026',
+    accent: 'cyan',
+    /* No builtFor: this is a team project with no competition result, so it
+       must not appear as evidence behind a row on the record. */
+    links: [
+      { label: 'Source', href: 'https://github.com/Shafiur0/bd-krishibid', kind: 'repo' },
+      { label: 'Demo', href: 'https://bd-krishibid.vercel.app', kind: 'demo' },
+    ],
+  },
 ]
 
 /* ───────────────────────────────── people ─────────────────────────────────

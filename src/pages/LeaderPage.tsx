@@ -205,7 +205,7 @@ export function LeaderPage() {
             lead="Niro, Autopilot, and AI Mentor are the production systems named in the biography. Darktrace3 is the CSAD Champion build."
           >
             <ul className="grid gap-4 md:grid-cols-2">
-              {projects.map((project) => (
+              {projects.filter((project) => project.builtFor).map((project) => (
                 <li key={project.id}>
                   <Card as="article" className="flex h-full flex-col p-6">
                     <h3 className="wide font-display text-2xl font-extrabold uppercase leading-none text-fg">

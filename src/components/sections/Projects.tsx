@@ -24,14 +24,15 @@ const STATUS_LABEL = {
  * ── Why there is no cover image ──
  * Every card used to open with a 128px band containing a gradient wash, a
  * `bg-nodes` dot texture, a three-hexagon SVG lattice and the project's first
- * letter — a placeholder dressed up to look like a photograph. None of the four
- * projects has a real cover, so all four rendered the same invented artwork,
+ * letter — a placeholder dressed up to look like a photograph. None of the
+ * projects has a real cover, so they all rendered the same invented artwork,
  * and it was the loudest thing on the card. Typography carries these cards now:
  * the name, what it does in one line, and what it was built for.
  *
  * ── Framing rule ──
- * `builtFor` names the competition and the result, so a project card always
- * points back at the team's record rather than standing on its own.
+ * `builtFor` names the competition and the result, so a competition card
+ * points back at the team's record rather than standing on its own. Cards
+ * without `builtFor` are team work shipped outside the record.
  */
 export function Projects() {
   return (
@@ -39,11 +40,11 @@ export function Projects() {
       id="projects"
       eyebrow="The work"
       title="What we build to compete."
-      lead="Four systems the team designed, built and demoed live. Each one exists because a competition asked a hard question — and each one is the evidence behind a result above."
+      lead="Five systems the team designed and built. Four were taken on stage against a judging panel; one is a Bangla-first farming platform the crew shipped outside the record."
     >
       {/* A slideshow at every width now, not just on phones — see `Carousel`
-          for why it is a scroll container rather than a slide swapper. All four
-          cards stay in the DOM and in the prerendered HTML; the buttons and dots
+          for why it is a scroll container rather than a slide swapper. Every
+          card stays in the DOM and in the prerendered HTML; the buttons and dots
           are a convenience layer that only appears once the bundle has run. */}
       <Carousel label="our projects">
         {projects.map((project) => (

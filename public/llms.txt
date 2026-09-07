@@ -64,6 +64,13 @@ are not listed and are not counted.
   deterministic engine scores students across eight academic and attendance
   signals, then an AI turns the numbers into a plain-language brief.
   Source: https://github.com/kawsher-hridoy/DIU-AI-Mentor
+- **BD Krishibid** — A Bangla-first, voice-enabled farming platform for
+  low-literacy Android: AI agronomist, leaf-photo disease diagnosis,
+  weather-aware irrigation, and an ESP32 soil-moisture loop. Shipped outside
+  the competition sheet — not a result. Next.js, TypeScript, Tailwind,
+  Supabase, ESP32.
+  Source: https://github.com/Shafiur0/bd-krishibid
+  Demo: https://bd-krishibid.vercel.app
 
 ## Focus areas
 
@@ -78,6 +85,8 @@ development.
 - [Facebook page](https://facebook.com/teamcortexcrew): announcements and competition updates.
 - [Autopilot — source](https://github.com/kawsher-hridoy/autopilot): self-healing GPU cluster, built for the AI Innovation Hackathon 2026.
 - [AI Mentor — source](https://github.com/kawsher-hridoy/DIU-AI-Mentor): student early-warning system, built for the AI Project Competition 2026.
+- [BD Krishibid — source](https://github.com/Shafiur0/bd-krishibid): Bangla-first farming platform, shipped outside the competition sheet.
+- [BD Krishibid — demo](https://bd-krishibid.vercel.app): live Progressive Web App.
 - [Kawsher HRidoy — GitHub](https://github.com/kawsher-hridoy): team lead.
 - [Daffodil International University](https://daffodilvarsity.edu.bd/): the team's university.
 
