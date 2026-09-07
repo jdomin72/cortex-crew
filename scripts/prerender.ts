@@ -43,13 +43,16 @@ writeFileSync(INDEX, template.replace('<div id="root"></div>', `<div id="root">$
 logWords('home', homeMarkup)
 
 const leaderMarkup = renderToString(createElement(LeaderPage))
+const leaderHtml = applyLeaderHead(template).replace(
+  '<div id="root"></div>',
+  `<div id="root">${leaderMarkup}</div>`,
+)
 const leaderDir = resolve(DIST, leader.id)
 mkdirSync(leaderDir, { recursive: true })
-writeFileSync(
-  resolve(leaderDir, 'index.html'),
-  applyLeaderHead(template).replace('<div id="root"></div>', `<div id="root">${leaderMarkup}</div>`),
-  'utf8',
-)
+writeFileSync(resolve(leaderDir, 'index.html'), leaderHtml, 'utf8')
+/* Also write the clean-URL sibling so `vite preview` (and Vercel cleanUrls)
+   serve /kawsher-hridoy without falling back to the homepage SPA shell. */
+writeFileSync(resolve(DIST, `${leader.id}.html`), leaderHtml, 'utf8')
 logWords(leader.path, leaderMarkup)
 
 /* ── sitemap ──────────────────────────────────────────────────────────────
