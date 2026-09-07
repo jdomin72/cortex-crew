@@ -297,8 +297,8 @@ export const projects: Project[] = [
 
 /* ───────────────────────────────── people ─────────────────────────────────
    Accents run cyan → blue → violet so the avatar row reproduces the brand
-   gradient. Initials are hand-written: no algorithm handles 'Md Kawsher
-   Ahmed' or 'Md. Abdul Hye Zebon' correctly.
+   gradient. Initials are hand-written so multi-word and stylized names remain
+   correct if the roster changes.
 
    Never publish university IDs, @diu.edu.bd addresses, or phone numbers.
    ───────────────────────────────────────────────────────────────────────── */

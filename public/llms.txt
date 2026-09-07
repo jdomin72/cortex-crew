@@ -1,10 +1,10 @@
 # Cortex Crew
 
-> A student competition team at Daffodil International University, Dhaka,
-> Bangladesh. Cortex Crew builds working systems and demonstrates them live at
-> project showcases and hackathons. The team has five competition results from
-> 2026: two podium finishes and three finals reached. It is now moving into
-> Capture the Flag.
+> Cortex Crew is a student hackathon and project showcase team based at
+> Daffodil International University (DIU) in Dhaka, Bangladesh, led by Kawsher
+> HRidoy. The team builds working systems and demonstrates them live. It has
+> five competition results from 2026: two podium finishes and three finals
+> reached, and is now moving into Capture the Flag.
 
 Site: https://cortexcrew.vercel.app/
 Founded: 2026
