@@ -1,3 +1,4 @@
+import { leader } from './data/site'
 import { SiteFooter } from './components/SiteFooter'
 import { SiteNav } from './components/SiteNav'
 import { About } from './components/sections/About'
@@ -8,8 +9,15 @@ import { Hero } from './components/sections/Hero'
 import { Pillars } from './components/sections/Pillars'
 import { Projects } from './components/sections/Projects'
 import { Team } from './components/sections/Team'
+import { LeaderPage } from './pages/LeaderPage'
 
-export default function App() {
+function currentPathname(): string {
+  if (typeof window === 'undefined') return '/'
+  const path = window.location.pathname.replace(/\/+$/, '')
+  return path === '' ? '/' : path
+}
+
+function Home() {
   return (
     <>
       <SiteNav />
@@ -26,4 +34,11 @@ export default function App() {
       <SiteFooter />
     </>
   )
+}
+
+export default function App() {
+  if (currentPathname() === leader.path) {
+    return <LeaderPage />
+  }
+  return <Home />
 }

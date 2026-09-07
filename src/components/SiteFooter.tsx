@@ -11,7 +11,12 @@ const PLATFORM_ICON: Record<string, IconName> = {
   ctftime: 'flag',
 }
 
-export function SiteFooter() {
+export interface SiteFooterProps {
+  /** Prefix for section hashes so profile footer links go to `/#achievements`. */
+  sectionPrefix?: string
+}
+
+export function SiteFooter({ sectionPrefix = '' }: SiteFooterProps = {}) {
   const year = new Date().getFullYear()
 
   return (
@@ -45,7 +50,7 @@ export function SiteFooter() {
               {site.nav.map((item) => (
                 <li key={item.id}>
                   <a
-                    href={`#${item.id}`}
+                    href={`${sectionPrefix}#${item.id}`}
                     className="focus-ring semiwide font-display text-label font-semibold uppercase tracking-[0.16em] text-fg-muted transition-colors hover:text-fg"
                   >
                     {item.label}

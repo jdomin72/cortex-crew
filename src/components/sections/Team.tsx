@@ -1,4 +1,4 @@
-import { members } from '@/data/site'
+import { leader, members } from '@/data/site'
 import type { SocialPlatform } from '@/data/types'
 import { Section } from '../Section'
 import { Avatar } from '../ui/Avatar'
@@ -66,7 +66,16 @@ export function Team() {
               />
 
               <h3 className="semiwide mt-6 font-display text-lg font-bold text-fg">
-                {member.name}
+                {member.id === leader.id ? (
+                  <a
+                    href={leader.path}
+                    className="focus-ring underline-offset-4 transition-colors hover:text-white hover:underline"
+                  >
+                    {member.name}
+                  </a>
+                ) : (
+                  member.name
+                )}
               </h3>
               <span aria-hidden="true" className="draw-x mt-3 block h-px w-12 bg-fg" />
 

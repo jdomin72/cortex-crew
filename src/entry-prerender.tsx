@@ -5,5 +5,6 @@
  * react-dom/server.
  */
 import App from './App'
+import { LeaderPage } from './pages/LeaderPage'
 
-export { App }
+export { App, LeaderPage }

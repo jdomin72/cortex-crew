@@ -436,6 +436,38 @@ export const members: Member[] = [
   },
 ]
 
+/* ───────────────────────────── leader page ─────────────────────────────
+   Canonical public page for the team lead. Visible copy uses Kawsher HRidoy.
+   The official name is mapped only in Person JSON-LD (see prerender + index.html).
+   ───────────────────────────────────────────────────────────────────────── */
+
+export const leader = {
+  id: 'kawsher-hridoy',
+  path: '/kawsher-hridoy',
+  publicName: 'Kawsher HRidoy',
+  officialName: 'Md Kawsher Ahmed',
+  jobTitle: 'Team Lead — Machine Learning & Systems',
+  pageTitle: 'Kawsher HRidoy — Cortex Crew Team Lead at DIU',
+  pageDescription:
+    'Kawsher HRidoy is an AI and machine learning developer and the team lead of Cortex Crew at Daffodil International University (DIU) in Dhaka.',
+  imagePath: '/media/team/kawsher-hridoy-336.webp',
+  imageWidth: 336,
+  imageHeight: 336,
+  biography: [
+    'Kawsher HRidoy is an AI and machine learning developer and the team lead of Cortex Crew, a student hackathon and project showcase team at Daffodil International University (DIU) in Dhaka, Bangladesh. He leads Cortex Crew from planning through a live, defensible demo.',
+    'In 2026 the team recorded five results under his lead: Champion at the CSAD Project Showcasing Competition, 1st Runners-up at IEEE ICADHI 2026, and Finalist at the AI Innovation Hackathon, the AI Project Competition, and the 5th Data Science Summit.',
+    'His work focuses on machine learning that ships as production systems. He has led Niro, a patient-owned records platform with Bangla lab and prescription reading; Autopilot, GPU failure prediction and cluster migration on the order of a hundred seconds; and AI Mentor, an eight-signal academic and attendance model with auditable rules. The stack is Python, FastAPI, Next.js, and PostgreSQL, with LightGBM and Azure OpenAI where they fit.',
+    'He is now leading Cortex Crew into competitive cybersecurity.',
+  ],
+  stack: ['Python', 'FastAPI', 'Next.js', 'PostgreSQL', 'LightGBM', 'Azure OpenAI'],
+  sameAs: [
+    'https://github.com/kawsher-hridoy',
+    'https://linkedin.com/in/kawsher-hridoy',
+    'https://www.facebook.com/KawsherHRidooy/',
+    'https://www.instagram.com/kawsherhridoy/',
+  ],
+} as const
+
 /* ────────────────────────────────── CTF ──────────────────────────────────
    `teamId: null` keeps the live card off. Set it to the numeric id from
    ctftime.org/team/<id> and the card turns on — nothing else changes.
