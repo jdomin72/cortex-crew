@@ -49,12 +49,12 @@ export function About() {
 
             <p className="mt-6 text-lg leading-relaxed text-fg-muted">
               <strong className="font-semibold text-fg">Cortex Crew</strong> is a student
-              competition team at{' '}
-              <strong className="font-semibold text-fg">{site.university}</strong> in {site.city},{' '}
-              {site.country}, founded in {site.founded}. The team competes in project showcases,
-              hackathons, and Capture the Flag events, and is made up of Software Engineering
-              students working across machine learning, cyber security, cloud infrastructure, and
-              full-stack development.
+              hackathon and project showcase team based at{' '}
+              <strong className="font-semibold text-fg">{site.university}</strong> (DIU) in{' '}
+              {site.city}, {site.country}, founded in {site.founded}. The team also competes in
+              Capture the Flag events and is made up of Software Engineering students working
+              across machine learning, cyber security, cloud infrastructure, and full-stack
+              development.
             </p>
 
             <p className="mt-4 text-lg leading-relaxed text-fg-muted">

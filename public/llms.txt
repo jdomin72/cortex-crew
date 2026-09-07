@@ -1,10 +1,10 @@
 # Cortex Crew
 
-> A student competition team at Daffodil International University, Dhaka,
-> Bangladesh. Cortex Crew builds working systems and demonstrates them live at
-> project showcases and hackathons. The team has five competition results from
-> 2026: two podium finishes and three finals reached. It is now moving into
-> Capture the Flag.
+> Cortex Crew is a student hackathon and project showcase team based at
+> Daffodil International University (DIU) in Dhaka, Bangladesh, led by Kawsher
+> HRidoy. The team builds working systems and demonstrates them live. It has
+> five competition results from 2026: two podium finishes and three finals
+> reached, and is now moving into Capture the Flag.
 
 Site: https://cortexcrew.vercel.app/
 Founded: 2026
@@ -29,6 +29,7 @@ are not listed and are not counted.
 ## Members
 
 - **Kawsher HRidoy** — Team Lead, machine learning and systems integration.
+  Public page: https://cortexcrew.vercel.app/kawsher-hridoy
   GitHub: https://github.com/kawsher-hridoy
 - **Shafiur Rahman Shafim** — Infrastructure and telemetry.
   GitHub: https://github.com/Shafiur0
@@ -73,6 +74,7 @@ development.
 ## Links
 
 - [Cortex Crew — official site](https://cortexcrew.vercel.app/): the team's record, projects, members and CTF roadmap.
+- [Kawsher HRidoy — public page](https://cortexcrew.vercel.app/kawsher-hridoy): biography, photo, 2026 record, and profiles for the team lead.
 - [Facebook page](https://facebook.com/teamcortexcrew): announcements and competition updates.
 - [Autopilot — source](https://github.com/kawsher-hridoy/autopilot): self-healing GPU cluster, built for the AI Innovation Hackathon 2026.
 - [AI Mentor — source](https://github.com/kawsher-hridoy/DIU-AI-Mentor): student early-warning system, built for the AI Project Competition 2026.

@@ -36,7 +36,19 @@ function HexMark({ size = 26 }: { size?: number }) {
   )
 }
 
-export function SiteNav() {
+export interface SiteNavProps {
+  /** Logo target. In-page on the homepage; `/` on subpages. */
+  homeHref?: string
+  skipHref?: string
+  /** Prefix for section hashes so profile nav goes to `/#achievements`, not `#achievements`. */
+  sectionPrefix?: string
+}
+
+export function SiteNav({
+  homeHref = '#hero',
+  skipHref = '#hero',
+  sectionPrefix = '',
+}: SiteNavProps = {}) {
   const [open, setOpen] = useState(false)
   const active = useActiveSection(NAV_IDS)
   const panelRef = useRef<HTMLDivElement>(null)
@@ -81,7 +93,7 @@ export function SiteNav() {
   return (
     <>
       <a
-        href="#hero"
+        href={skipHref}
         className="focus-ring sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-chip focus:bg-base-800 focus:px-4 focus:py-2 focus:text-sm focus:text-fg"
       >
         Skip to content
@@ -89,7 +101,7 @@ export function SiteNav() {
 
       <header className="glass fixed inset-x-0 top-0 z-50 border-b border-line-strong">
         <nav aria-label="Primary" className="container flex h-16 items-center justify-between">
-          <a href="#hero" className="focus-ring flex items-center gap-2.5">
+          <a href={homeHref} className="focus-ring flex items-center gap-2.5">
             <HexMark />
             <span className="semiwide font-display text-sm font-bold tracking-[0.06em] text-fg">
               {site.shortName}
@@ -105,7 +117,7 @@ export function SiteNav() {
             {site.nav.map((item) => (
               <li key={item.id}>
                 <a
-                  href={`#${item.id}`}
+                  href={`${sectionPrefix}#${item.id}`}
                   aria-current={active === item.id ? 'true' : undefined}
                   className={cn(
                     'focus-ring semiwide relative block px-3 py-2 font-display text-label font-semibold uppercase tracking-[0.16em] transition-colors',
@@ -162,7 +174,7 @@ export function SiteNav() {
             {site.nav.map((item) => (
               <li key={item.id}>
                 <a
-                  href={`#${item.id}`}
+                  href={`${sectionPrefix}#${item.id}`}
                   onClick={() => setOpen(false)}
                   className="focus-ring semiwide block border-b border-line py-4 font-display text-lg font-bold uppercase tracking-[0.08em] text-fg"
                 >

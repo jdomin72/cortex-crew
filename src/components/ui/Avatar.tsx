@@ -30,6 +30,8 @@ export interface AvatarProps {
   photo?: ResponsiveImage
   accent?: BrandAccent
   size?: number
+  /** Eager-load the photo when this avatar is the page LCP (leader profile). */
+  priority?: boolean
   className?: string
 }
 
@@ -45,7 +47,15 @@ export interface AvatarProps {
  * The root carries role="img" + aria-label={name}, so a screen reader announces
  * the person, not "no photo available".
  */
-export function Avatar({ name, initials, photo, accent = 'cyan', size = 112, className }: AvatarProps) {
+export function Avatar({
+  name,
+  initials,
+  photo,
+  accent = 'cyan',
+  size = 112,
+  priority = false,
+  className,
+}: AvatarProps) {
   const inner = size - 6
 
   return (
@@ -64,7 +74,7 @@ export function Avatar({ name, initials, photo, accent = 'cyan', size = 112, cla
         style={{ inset: 3, width: inner, height: inner }}
       >
         {photo ? (
-          <Img image={{ ...photo, alt: '' }} className="h-full w-full" />
+          <Img image={{ ...photo, alt: '' }} priority={priority} className="h-full w-full" />
         ) : (
           <div
             className="relative flex h-full w-full items-center justify-center bg-base-900"

@@ -178,7 +178,7 @@ body {
 }
 
 /* Sticky-header offset so #anchor jumps don't hide the heading underneath it. */
-:where(section[id]) {
+:where(section[id], article[id]) {
   scroll-margin-top: 5.5rem;
 }
 
