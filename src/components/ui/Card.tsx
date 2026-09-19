@@ -12,7 +12,7 @@ export interface CardProps extends HTMLAttributes<HTMLElement> {
  *
  * ── What was removed ──
  * `accent` and `topRule` painted a two-pixel brand gradient across the top of
- * every card. Applied to results, projects and the CTF panel alike, that was
+ * every card. Applied to results and projects alike, that was
  * the same three colours on five sections, and on the project cards the accent
  * was assigned arbitrarily per project — so it looked like a code and decoded
  * to nothing. Colour on this page now means a result tier and nothing else.

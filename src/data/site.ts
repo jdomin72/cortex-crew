@@ -9,7 +9,7 @@
       Projects are evidence of what the team can do, not the headline.
    ══════════════════════════════════════════════════════════════════════════ */
 
-import type { Achievement, CtfConfig, Member, Project, SiteConfig } from './types'
+import type { Achievement, Member, Project, SiteConfig } from './types'
 
 export * from './types'
 
@@ -84,7 +84,6 @@ export const site: SiteConfig = {
     { id: 'achievements', label: 'record' },
     { id: 'projects', label: 'work' },
     { id: 'team', label: 'crew' },
-    { id: 'ctf', label: 'ctf' },
     { id: 'contact', label: 'contact' },
   ],
 
@@ -102,13 +101,6 @@ export const site: SiteConfig = {
       detail: 'Ship under pressure, demo live, defend every number.',
       icon: 'terminal',
       accent: 'blue',
-    },
-    {
-      id: 'ctf',
-      label: 'CTF',
-      detail: 'The next arena — offensive security, as a team sport.',
-      icon: 'shield',
-      accent: 'violet',
     },
   ],
 
@@ -474,7 +466,6 @@ export const leader = {
     'Kawsher HRidoy is an AI and machine learning developer and the team lead of Cortex Crew, a student hackathon and project showcase team at Daffodil International University (DIU) in Dhaka, Bangladesh. He leads Cortex Crew from planning through a live, defensible demo.',
     'In 2026 the team recorded five results under his lead: Champion at the CSAD Project Showcasing Competition, 1st Runners-up at IEEE ICADHI 2026, and Finalist at the AI Innovation Hackathon, the AI Project Competition, and the 5th Data Science Summit.',
     'His work focuses on machine learning that ships as production systems. He has led Niro, a patient-owned records platform with Bangla lab and prescription reading; Autopilot, GPU failure prediction and cluster migration on the order of a hundred seconds; and AI Mentor, an eight-signal academic and attendance model with auditable rules. The stack is Python, FastAPI, Next.js, and PostgreSQL, with LightGBM and Azure OpenAI where they fit.',
-    'He is now leading Cortex Crew into competitive cybersecurity.',
   ],
   stack: ['Python', 'FastAPI', 'Next.js', 'PostgreSQL', 'LightGBM', 'Azure OpenAI'],
   sameAs: [
@@ -484,73 +475,3 @@ export const leader = {
     'https://www.instagram.com/kawsherhridoy/',
   ],
 } as const
-
-/* ────────────────────────────────── CTF ──────────────────────────────────
-   `teamId: null` keeps the live card off. Set it to the numeric id from
-   ctftime.org/team/<id> and the card turns on — nothing else changes.
-   ───────────────────────────────────────────────────────────────────────── */
-
-export const ctf: CtfConfig = {
-  teamId: null,
-  headline: 'The next arena',
-  body: 'We have spent a year building systems and defending them in front of judges. Capture the Flag is the same discipline pointed the other way — read the system, find what it gets wrong, prove it. We are training now and registering as a team for the next season.',
-  focusAreas: [
-    { label: 'Web exploitation', detail: 'Injection, auth bypass, access-control flaws' },
-    { label: 'Reverse engineering', detail: 'Binary analysis and patching' },
-    { label: 'Forensics & OSINT', detail: 'Artefact recovery, traffic and log analysis' },
-    { label: 'Cryptography', detail: 'Weak implementations and protocol misuse' },
-  ],
-  terminalLines: [
-    '$ whoami',
-    'cortex-crew · Daffodil International University · Dhaka',
-    '',
-    '$ cat record.txt',
-    '5 competitions · 2 podium · 3 finalist',
-    '',
-    '$ cat roadmap.txt',
-    '- weekly HTB + picoCTF drills          [ in progress ]',
-    '- register the team on ctftime.org     [ next ]',
-    '- first rated event                    [ 2026 ]',
-    '',
-    '$ ctftime --team',
-    '[ pending registration ]',
-  ],
-  platforms: [
-    {
-      id: 'htb',
-      platform: 'hackthebox',
-      name: 'Hack The Box',
-      href: 'https://www.hackthebox.com/',
-      note: 'Primary practice ground',
-      status: 'active',
-    },
-    {
-      id: 'pico',
-      platform: 'picoctf',
-      name: 'picoCTF',
-      href: 'https://picoctf.org/',
-      note: 'Fundamentals and drills',
-      status: 'active',
-    },
-    {
-      id: 'otw',
-      platform: 'overthewire',
-      name: 'OverTheWire',
-      href: 'https://overthewire.org/wargames/',
-      note: 'Wargames',
-      status: 'active',
-    },
-    {
-      id: 'ctftime',
-      platform: 'ctftime',
-      name: 'CTFtime',
-      href: 'https://ctftime.org/',
-      note: 'Team registration pending',
-      status: 'planned',
-    },
-  ],
-}
-
-/** Derived — cannot drift out of sync with `ctf.teamId`. */
-export const ctfWidgetEnabled = ctf.teamId !== null
-export const ctfTeamUrl = ctf.teamId ? `https://ctftime.org/team/${ctf.teamId}` : null

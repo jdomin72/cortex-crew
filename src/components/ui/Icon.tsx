@@ -8,10 +8,8 @@ export type IconName =
   | 'hex'
   | 'trophy'
   | 'medal'
-  | 'flag'
   | 'terminal'
   | 'code'
-  | 'shield'
   | 'calendar'
   | 'pin'
   | 'external'
@@ -35,10 +33,8 @@ const STROKE: Partial<Record<IconName, string>> = {
   hex: 'M12 2.6 20.5 7.3v9.4L12 21.4 3.5 16.7V7.3Z',
   trophy: 'M7 4h10v5a5 5 0 0 1-10 0Z M7 5H4v2a3 3 0 0 0 3 3 M17 5h3v2a3 3 0 0 1-3 3 M12 14v4 M9 21h6 M10 21a2 2 0 0 1 4 0',
   medal: 'M8 3 12 9l4-6 M12 9a6 6 0 1 0 0 12 6 6 0 0 0 0-12Z M12 13.5l1 2 2 .2-1.5 1.4.4 2-1.9-1-1.9 1 .4-2L9.5 15.7l2-.2Z',
-  flag: 'M5 21V4 M5 4h11l-2 3.5L16 11H5',
   terminal: 'M4 5h16v14H4Z M7.5 9.5 10 12l-2.5 2.5 M13 15h4',
   code: 'M4 5h16v14H4Z M9 10 7 12l2 2 M15 10l2 2-2 2',
-  shield: 'M12 3 5 5.8v5.5c0 4.2 2.9 7.6 7 8.7 4.1-1.1 7-4.5 7-8.7V5.8Z M9.3 12.2l1.9 1.9 3.6-3.9',
   calendar: 'M4 6h16v14H4Z M4 10h16 M8.5 3.5v3 M15.5 3.5v3',
   pin: 'M12 21s6.5-6.1 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 14.9 12 21 12 21Z M12 12.5a2.2 2.2 0 1 0 0-4.4 2.2 2.2 0 0 0 0 4.4Z',
   external: 'M14 4h6v6 M20 4l-8.5 8.5 M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5',

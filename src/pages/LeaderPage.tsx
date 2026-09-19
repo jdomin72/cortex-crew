@@ -21,7 +21,6 @@ const PLATFORM_ICON: Record<SocialPlatform, IconName> = {
   x: 'x',
   email: 'mail',
   website: 'globe',
-  ctftime: 'flag',
 }
 
 const TIER_TEXT: Record<MedalTier, string> = {

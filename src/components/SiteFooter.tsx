@@ -8,7 +8,6 @@ const PLATFORM_ICON: Record<string, IconName> = {
   telegram: 'telegram',
   email: 'mail',
   website: 'globe',
-  ctftime: 'flag',
 }
 
 export interface SiteFooterProps {

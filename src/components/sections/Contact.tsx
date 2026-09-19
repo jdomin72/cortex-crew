@@ -30,10 +30,10 @@ export function Contact() {
   const primary = site.socials.find((social) => social.primary) ?? site.socials[0]
 
   return (
-    // Asymmetric padding on purpose: the CTF band above closes on its own
-    // border, so a further 128px before this section's rule left ~190px of
-    // nothing. The bottom stays generous — the page should end on air.
-    <section id="contact" aria-labelledby="contact-title" className="pb-24 pt-16 md:pb-32 md:pt-20">
+    // Team above already has section padding; this close just needs enough
+    // air for its own rule. The bottom stays generous — the page should end
+    // on air.
+    <section id="contact" aria-labelledby="contact-title" className="pb-24 pt-20 md:pb-32 md:pt-24">
       <div className="container">
         <hr className="mb-14 border-0 border-t border-line-strong" />
 
@@ -48,8 +48,8 @@ export function Contact() {
           </h2>
 
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-fg-muted">
-            Organising a competition, looking for a team to invite, or a student at DIU who wants in
-            for CTF season? Message the page or send us a line.
+            Organising a competition, looking for a team to invite, or a student at DIU who wants
+            in? Message the page or send us a line.
           </p>
 
           <div className="mt-9 flex flex-wrap justify-center gap-3">

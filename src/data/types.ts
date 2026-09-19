@@ -10,7 +10,7 @@ export type IsoDate = string
  */
 export type MedalTier = 'gold' | 'silver' | 'bronze' | 'finalist' | 'participant'
 
-export type CompetitionKind = 'project-showcase' | 'hackathon' | 'ctf' | 'other'
+export type CompetitionKind = 'project-showcase' | 'hackathon' | 'other'
 
 export type BrandAccent = 'cyan' | 'blue' | 'violet'
 
@@ -121,7 +121,6 @@ export type SocialPlatform =
   | 'behance'
   | 'x'
   | 'email'
-  | 'ctftime'
   | 'website'
 
 export interface SocialLink {
@@ -131,51 +130,6 @@ export interface SocialLink {
   handle?: string
   /** true → rendered as a full Button rather than an icon link. */
   primary?: boolean
-}
-
-/* ────────────────────────────────── CTF ────────────────────────────────── */
-
-export type CtfPlatformId = 'ctftime' | 'tryhackme' | 'hackthebox' | 'picoctf' | 'overthewire'
-
-export interface CtfPlatformLink {
-  id: string
-  platform: CtfPlatformId
-  name: string
-  href: string
-  note?: string
-  status: 'active' | 'planned'
-}
-
-/**
- * Numbers copied by hand from ctftime.org.
- *
- * Why not fetched: CTFtime's JSON API sends no `Access-Control-Allow-Origin`
- * header, so a browser `fetch` is blocked by CORS. Live figures would need a
- * build-time fetch or a serverless proxy. `updated` makes staleness visible.
- */
-export interface CtfTimeStats {
-  ratingPlace: number
-  countryPlace?: number
-  ratingPoints: number
-  eventsPlayed: number
-  year: number
-  updated: IsoDate
-}
-
-export interface CtfConfig {
-  /**
-   * ── THE FEATURE FLAG ──
-   * null = not registered yet. Set it to the numeric id from
-   * ctftime.org/team/<id> and the live card turns on. Nothing else to change.
-   */
-  teamId: string | null
-  headline: string
-  body: string
-  focusAreas: { label: string; detail: string }[]
-  /** Static content for the terminal panel. No typewriter, no blink. */
-  terminalLines: string[]
-  platforms: CtfPlatformLink[]
-  stats?: CtfTimeStats
 }
 
 /* ───────────────────────────── nav / config ───────────────────────────── */
@@ -189,8 +143,8 @@ export interface Pillar {
   id: string
   label: string
   detail: string
-  /** The three glyphs printed along the bottom of the team's own logo. */
-  icon: 'code' | 'terminal' | 'shield'
+  /** Glyphs printed along the bottom of the team's own logo. */
+  icon: 'code' | 'terminal'
   accent: BrandAccent
 }
 
@@ -211,7 +165,7 @@ export interface SiteConfig {
   description: string
   logo: ResponsiveImage
   nav: NavItem[]
-  pillars: [Pillar, Pillar, Pillar]
+  pillars: [Pillar, Pillar]
   socials: SocialLink[]
   contactEmail: string
 }

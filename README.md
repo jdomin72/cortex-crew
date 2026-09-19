@@ -24,12 +24,10 @@ Daffodil International University, Dhaka.
 Cortex Crew builds working systems and takes them on stage. The team has five
 competition results from 2026 — Champion at CSAD 2026, 1st Runners-up at IEEE
 ICADHI 2026, and three more finals reached — across Daffodil International
-University and the IEEE DIU Student Branch. The team is now moving into
-Capture the Flag competition.
+University and the IEEE DIU Student Branch.
 
 This repository holds the source for the team's public site: a single-page
-application presenting the record, the projects behind it, the people, and
-what comes next.
+application presenting the record, the projects behind it, and the people.
 
 **→ [cortexcrew.vercel.app](https://cortexcrew.vercel.app)**
 
@@ -108,7 +106,7 @@ src/
 ├─ components/
 │  ├─ ui/           Reveal · Img · Avatar · Badge · Button · Card · Icon
 │  └─ sections/     Hero · Pillars · About · Achievements
-│                   Projects · Team · CTF · Contact
+│                   Projects · Team · Contact
 └─ index.css        design tokens and utilities
 scripts/            image optimisation pipeline
 public/media/       generated WebP assets

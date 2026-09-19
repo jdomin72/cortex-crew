@@ -51,10 +51,9 @@ export function About() {
               <strong className="font-semibold text-fg">Cortex Crew</strong> is a student
               hackathon and project showcase team based at{' '}
               <strong className="font-semibold text-fg">{site.university}</strong> (DIU) in{' '}
-              {site.city}, {site.country}, founded in {site.founded}. The team also competes in
-              Capture the Flag events and is made up of Software Engineering students working
-              across machine learning, cyber security, cloud infrastructure, and full-stack
-              development.
+              {site.city}, {site.country}, founded in {site.founded}. The team is made up of
+              Software Engineering students working across machine learning, cyber security, cloud
+              infrastructure, and full-stack development.
             </p>
 
             <p className="mt-4 text-lg leading-relaxed text-fg-muted">
@@ -73,7 +72,7 @@ export function About() {
               telemetry, Arnob Kumar Paul on interface and presentation, Abdullah Al Khalil on
               systems and algorithms, Arvin Ahmed Alok on frontend development, and AL Fahad on UI,
               UX and brand design. Cortex Crew builds working systems and demonstrates them live
-              rather than presenting concepts, and is now moving into competitive Capture the Flag.
+              rather than presenting concepts.
             </p>
           </Reveal>
 

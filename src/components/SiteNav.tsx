@@ -109,10 +109,9 @@ export function SiteNav({
           </a>
 
           {/* Display caps, matching the letterhead register the hero sets.
-              These were mono lowercase, which read as a terminal — a register
-              this page no longer uses outside the CTF block, where mono means
-              actual terminal output. The active marker is now near-white, not
-              cyan: cyan means "reached the final" on this page. */}
+              These were mono lowercase, which read as a terminal. The active
+              marker is now near-white, not cyan: cyan means "reached the
+              final" on this page. */}
           <ul className="hidden items-center gap-1 md:flex">
             {site.nav.map((item) => (
               <li key={item.id}>

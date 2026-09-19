@@ -3,12 +3,12 @@ import { Icon } from '../ui/Icon'
 import { Reveal } from '../ui/Reveal'
 
 /**
- * The three icons are the exact glyphs printed along the bottom of the team's
- * own logo, so this band reads as inherited from the brand rather than invented
- * for the website.
+ * The two icons are glyphs printed along the bottom of the team's own logo, so
+ * this band reads as inherited from the brand rather than invented for the
+ * website.
  *
- * The three markers used to be tinted cyan / blue / violet, one per pillar.
- * That collided with the page's accent system, where cyan means "reached the
+ * The markers used to be tinted cyan / blue / violet, one per pillar. That
+ * collided with the page's accent system, where cyan means "reached the
  * final" — a cyan badge on an unrelated band teaches the reader the colour is
  * decorative, and then the record sheet's colour stops carrying information.
  * The markers are neutral now; the hexagon alone does the brand work.
@@ -20,7 +20,7 @@ export function Pillars() {
         <h2 id="pillars-title" className="sr-only">
           What we compete in
         </h2>
-        <div className="grid md:grid-cols-3">
+        <div className="grid md:grid-cols-2">
           {site.pillars.map((pillar, index) => (
             <Reveal
               key={pillar.id}

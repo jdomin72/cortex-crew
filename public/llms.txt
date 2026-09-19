@@ -4,7 +4,7 @@
 > Daffodil International University (DIU) in Dhaka, Bangladesh, led by Kawsher
 > HRidoy. The team builds working systems and demonstrates them live. It has
 > five competition results from 2026: two podium finishes and three finals
-> reached, and is now moving into Capture the Flag.
+> reached.
 
 Site: https://cortexcrew.vercel.app/
 Founded: 2026
@@ -74,13 +74,13 @@ are not listed and are not counted.
 
 ## Focus areas
 
-Project showcases, hackathons, and Capture the Flag. Technical strengths span
+Project showcases and hackathons. Technical strengths span
 machine learning, cyber security, cloud infrastructure, and full-stack product
 development.
 
 ## Links
 
-- [Cortex Crew — official site](https://cortexcrew.vercel.app/): the team's record, projects, members and CTF roadmap.
+- [Cortex Crew — official site](https://cortexcrew.vercel.app/): the team's record, projects and members.
 - [Kawsher HRidoy — public page](https://cortexcrew.vercel.app/kawsher-hridoy): biography, photo, 2026 record, and profiles for the team lead.
 - [Facebook page](https://facebook.com/teamcortexcrew): announcements and competition updates.
 - [Autopilot — source](https://github.com/kawsher-hridoy/autopilot): self-healing GPU cluster, built for the AI Innovation Hackathon 2026.
