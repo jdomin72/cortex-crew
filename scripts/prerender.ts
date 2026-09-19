@@ -129,7 +129,7 @@ function applyLeaderHead(html: string): string {
   next = replaceOnce(next, '<meta name="author" content="Cortex Crew" />', `<meta name="author" content="${escapeHtml(leader.publicName)}" />`, 'author')
   next = replaceOnce(
     next,
-    'content="Cortex Crew, Team Cortex Crew, Daffodil International University, DIU, hackathon team Bangladesh, project showcase, Kawsher HRidoy, Shafiur Rahman Shafim, Arnob Kumar Paul, AL Fahad, Abdullah Al Khalil, Arvin Ahmed Alok, CSAD 2026, IEEE ICADHI 2026, RoboFusion 1.0, Dhaka"',
+    'content="Cortex Crew, Team Cortex Crew, Daffodil International University, DIU, hackathon team Bangladesh, project showcase, Kawsher HRidoy, Shafiur Rahman Shafim, AL Fahad, Abdullah Al Khalil, CSAD 2026, IEEE ICADHI 2026, RoboFusion 1.0, Dhaka"',
     'content="Kawsher HRidoy, Cortex Crew, Cortex Crew DIU, Daffodil International University, DIU, AI developer, machine learning, hackathon team Bangladesh"',
     'keywords',
   )

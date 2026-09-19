@@ -22,10 +22,10 @@ const PLATFORM_ICON: Record<SocialPlatform, IconName> = {
 /**
  * The crew, as a slideshow.
  *
- * Six people no longer fit a single row at a readable card size, so the roster
- * scrolls. See `Carousel` for why it is a scroll container rather than a slide
- * swapper — the short version is that every card stays in the DOM, in the
- * prerendered HTML, and reachable without JavaScript.
+ * Four people still share one carousel so the roster stays browsable if it
+ * grows again. See `Carousel` for why it is a scroll container rather than a
+ * slide swapper — every card stays in the DOM, in the prerendered HTML, and
+ * reachable without JavaScript.
  *
  * Cards are left-aligned to match the rest of the page, and members render a
  * photo where one has been supplied and the monogram hexagon where one has not.
@@ -39,10 +39,10 @@ export function Team() {
     <Section
       id="team"
       eyebrow="The crew"
-      title="Six people, one team name."
+      title="Four people, one team name."
       lead="We split the work the way a competition demands it — someone owns the model, someone owns the machine it runs on, someone owns what the judges see."
     >
-      {/* Auto-rotates so all six are seen without anyone having to swipe. The
+      {/* Auto-rotates so the whole crew is seen without anyone having to swipe. The
           timer only runs while the section is on screen — it used to start at
           page load, so a reader arriving here found it already on page two and
           never reliably saw the first three. It stops the instant the reader

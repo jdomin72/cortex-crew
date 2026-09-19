@@ -373,15 +373,6 @@ export const members: Member[] = [
     ],
   },
   {
-    id: 'arnob-paul',
-    name: 'Arnob Kumar Paul',
-    initials: 'AP',
-    role: 'Interface & Presentation',
-    kind: 'member',
-    focus: ['Frontend', 'Design', 'Dashboards', 'Demo & Pitch'],
-    accent: 'violet',
-  },
-  {
     id: 'al-fahad',
     name: 'AL Fahad',
     initials: 'AF',
@@ -427,35 +418,11 @@ export const members: Member[] = [
       { platform: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/alkhalil.rafi' },
     ],
   },
-  {
-    id: 'arvin-ahmed-alok',
-    name: 'Arvin Ahmed Alok',
-    initials: 'AA',
-    role: 'Developer · Frontend',
-    kind: 'member',
-    /* Three chips, not four: given by the team on 2026-08-01. He has no public
-       repo or portfolio to check these against, so a fourth would be invented
-       rather than shortened. Fewer chips is the documented behaviour. */
-    focus: ['React', 'JavaScript', 'UI Implementation'],
-    accent: 'violet',
-    photo: portrait('arvin-ahmed-alok', 'Arvin Ahmed Alok, Developer'),
-    /* No email here on purpose. The address supplied for him was a university
-       one — a @diu.edu.bd host AND a student ID in the local part — so it is
-       both halves of what the publishing rules forbid, and what the standing
-       `dist/` grep is there to catch. It stays off the site until he gives a
-       personal address; the team address in `site.contactEmail` reaches him
-       meanwhile. Do not add it back. */
-    links: [
-      { platform: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/arvinahmed.alok' },
-      {
-        platform: 'linkedin',
-        label: 'LinkedIn',
-        href: 'https://www.linkedin.com/in/arvin-ahmed-52b22a3a8',
-      },
-      { platform: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/arvin_alok19' },
-    ],
-  },
 ]
+
+/* Profiles taken off the live roster live in `held-members.ts`. That file is
+   never imported, so the names cannot leak into the bundle, the prerender, or
+   JSON-LD. Move an entry back into `members` here to publish it again. */
 
 /* ───────────────────────────── leader page ─────────────────────────────
    Canonical public page for the team lead. Visible copy uses Kawsher HRidoy.
