@@ -69,7 +69,7 @@ export const site: SiteConfig = {
   founded: '2026',
   url: 'https://cortexcrew.vercel.app',
   description:
-    'Cortex Crew is a competition team at Daffodil International University, Dhaka. Five competition results in 2026 — one championship, one runners-up, three finals.',
+    'Cortex Crew is a competition team at Daffodil International University, Dhaka. Six competition results in 2026 — one championship, one runners-up, four finals.',
 
   logo: {
     src: '/media/logo-512.webp',
@@ -124,7 +124,7 @@ export const site: SiteConfig = {
 }
 
 /* ───────────────────────────── achievements ─────────────────────────────
-   Five results from 2026: one Champion, one 1st Runners-up, three Finalist.
+   Six results from 2026: one Champion, one 1st Runners-up, four Finalist.
 
    ⚠️ ONLY list events with a real result. Reaching the final counts; merely
    entering does not. Infinity AI Buildfest 2026 and both IUT Techathon rounds
@@ -208,6 +208,19 @@ export const achievements: Achievement[] = [
     summary:
       'Judged on the data story: turning unstructured paper records into structured, longitudinal health data.',
   },
+  {
+    id: 'robofusion-2026',
+    event: 'RoboFusion 1.0 — Project Showcasing',
+    organizer: 'UFTB Robotics Club, University of Frontier Technology, Bangladesh',
+    rankLabel: 'Finalist',
+    tier: 'finalist',
+    kind: 'project-showcase',
+    date: '2026-08',
+    location: 'Kaliakair Hi-Tech Park, Gazipur',
+    builtWith: 'BD Krishibid',
+    summary:
+      "Reached the Project Showcasing final at UFTB's first national robotics festival, and demoed live in front of the judging panel.",
+  },
 ]
 
 /* ──────────────────────────────── projects ────────────────────────────────
@@ -290,13 +303,12 @@ export const projects: Project[] = [
     name: 'BD Krishibid',
     tagline: 'Bangla-first, voice-enabled farming for low-literacy Android',
     description:
-      'Cortex Crew built a Bangla-first farming platform for low-literacy Android: an AI agronomist you can talk to, leaf-photo disease diagnosis, weather-aware irrigation advice, and an ESP32 soil-moisture loop that can run the pump. Every farmer screen has voice in and voice out. Shipped outside the competition sheet — it is not a result.',
+      'Cortex Crew built a Bangla-first farming platform for low-literacy Android: an AI agronomist you can talk to, leaf-photo disease diagnosis, weather-aware irrigation advice, and an ESP32 soil-moisture loop that can run the pump. Every farmer screen has voice in and voice out.',
     stack: ['Next.js', 'TypeScript', 'Tailwind', 'Supabase', 'ESP32'],
     status: 'live',
     year: '2026',
+    builtFor: 'RoboFusion 1.0 · Finalist',
     accent: 'cyan',
-    /* No builtFor: this is a team project with no competition result, so it
-       must not appear as evidence behind a row on the record. */
     links: [
       { label: 'Source', href: 'https://github.com/Shafiur0/bd-krishibid', kind: 'repo' },
       { label: 'Demo', href: 'https://bd-krishibid.vercel.app', kind: 'demo' },
@@ -464,7 +476,7 @@ export const leader = {
   imageHeight: 336,
   biography: [
     'Kawsher HRidoy is an AI and machine learning developer and the team lead of Cortex Crew, a student hackathon and project showcase team at Daffodil International University (DIU) in Dhaka, Bangladesh. He leads Cortex Crew from planning through a live, defensible demo.',
-    'In 2026 the team recorded five results under his lead: Champion at the CSAD Project Showcasing Competition, 1st Runners-up at IEEE ICADHI 2026, and Finalist at the AI Innovation Hackathon, the AI Project Competition, and the 5th Data Science Summit.',
+    'In 2026 the team recorded six results under his lead: Champion at the CSAD Project Showcasing Competition, 1st Runners-up at IEEE ICADHI 2026, and Finalist at the AI Innovation Hackathon, the AI Project Competition, the 5th Data Science Summit, and RoboFusion 1.0.',
     'His work focuses on machine learning that ships as production systems. He has led Niro, a patient-owned records platform with Bangla lab and prescription reading; Autopilot, GPU failure prediction and cluster migration on the order of a hundred seconds; and AI Mentor, an eight-signal academic and attendance model with auditable rules. The stack is Python, FastAPI, Next.js, and PostgreSQL, with LightGBM and Azure OpenAI where they fit.',
   ],
   stack: ['Python', 'FastAPI', 'Next.js', 'PostgreSQL', 'LightGBM', 'Azure OpenAI'],

@@ -21,10 +21,10 @@ Daffodil International University, Dhaka.
 
 ## About
 
-Cortex Crew builds working systems and takes them on stage. The team has five
+Cortex Crew builds working systems and takes them on stage. The team has six
 competition results from 2026 — Champion at CSAD 2026, 1st Runners-up at IEEE
-ICADHI 2026, and three more finals reached — across Daffodil International
-University and the IEEE DIU Student Branch.
+ICADHI 2026, and four more finals reached — across Daffodil International
+University, the IEEE DIU Student Branch, and UFTB Robotics Club.
 
 This repository holds the source for the team's public site: a single-page
 application presenting the record, the projects behind it, and the people.

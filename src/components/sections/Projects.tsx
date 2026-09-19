@@ -40,7 +40,7 @@ export function Projects() {
       id="projects"
       eyebrow="The work"
       title="What we build to compete."
-      lead="Five systems the team designed and built. Four were taken on stage against a judging panel; one is a Bangla-first farming platform the crew shipped outside the record."
+      lead="Five systems the team designed and built, each taken on stage against a judging panel."
     >
       {/* A slideshow at every width now, not just on phones — see `Carousel`
           for why it is a scroll container rather than a slide swapper. Every

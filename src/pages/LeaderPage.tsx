@@ -97,7 +97,7 @@ export function LeaderPage() {
                 </p>
                 <p className="mt-4 max-w-xl text-base leading-relaxed text-fg-muted">
                   Team lead of Cortex Crew at {site.university} ({site.city}). AI and machine
-                  learning developer; five competition results in 2026.
+                  learning developer; six competition results in 2026.
                 </p>
 
                 {member.links?.length ? (
@@ -157,8 +157,8 @@ export function LeaderPage() {
             id="record"
             band
             eyebrow="2026 record"
-            title="Five results, under his lead."
-            lead="The team's competition sheet for 2026. Two podium finishes and three finals reached."
+            title="Six results, under his lead."
+            lead="The team's competition sheet for 2026. Two podium finishes and four finals reached."
           >
             <ol className="border-y border-line">
               {achievements.map((item) => (
@@ -201,7 +201,7 @@ export function LeaderPage() {
             id="work"
             eyebrow="Selected work"
             title="Systems taken to the stage."
-            lead="Niro, Autopilot, and AI Mentor are the production systems named in the biography. Darktrace3 is the CSAD Champion build."
+            lead="Niro, Autopilot, and AI Mentor are the production systems named in the biography. Darktrace3 is the CSAD Champion build. BD Krishibid is the RoboFusion 1.0 finalist build."
           >
             <ul className="grid gap-4 md:grid-cols-2">
               {projects.filter((project) => project.builtFor).map((project) => (

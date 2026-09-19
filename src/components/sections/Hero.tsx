@@ -22,8 +22,8 @@ import { Img } from '../ui/Img'
  *
  * It is derived from `achievements` by tier rather than hand-written, which is
  * the point: the hero cannot drift from the record the way a hand-maintained
- * `heroStats` array could. 1 + 1 + 3 = 5 stays true by construction, and the
- * distinction the site exists to be honest about — two won, three finals
+ * `heroStats` array could. 1 + 1 + 4 = 6 stays true by construction, and the
+ * distinction the site exists to be honest about — two won, four finals
  * reached without placing — is stated in the first screen instead of the third.
  *
  * The hero is deliberately NOT wrapped in <Reveal>: a hidden LCP element defers

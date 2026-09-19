@@ -3,7 +3,7 @@
 > Cortex Crew is a student hackathon and project showcase team based at
 > Daffodil International University (DIU) in Dhaka, Bangladesh, led by Kawsher
 > HRidoy. The team builds working systems and demonstrates them live. It has
-> five competition results from 2026: two podium finishes and three finals
+> six competition results from 2026: two podium finishes and four finals
 > reached.
 
 Site: https://cortexcrew.vercel.app/
@@ -20,8 +20,9 @@ Tagline: Code · Collaborate · Conquer
 | Finalist | AI Project Competition 2026 | Dept. of CSE, Daffodil International University | July 2026 |
 | Finalist | 5th Data Science Summit | Daffodil International University | July 2026 |
 | Finalist | AI Innovation Hackathon 2026 — From Learning to Impact | Dept. of CSE, Daffodil International University | July 2026 |
+| Finalist | RoboFusion 1.0 — Project Showcasing | UFTB Robotics Club, University of Frontier Technology, Bangladesh | August 2026 |
 
-Five competition results: one championship, one runners-up, three finals
+Six competition results: one championship, one runners-up, four finals
 reached. "Finalist" means the team reached the final round and did not place.
 This table lists results only — competitions entered without reaching a final
 are not listed and are not counted.
@@ -66,9 +67,8 @@ are not listed and are not counted.
   Source: https://github.com/kawsher-hridoy/DIU-AI-Mentor
 - **BD Krishibid** — A Bangla-first, voice-enabled farming platform for
   low-literacy Android: AI agronomist, leaf-photo disease diagnosis,
-  weather-aware irrigation, and an ESP32 soil-moisture loop. Shipped outside
-  the competition sheet — not a result. Next.js, TypeScript, Tailwind,
-  Supabase, ESP32.
+  weather-aware irrigation, and an ESP32 soil-moisture loop. Finalist at
+  RoboFusion 1.0. Next.js, TypeScript, Tailwind, Supabase, ESP32.
   Source: https://github.com/Shafiur0/bd-krishibid
   Demo: https://bd-krishibid.vercel.app
 
@@ -85,7 +85,7 @@ development.
 - [Facebook page](https://facebook.com/teamcortexcrew): announcements and competition updates.
 - [Autopilot — source](https://github.com/kawsher-hridoy/autopilot): self-healing GPU cluster, built for the AI Innovation Hackathon 2026.
 - [AI Mentor — source](https://github.com/kawsher-hridoy/DIU-AI-Mentor): student early-warning system, built for the AI Project Competition 2026.
-- [BD Krishibid — source](https://github.com/Shafiur0/bd-krishibid): Bangla-first farming platform, shipped outside the competition sheet.
+- [BD Krishibid — source](https://github.com/Shafiur0/bd-krishibid): Bangla-first farming platform, Finalist at RoboFusion 1.0.
 - [BD Krishibid — demo](https://bd-krishibid.vercel.app): live Progressive Web App.
 - [Kawsher HRidoy — GitHub](https://github.com/kawsher-hridoy): team lead.
 - [Daffodil International University](https://daffodilvarsity.edu.bd/): the team's university.
