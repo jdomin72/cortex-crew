@@ -1,5 +1,5 @@
-import { achievements, leader, members, projects, site } from '@/data/site'
-import type { MedalTier, SocialPlatform } from '@/data/types'
+import { achievements, members, projects } from '@/data/site'
+import type { MedalTier, MemberProfile, SocialPlatform } from '@/data/types'
 import { formatShort } from '@/lib/format'
 import { cn } from '@/lib/cn'
 import { SiteFooter } from '@/components/SiteFooter'
@@ -10,18 +10,6 @@ import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { Icon, type IconName } from '@/components/ui/Icon'
-
-const PLATFORM_ICON: Record<SocialPlatform, IconName> = {
-  facebook: 'facebook',
-  github: 'github',
-  linkedin: 'linkedin',
-  telegram: 'telegram',
-  instagram: 'instagram',
-  behance: 'behance',
-  x: 'x',
-  email: 'mail',
-  website: 'globe',
-}
 
 const TIER_TEXT: Record<MedalTier, string> = {
   gold: 'text-tier-gold',
@@ -39,6 +27,18 @@ const TIER_FILL: Record<MedalTier, string> = {
   participant: 'bg-base-600',
 }
 
+const PLATFORM_ICON: Record<SocialPlatform, IconName> = {
+  facebook: 'facebook',
+  github: 'github',
+  linkedin: 'linkedin',
+  telegram: 'telegram',
+  instagram: 'instagram',
+  behance: 'behance',
+  x: 'x',
+  email: 'mail',
+  website: 'globe',
+}
+
 const NAV_FROM_PROFILE = {
   homeHref: '/',
   skipHref: '#profile',
@@ -48,22 +48,26 @@ const NAV_FROM_PROFILE = {
 const PORTRAIT_SIZES = '(min-width: 768px) 176px, 144px'
 
 /**
- * Public biography for the team lead.
+ * Public biography for a crew member who is not the team lead.
  *
- * This page exists so crawlers have one owned, prerendered source of truth —
- * a photo, a third-person biography, and the same social URLs used everywhere
- * else. Visible copy uses Kawsher HRidoy; the official-name mapping lives in
- * Person JSON-LD on the prerendered document.
+ * Same chrome as the leader page — nav, portrait, third-person prose, the
+ * team's 2026 sheet, selected work. The team stays the subject of results;
+ * the person is the subject of this page. Never title the sheet "under his
+ * lead" unless the page is the team lead's.
  */
-export function LeaderPage() {
-  const member = members.find((item) => item.id === leader.id)
+export function MemberPage({ profile }: { profile: MemberProfile }) {
+  const member = members.find((item) => item.id === profile.id)
   if (!member) {
-    throw new Error(`LeaderPage: missing member '${leader.id}'`)
+    throw new Error(`MemberPage: missing member '${profile.id}'`)
   }
 
   const portrait = member.photo
-    ? { ...member.photo, sizes: PORTRAIT_SIZES, alt: `${leader.publicName}, ${member.role}` }
+    ? { ...member.photo, sizes: PORTRAIT_SIZES, alt: `${profile.publicName}, ${member.role}` }
     : undefined
+
+  const work = profile.workIds
+    ? projects.filter((project) => profile.workIds?.includes(project.id))
+    : []
 
   return (
     <>
@@ -73,7 +77,7 @@ export function LeaderPage() {
           <header className="border-b border-line-strong bg-base-900 pt-24 pb-16 md:pt-28 md:pb-20">
             <div className="container grid items-start gap-10 md:grid-cols-[auto_1fr] md:gap-14">
               <Avatar
-                name={leader.publicName}
+                name={profile.publicName}
                 initials={member.initials}
                 photo={portrait}
                 accent={member.accent}
@@ -90,14 +94,13 @@ export function LeaderPage() {
                   id="profile-name"
                   className="semiwide font-display text-section font-bold text-fg"
                 >
-                  {leader.publicName}
+                  {profile.publicName}
                 </h1>
                 <p className="mt-3 font-display semiwide text-sm font-semibold uppercase tracking-[0.12em] text-fg-muted">
                   {member.role}
                 </p>
                 <p className="mt-4 max-w-xl text-base leading-relaxed text-fg-muted">
-                  Team lead of Cortex Crew at {site.university} ({site.city}). AI and machine
-                  learning developer; six competition results in 2026.
+                  {profile.lede}
                 </p>
 
                 {member.links?.length ? (
@@ -112,7 +115,7 @@ export function LeaderPage() {
                         >
                           <Icon name={PLATFORM_ICON[link.platform]} size={16} />
                           <span className="sr-only">
-                            {leader.publicName} on {link.label}
+                            {profile.publicName} on {link.label}
                             {link.platform === 'email' ? '' : ' (opens in a new tab)'}
                           </span>
                         </a>
@@ -125,7 +128,7 @@ export function LeaderPage() {
                   <Button href="/" variant="solid" size="md">
                     Cortex Crew
                   </Button>
-                  <Button href="/#achievements" variant="outline" size="md">
+                  <Button href="#record" variant="outline" size="md">
                     2026 record
                   </Button>
                 </div>
@@ -133,31 +136,28 @@ export function LeaderPage() {
             </div>
           </header>
 
-          <Section
-            id="biography"
-            eyebrow="Biography"
-            title={`${leader.publicName} leads Cortex Crew.`}
-            lead="An AI and machine learning developer at Daffodil International University, and the person who leads Cortex Crew from planning through a live demo."
-          >
+          <Section id="biography" eyebrow="Biography" title={profile.sectionTitle} lead={profile.sectionLead}>
             <div className="max-w-3xl space-y-5 text-base leading-relaxed text-fg-muted">
-              {leader.biography.map((paragraph) => (
+              {profile.biography.map((paragraph) => (
                 <p key={paragraph.slice(0, 48)}>{paragraph}</p>
               ))}
             </div>
-            <ul className="mt-8 flex flex-wrap gap-1.5">
-              {leader.stack.map((item) => (
-                <li key={item}>
-                  <Badge variant="outline">{item}</Badge>
-                </li>
-              ))}
-            </ul>
+            {profile.stack.length ? (
+              <ul className="mt-8 flex flex-wrap gap-1.5">
+                {profile.stack.map((item) => (
+                  <li key={item}>
+                    <Badge variant="outline">{item}</Badge>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </Section>
 
           <Section
             id="record"
             band
             eyebrow="2026 record"
-            title="Six results, under his lead."
+            title="Six results, with Cortex Crew."
             lead="The team's competition sheet for 2026. Two podium finishes and four finals reached."
           >
             <ol className="border-y border-line">
@@ -197,45 +197,62 @@ export function LeaderPage() {
             </ol>
           </Section>
 
-          <Section
-            id="work"
-            eyebrow="Selected work"
-            title="Systems taken to the stage."
-            lead="Niro, Autopilot, and AI Mentor are the production systems named in the biography. Darktrace3 is the CSAD Champion build."
-          >
-            <ul className="grid gap-4 md:grid-cols-2">
-              {projects
-                .filter((project) => project.builtFor && project.id !== 'bd-krishibid')
-                .map((project) => (
-                <li key={project.id}>
-                  <Card as="article" className="flex h-full flex-col p-6">
-                    <h3 className="wide font-display text-2xl font-extrabold uppercase leading-none text-fg">
-                      {project.name}
-                    </h3>
-                    <span aria-hidden="true" className="mt-3 block h-px w-12 bg-fg" />
-                    <p className="mt-3 text-sm text-fg-subtle">{project.tagline}</p>
-                    <p className="mt-3 text-sm leading-relaxed text-fg-muted">{project.description}</p>
-                    {project.builtFor ? (
-                      <p className="mt-4 font-mono text-label uppercase tracking-[0.16em] text-fg-subtle">
-                        {project.builtFor}
-                      </p>
-                    ) : null}
-                    {project.links?.length ? (
-                      <ul className="mt-auto flex flex-wrap gap-2 pt-5">
-                        {project.links.map((link) => (
-                          <li key={link.href}>
-                            <Button href={link.href} variant="outline" size="sm" external>
-                              {link.label}
-                            </Button>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : null}
-                  </Card>
-                </li>
-              ))}
-            </ul>
-          </Section>
+          {profile.currentlyLearning?.length ? (
+            <Section
+              id="learning"
+              eyebrow="Currently learning"
+              title="What he is building toward."
+              lead="Cloud architecture, advanced DevOps, and joining AI and ML into the systems he ships."
+            >
+              <ul className="flex flex-wrap gap-1.5">
+                {profile.currentlyLearning.map((item) => (
+                  <li key={item}>
+                    <Badge variant="outline">{item}</Badge>
+                  </li>
+                ))}
+              </ul>
+            </Section>
+          ) : null}
+
+          {work.length ? (
+            <Section
+              id="work"
+              eyebrow="Selected work"
+              title="Systems taken to the stage."
+              lead="Work Cortex Crew presented, from a repository he publishes."
+            >
+              <ul className="grid gap-4 md:grid-cols-2">
+                {work.map((project) => (
+                  <li key={project.id}>
+                    <Card as="article" className="flex h-full flex-col p-6">
+                      <h3 className="wide font-display text-2xl font-extrabold uppercase leading-none text-fg">
+                        {project.name}
+                      </h3>
+                      <span aria-hidden="true" className="mt-3 block h-px w-12 bg-fg" />
+                      <p className="mt-3 text-sm text-fg-subtle">{project.tagline}</p>
+                      <p className="mt-3 text-sm leading-relaxed text-fg-muted">{project.description}</p>
+                      {project.builtFor ? (
+                        <p className="mt-4 font-mono text-label uppercase tracking-[0.16em] text-fg-subtle">
+                          {project.builtFor}
+                        </p>
+                      ) : null}
+                      {project.links?.length ? (
+                        <ul className="mt-auto flex flex-wrap gap-2 pt-5">
+                          {project.links.map((link) => (
+                            <li key={link.href}>
+                              <Button href={link.href} variant="outline" size="sm" external>
+                                {link.label}
+                              </Button>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                    </Card>
+                  </li>
+                ))}
+              </ul>
+            </Section>
+          ) : null}
         </article>
       </main>
       <SiteFooter sectionPrefix="/" />

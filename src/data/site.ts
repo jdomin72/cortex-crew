@@ -9,7 +9,7 @@
       Projects are evidence of what the team can do, not the headline.
    ══════════════════════════════════════════════════════════════════════════ */
 
-import type { Achievement, Member, Project, SiteConfig } from './types'
+import type { Achievement, Member, MemberProfile, Project, SiteConfig } from './types'
 
 export * from './types'
 
@@ -346,11 +346,11 @@ export const members: Member[] = [
     id: 'shafiur-rahman',
     name: 'Shafiur Rahman Shafim',
     initials: 'SR',
-    role: 'Infrastructure & Telemetry',
+    role: 'Software Engineering Student · Full-Stack Developer',
     kind: 'member',
     focus: ['Linux', 'Cloud Infrastructure', 'Monitoring', 'Deployment'],
     accent: 'blue',
-    photo: portrait('shafiur-rahman', 'Shafiur Rahman Shafim, Infrastructure & Telemetry'),
+    photo: portrait('shafiur-rahman', 'Shafiur Rahman Shafim, Full-Stack Developer'),
     links: [
       {
         platform: 'facebook',
@@ -454,3 +454,46 @@ export const leader = {
     'https://www.instagram.com/kawsherhridoy/',
   ],
 } as const
+
+/* ───────────────────────────── member pages ─────────────────────────────
+   Public, prerendered profiles. Add an entry here AND a `workIds` list only
+   for systems that person is known to have shipped. The crew card becomes a
+   link when `memberPages[id]` is set. */
+export const shafiur = {
+  id: 'shafiur-rahman',
+  path: '/shafiur-rahman',
+  publicName: 'Shafiur Rahman Shafim',
+  jobTitle: 'Software Engineering Student — Full-Stack Developer',
+  pageTitle: 'Shafiur Rahman Shafim — Cortex Crew Full-Stack Developer at DIU',
+  pageDescription:
+    'Shafiur Rahman Shafim is a software engineering student and full-stack developer on Cortex Crew at Daffodil International University (DIU) in Dhaka.',
+  imagePath: '/media/team/shafiur-rahman-336.webp',
+  imageWidth: 336,
+  imageHeight: 336,
+  lede: 'Software engineering student and full-stack developer on Cortex Crew at Daffodil International University (Dhaka). Currently learning cloud architecture, advanced DevOps, and AI/ML integration.',
+  sectionTitle: 'Shafiur Rahman Shafim on Cortex Crew.',
+  sectionLead:
+    'A software engineering student and full-stack developer. The systems below are ones he has shipped with the team.',
+  biography: [
+    'Shafiur Rahman Shafim is a software engineering student and full-stack developer on Cortex Crew, a student hackathon and project showcase team at Daffodil International University (DIU) in Dhaka, Bangladesh.',
+    'He builds the systems Cortex Crew takes on stage. BD Krishibid, the Bangla-first farming platform the team demoed as Finalist at RoboFusion 1.0, is published from his public repository.',
+    'He is currently learning cloud architecture, advanced DevOps, and AI/ML integration.',
+  ],
+  currentlyLearning: ['Cloud Architecture', 'Advanced DevOps', 'AI/ML Integration'],
+  stack: ['Linux', 'Cloud Infrastructure', 'Monitoring', 'Deployment'],
+  sameAs: [
+    'https://github.com/Shafiur0',
+    'https://www.linkedin.com/in/shafiur-rahman-shafim/',
+    'https://www.facebook.com/shafiurrahaman.shafim',
+    'https://shafiur-rahaman-shafim.vercel.app/',
+  ],
+  knowsAbout: ['Full-stack Development', 'Linux', 'Cloud Infrastructure', 'Monitoring'],
+  keywords:
+    'Shafiur Rahman Shafim, Cortex Crew, Cortex Crew DIU, Daffodil International University, DIU, full-stack developer, software engineering student, Dhaka',
+  workIds: ['bd-krishibid'],
+} as const satisfies MemberProfile
+
+export const memberPages: Record<string, string> = {
+  [leader.id]: leader.path,
+  [shafiur.id]: shafiur.path,
+}

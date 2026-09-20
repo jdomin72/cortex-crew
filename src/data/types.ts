@@ -110,6 +110,37 @@ export interface Member {
   links?: SocialLink[]
 }
 
+/**
+ * A prerendered public profile. Kawsher's page is the first of these; each
+ * later page is the same shape so prerender, sitemap, and the crew-card link
+ * cannot drift. Visible copy uses `publicName`. `officialName` is JSON-LD
+ * only, and only when the person has given one.
+ */
+export interface MemberProfile {
+  id: string
+  path: string
+  publicName: string
+  officialName?: string
+  jobTitle: string
+  pageTitle: string
+  pageDescription: string
+  imagePath: string
+  imageWidth: number
+  imageHeight: number
+  lede: string
+  sectionTitle: string
+  sectionLead: string
+  biography: string[]
+  /** In progress — never treated as a completed specialism. */
+  currentlyLearning?: string[]
+  stack: string[]
+  sameAs: string[]
+  knowsAbout: string[]
+  keywords: string
+  /** Project ids from `projects`. Omit rather than invent a portfolio. */
+  workIds?: string[]
+}
+
 /* ────────────────────────────── links & social ────────────────────────────── */
 
 export type SocialPlatform =

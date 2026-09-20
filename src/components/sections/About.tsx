@@ -68,8 +68,8 @@ export function About() {
             </p>
 
             <p className="mt-4 text-lg leading-relaxed text-fg-muted">
-              The team is led by Kawsher HRidoy, with Shafiur Rahman Shafim on infrastructure and
-              telemetry, Abdullah Al Khalil on systems and algorithms, and AL Fahad on UI, UX and
+              The team is led by Kawsher HRidoy, with Shafiur Rahman Shafim on full-stack
+              development, Abdullah Al Khalil on systems and algorithms, and AL Fahad on UI, UX and
               brand design. Cortex Crew builds working systems and demonstrates them live rather
               than presenting concepts.
             </p>

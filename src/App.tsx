@@ -1,4 +1,4 @@
-import { leader } from './data/site'
+import { leader, shafiur } from './data/site'
 import { SiteFooter } from './components/SiteFooter'
 import { SiteNav } from './components/SiteNav'
 import { About } from './components/sections/About'
@@ -9,6 +9,7 @@ import { Pillars } from './components/sections/Pillars'
 import { Projects } from './components/sections/Projects'
 import { Team } from './components/sections/Team'
 import { LeaderPage } from './pages/LeaderPage'
+import { MemberPage } from './pages/MemberPage'
 
 function currentPathname(): string {
   if (typeof window === 'undefined') return '/'
@@ -35,8 +36,12 @@ function Home() {
 }
 
 export default function App() {
-  if (currentPathname() === leader.path) {
+  const path = currentPathname()
+  if (path === leader.path) {
     return <LeaderPage />
+  }
+  if (path === shafiur.path) {
+    return <MemberPage profile={shafiur} />
   }
   return <Home />
 }

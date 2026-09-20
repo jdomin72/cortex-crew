@@ -6,5 +6,6 @@
  */
 import App from './App'
 import { LeaderPage } from './pages/LeaderPage'
+import { MemberPage } from './pages/MemberPage'
 
-export { App, LeaderPage }
+export { App, LeaderPage, MemberPage }

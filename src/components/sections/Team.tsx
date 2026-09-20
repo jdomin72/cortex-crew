@@ -1,4 +1,4 @@
-import { leader, members } from '@/data/site'
+import { memberPages, members } from '@/data/site'
 import type { SocialPlatform } from '@/data/types'
 import { Section } from '../Section'
 import { Avatar } from '../ui/Avatar'
@@ -65,9 +65,9 @@ export function Team() {
               />
 
               <h3 className="semiwide mt-6 font-display text-lg font-bold text-fg">
-                {member.id === leader.id ? (
+                {memberPages[member.id] ? (
                   <a
-                    href={leader.path}
+                    href={memberPages[member.id]}
                     className="focus-ring underline-offset-4 transition-colors hover:text-white hover:underline"
                   >
                     {member.name}

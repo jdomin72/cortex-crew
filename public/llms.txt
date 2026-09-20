@@ -32,7 +32,10 @@ are not listed and are not counted.
 - **Kawsher HRidoy** — Team Lead, machine learning and systems integration.
   Public page: https://cortexcrew.vercel.app/kawsher-hridoy
   GitHub: https://github.com/kawsher-hridoy
-- **Shafiur Rahman Shafim** — Infrastructure and telemetry.
+- **Shafiur Rahman Shafim** — Software engineering student and full-stack
+  developer. Currently learning cloud architecture, advanced DevOps, and
+  AI/ML integration.
+  Public page: https://cortexcrew.vercel.app/shafiur-rahman
   GitHub: https://github.com/Shafiur0
 - **AL Fahad** — UI/UX and brand design: interface design, brand identity,
   print and packaging, social media design.
@@ -78,6 +81,7 @@ development.
 
 - [Cortex Crew — official site](https://cortexcrew.vercel.app/): the team's record, projects and members.
 - [Kawsher HRidoy — public page](https://cortexcrew.vercel.app/kawsher-hridoy): biography, photo, 2026 record, and profiles for the team lead.
+- [Shafiur Rahman Shafim — public page](https://cortexcrew.vercel.app/shafiur-rahman): biography, photo, the 2026 record, currently learning, and BD Krishibid.
 - [Facebook page](https://facebook.com/teamcortexcrew): announcements and competition updates.
 - [Autopilot — source](https://github.com/kawsher-hridoy/autopilot): self-healing GPU cluster, built for the AI Innovation Hackathon 2026.
 - [AI Mentor — source](https://github.com/kawsher-hridoy/DIU-AI-Mentor): student early-warning system, built for the AI Project Competition 2026.
