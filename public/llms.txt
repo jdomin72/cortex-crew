@@ -31,6 +31,7 @@ are not listed and are not counted.
 
 - **Kawsher HRidoy** — Team Lead, machine learning and systems integration.
   Public page: https://cortexcrew.vercel.app/kawsher-hridoy
+  Portfolio: https://hridoy.xyz
   GitHub: https://github.com/kawsher-hridoy
 - **Shafiur Rahman Shafim** — Software engineering student and full-stack
   developer. Currently learning cloud architecture, advanced DevOps, and

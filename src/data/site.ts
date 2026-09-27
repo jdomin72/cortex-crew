@@ -339,6 +339,7 @@ export const members: Member[] = [
       { platform: 'github', label: 'GitHub', href: 'https://github.com/kawsher-hridoy' },
       { platform: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com/in/kawsher-hridoy' },
       { platform: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/kawsherhridoy/' },
+      { platform: 'website', label: 'Portfolio', href: 'https://hridoy.xyz' },
       { platform: 'email', label: 'Email', href: 'mailto:kawsher@hridoy.xyz' },
     ],
   },
@@ -452,6 +453,7 @@ export const leader = {
     'https://linkedin.com/in/kawsher-hridoy',
     'https://www.facebook.com/KawsherHRidooy/',
     'https://www.instagram.com/kawsherhridoy/',
+    'https://hridoy.xyz',
   ],
 } as const
 
