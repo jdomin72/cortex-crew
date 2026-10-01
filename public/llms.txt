@@ -3,7 +3,7 @@
 > Cortex Crew is a student hackathon and project showcase team based at
 > Daffodil International University (DIU) in Dhaka, Bangladesh, led by Kawsher
 > HRidoy. The team builds working systems and demonstrates them live. It has
-> six competition results from 2026: two podium finishes and four finals
+> seven competition results from 2026: two podium finishes and five finals
 > reached.
 
 Site: https://cortexcrew.vercel.app/
@@ -17,15 +17,27 @@ Tagline: Code · Collaborate · Conquer
 | --- | --- | --- | --- |
 | Champion | CSAD 2026 Project Showcasing Competition | Cyber Security Centre, Daffodil International University | January 2026 |
 | 1st Runners-up | IEEE ICADHI 2026 Project Showcase | IEEE DIU Student Branch | June 2026 |
+| Top 10 Finalist | BUP CSE Fest 2026 Hackathon | Bangladesh University of Professionals (BUP) | September 2026 |
 | Finalist | AI Project Competition 2026 | Dept. of CSE, Daffodil International University | July 2026 |
 | Finalist | 5th Data Science Summit | Daffodil International University | July 2026 |
 | Finalist | AI Innovation Hackathon 2026 — From Learning to Impact | Dept. of CSE, Daffodil International University | July 2026 |
 | Finalist | RoboFusion 1.0 — Project Showcasing | UFTB Robotics Club, University of Frontier Technology, Bangladesh | August 2026 |
 
-Six competition results: one championship, one runners-up, four finals
-reached. "Finalist" means the team reached the final round and did not place.
+Seven competition results: one championship, one runners-up, five finals
+reached. Finalist qualifications are distinct from podium finishes.
 This table lists results only — competitions entered without reaching a final
 are not listed and are not counted.
+
+### BUP hackathon lineup
+
+Cortex Crew represented Daffodil International University and qualified for
+**Top 10 Finalist** through **400+ teams → Top 50 → Top 10** in September 2026.
+The event-specific lineup was:
+
+- **Kawsher Hridoy** — Team Leader
+- **Shafiur Rahman Shafim**
+- **Arnob Kumar Paul**
+- **Fahim Shariar**
 
 ## Members
 
@@ -47,6 +59,15 @@ are not listed and are not counted.
   LinkedIn: https://www.linkedin.com/in/abdullahalkhalil
 
 ## Projects
+
+- **Jalani Control Tower** — An operator-facing control room for the
+  organizer-provided BUP Fuel Supply Simulator. EWMA shortage forecasting,
+  rolling-horizon shipment planning, human approval, shipment safeguards,
+  and fallback recovery. Simulation only: no connection to or control of
+  real fuel infrastructure. React, TypeScript, FastAPI, SQLite, SciPy/HiGHS,
+  Docker Compose, Prometheus, Grafana. Built for BUP CSE Fest 2026 Hackathon,
+  where Cortex Crew qualified as Top 10 Finalist. No hosted demo is listed.
+  Source: https://github.com/kawsher-hridoy/jalani-control-tower
 
 - **Darktrace3** — A breach-exposure checker built from malware and infostealer
   logs. Unlike breach-notification services, it can tell a person they were
@@ -84,6 +105,7 @@ development.
 - [Kawsher HRidoy — public page](https://cortexcrew.vercel.app/kawsher-hridoy): biography, photo, 2026 record, and profiles for the team lead.
 - [Shafiur Rahman Shafim — public page](https://cortexcrew.vercel.app/shafiur-rahman): biography, photo, the 2026 record, currently learning, and BD Krishibid.
 - [Facebook page](https://facebook.com/teamcortexcrew): announcements and competition updates.
+- [Jalani Control Tower — source](https://github.com/kawsher-hridoy/jalani-control-tower): simulation-only fuel supply intelligence, built for BUP CSE Fest 2026 Hackathon.
 - [Autopilot — source](https://github.com/kawsher-hridoy/autopilot): self-healing GPU cluster, built for the AI Innovation Hackathon 2026.
 - [AI Mentor — source](https://github.com/kawsher-hridoy/DIU-AI-Mentor): student early-warning system, built for the AI Project Competition 2026.
 - [BD Krishibid — source](https://github.com/Shafiur0/bd-krishibid): Bangla-first farming platform, Finalist at RoboFusion 1.0.

@@ -22,9 +22,8 @@ import { Img } from '../ui/Img'
  *
  * It is derived from `achievements` by tier rather than hand-written, which is
  * the point: the hero cannot drift from the record the way a hand-maintained
- * `heroStats` array could. 1 + 1 + 4 = 6 stays true by construction, and the
- * distinction the site exists to be honest about — two won, four finals
- * reached without placing — is stated in the first screen instead of the third.
+ * `heroStats` array could. The counts stay true by construction, and the
+ * distinction between podium finishes and finalist qualifications is stated in the first screen.
  *
  * The hero is deliberately NOT wrapped in <Reveal>: a hidden LCP element defers
  * LCP paint. Nothing here animates at rest.
@@ -54,8 +53,8 @@ function buildTally() {
       {
         tier,
         count: group.length,
-        // Every result in a tier shares a rank label, so the first is the label.
-        label: group[0].rankLabel,
+        // A Top 10 qualification belongs to the finalist tier, not every final.
+        label: tier === 'finalist' ? 'Finalist' : group[0].rankLabel,
         events: group.map((item) => item.event.split(/\s+[—–-]\s+/)[0]).join(' · '),
       },
     ]

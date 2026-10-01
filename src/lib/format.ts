@@ -1,5 +1,12 @@
 import type { IsoDate } from '@/data/types'
 
+/** English count copy for headings; larger counts stay readable as numerals. */
+export function formatCount(count: number, capitalize = false): string {
+  const words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
+  const value = words[count] ?? String(count)
+  return capitalize ? value.charAt(0).toUpperCase() + value.slice(1) : value
+}
+
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December',

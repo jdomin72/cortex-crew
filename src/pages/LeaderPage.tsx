@@ -1,10 +1,11 @@
-import { achievements, leader, members, projects, site } from '@/data/site'
+import { achievements, competitionRecord, leader, members, projects, site } from '@/data/site'
 import type { MedalTier, SocialPlatform } from '@/data/types'
-import { formatShort } from '@/lib/format'
+import { formatCount, formatShort } from '@/lib/format'
 import { cn } from '@/lib/cn'
 import { SiteFooter } from '@/components/SiteFooter'
 import { SiteNav } from '@/components/SiteNav'
 import { Section } from '@/components/Section'
+import { AchievementParticipants } from '@/components/AchievementParticipants'
 import { Avatar } from '@/components/ui/Avatar'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
@@ -97,7 +98,7 @@ export function LeaderPage() {
                 </p>
                 <p className="mt-4 max-w-xl text-base leading-relaxed text-fg-muted">
                   Team lead of Cortex Crew at {site.university} ({site.city}). AI and machine
-                  learning developer; six competition results in 2026.
+                  learning developer; {formatCount(competitionRecord.total)} competition results in 2026.
                 </p>
 
                 {member.links?.length ? (
@@ -157,8 +158,8 @@ export function LeaderPage() {
             id="record"
             band
             eyebrow="2026 record"
-            title="Six results, under his lead."
-            lead="The team's competition sheet for 2026. Two podium finishes and four finals reached."
+            title={`${formatCount(competitionRecord.total, true)} results, under his lead.`}
+            lead={`The team's competition sheet for 2026. ${formatCount(competitionRecord.podiums, true)} podium finishes and ${formatCount(competitionRecord.finals)} finals reached.`}
           >
             <ol className="border-y border-line">
               {achievements.map((item) => (
@@ -190,6 +191,10 @@ export function LeaderPage() {
                         {item.organizer}
                         {item.builtWith ? ` · ${item.builtWith}` : null}
                       </p>
+                      {item.participants?.length && item.summary ? (
+                        <p className="mt-3 text-sm leading-relaxed text-fg-muted">{item.summary}</p>
+                      ) : null}
+                      <AchievementParticipants event={item.event} participants={item.participants} />
                     </div>
                   </div>
                 </li>
@@ -201,7 +206,7 @@ export function LeaderPage() {
             id="work"
             eyebrow="Selected work"
             title="Systems taken to the stage."
-            lead="Niro, Autopilot, and AI Mentor are the production systems named in the biography. Darktrace3 is the CSAD Champion build."
+            lead="Jalani Control Tower is the simulation-only BUP Top 10 finalist build. Niro, Autopilot, AI Mentor, and Darktrace3 complete the selected work."
           >
             <ul className="grid gap-4 md:grid-cols-2">
               {projects

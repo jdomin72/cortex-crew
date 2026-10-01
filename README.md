@@ -21,15 +21,31 @@ Daffodil International University, Dhaka.
 
 ## About
 
-Cortex Crew builds working systems and takes them on stage. The team has six
+Cortex Crew builds working systems and takes them on stage. The team has seven
 competition results from 2026 — Champion at CSAD 2026, 1st Runners-up at IEEE
-ICADHI 2026, and four more finals reached — across Daffodil International
-University, the IEEE DIU Student Branch, and UFTB Robotics Club.
+ICADHI 2026, and five more finals reached — including Top 10 Finalist at the
+BUP CSE Fest 2026 Hackathon, progressing from 400+ teams through Top 50 to Top 10. The record
+spans Daffodil International University, the IEEE DIU Student Branch, UFTB
+Robotics Club, and Bangladesh University of Professionals.
 
 This repository holds the source for the team's public site: a single-page
 application presenting the record, the projects behind it, and the people.
 
 **→ [cortexcrew.vercel.app](https://cortexcrew.vercel.app)**
+
+## BUP CSE Fest 2026 Hackathon
+
+Cortex Crew represented Daffodil International University and qualified as a
+**Top 10 Finalist** in September 2026: **400+ teams → Top 50 → Top 10**.
+The BUP lineup was Kawsher Hridoy (Team Leader), Shafiur Rahman Shafim,
+Arnob Kumar Paul, and Fahim Shariar.
+
+The team's build, [Jalani Control Tower](https://github.com/kawsher-hridoy/jalani-control-tower),
+forecasts shortages, plans shipments, and combines human approval with
+safeguards and fallback recovery against the organizer-provided fuel supply
+simulator. **Simulation only:** it does not connect to or control real fuel
+infrastructure. This website showcases the project; it is not a hosted Jalani
+demo.
 
 ## Highlights
 
@@ -96,6 +112,7 @@ The site runs at `http://localhost:5173`.
 | `bun run preview` | Serve the production build locally |
 | `bun run lint` | Run oxlint |
 | `bun run media` | Regenerate optimised images |
+| `bun run check:content` | Check site data and prerendered content after building |
 
 ## Project structure
 

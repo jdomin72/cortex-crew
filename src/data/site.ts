@@ -1,7 +1,7 @@
 /* ══════════════════════════════════════════════════════════════════════════
    ALL SITE CONTENT LIVES HERE.
-   Edit this file to add a result, a project, or a member. Nothing else needs
-   to change.
+   Edit this file to add a result, a project, or a member. Shared counts update
+   the headings; public summaries and structured data should stay in sync.
 
    ⭐ FRAMING RULE — the team is the subject, never the project.
       ✅ "Cortex Crew placed 1st Runners-up at ICADHI 2026, with Niro."
@@ -69,7 +69,7 @@ export const site: SiteConfig = {
   founded: '2026',
   url: 'https://cortexcrew.vercel.app',
   description:
-    'Cortex Crew is a competition team at Daffodil International University, Dhaka. Six competition results in 2026 — one championship, one runners-up, four finals.',
+    'Cortex Crew at Daffodil International University, Dhaka: seven results in 2026 — one championship, one runners-up, five finalist qualifications.',
 
   logo: {
     src: '/media/logo-512.webp',
@@ -124,7 +124,7 @@ export const site: SiteConfig = {
 }
 
 /* ───────────────────────────── achievements ─────────────────────────────
-   Six results from 2026: one Champion, one 1st Runners-up, four Finalist.
+   Seven results from 2026: one Champion, one 1st Runners-up, five Finalist.
 
    ⚠️ ONLY list events with a real result. Reaching the final counts; merely
    entering does not. Infinity AI Buildfest 2026 and both IUT Techathon rounds
@@ -168,6 +168,24 @@ export const achievements: Achievement[] = [
       'icadhi-2026',
       'Cortex Crew holding the 1st Runners-up cheque at the IEEE ICADHI 2026 closing and award ceremony',
     ),
+  },
+  {
+    id: 'bup-cse-fest-2026',
+    event: 'BUP CSE Fest 2026 Hackathon',
+    organizer: 'Bangladesh University of Professionals (BUP)',
+    rankLabel: 'Top 10 Finalist',
+    tier: 'finalist',
+    kind: 'hackathon',
+    date: '2026-09',
+    builtWith: 'Jalani Control Tower',
+    summary:
+      'Cortex Crew represented Daffodil International University and qualified for the Top 10 Finalists from 400+ teams: 400+ teams → Top 50 → Top 10.',
+    participants: [
+      { name: 'Kawsher Hridoy', role: 'Team Leader' },
+      { name: 'Shafiur Rahman Shafim' },
+      { name: 'Arnob Kumar Paul' },
+      { name: 'Fahim Shariar' },
+    ],
   },
   {
     id: 'ai-hackathon-2026',
@@ -223,11 +241,36 @@ export const achievements: Achievement[] = [
   },
 ]
 
+/** Counts shared by the homepage and profile record headings. */
+export const competitionRecord = {
+  total: achievements.length,
+  podiums: achievements.filter((item) => ['gold', 'silver', 'bronze'].includes(item.tier)).length,
+  finals: achievements.filter((item) => item.tier === 'finalist').length,
+}
+
 /* ──────────────────────────────── projects ────────────────────────────────
    Supporting evidence. Every card exists to say something about the team.
    ───────────────────────────────────────────────────────────────────────── */
 
 export const projects: Project[] = [
+  {
+    id: 'jalani-control-tower',
+    name: 'Jalani Control Tower',
+    tagline: 'Fuel supply intelligence with human-guided decisions',
+    description:
+      'Cortex Crew built an operator-facing control room for the organizer-provided BUP Fuel Supply Simulator. It forecasts shortages with EWMA, plans shipments with rolling-horizon linear programming, and combines human approvals with shipment safeguards and fallback recovery. Simulation only: it does not connect to or control real fuel infrastructure.',
+    stack: [
+      'React', 'TypeScript', 'FastAPI', 'SQLite',
+      'SciPy / HiGHS', 'Docker Compose', 'Prometheus', 'Grafana',
+    ],
+    status: 'live',
+    year: '2026',
+    builtFor: 'BUP CSE Fest 2026 Hackathon · Top 10 Finalist',
+    accent: 'blue',
+    links: [
+      { label: 'Source', href: 'https://github.com/kawsher-hridoy/jalani-control-tower', kind: 'repo' },
+    ],
+  },
   {
     id: 'darktrace3',
     name: 'Darktrace3',
@@ -422,8 +465,8 @@ export const members: Member[] = [
 ]
 
 /* Profiles taken off the live roster live in `held-members.ts`. That file is
-   never imported, so the names cannot leak into the bundle, the prerender, or
-   JSON-LD. Move an entry back into `members` here to publish it again. */
+   never imported. Event-specific participants above are independent credits,
+   not restored crew profiles. Move an entry into `members` to restore it. */
 
 /* ───────────────────────────── leader page ─────────────────────────────
    Canonical public page for the team lead. Visible copy uses Kawsher HRidoy.
@@ -444,8 +487,8 @@ export const leader = {
   imageHeight: 336,
   biography: [
     'Kawsher HRidoy is an AI and machine learning developer and the team lead of Cortex Crew, a student hackathon and project showcase team at Daffodil International University (DIU) in Dhaka, Bangladesh. He leads Cortex Crew from planning through a live, defensible demo.',
-    'In 2026 the team recorded six results under his lead: Champion at the CSAD Project Showcasing Competition, 1st Runners-up at IEEE ICADHI 2026, and Finalist at the AI Innovation Hackathon, the AI Project Competition, the 5th Data Science Summit, and RoboFusion 1.0.',
-    'His work focuses on machine learning that ships as production systems. He has led Niro, a patient-owned records platform with Bangla lab and prescription reading; Autopilot, GPU failure prediction and cluster migration on the order of a hundred seconds; and AI Mentor, an eight-signal academic and attendance model with auditable rules. The stack is Python, FastAPI, Next.js, and PostgreSQL, with LightGBM and Azure OpenAI where they fit.',
+    'In 2026 the team recorded seven results under his lead: Champion at the CSAD Project Showcasing Competition, 1st Runners-up at IEEE ICADHI 2026, and Finalist at the AI Innovation Hackathon, the AI Project Competition, the 5th Data Science Summit, and RoboFusion 1.0, plus Top 10 Finalist at the BUP CSE Fest 2026 Hackathon.',
+    'His work focuses on machine learning that ships as production systems. He has led Niro, a patient-owned records platform with Bangla lab and prescription reading; Autopilot, GPU failure prediction and cluster migration on the order of a hundred seconds; AI Mentor, an eight-signal academic and attendance model with auditable rules; and Jalani Control Tower, a simulation-only fuel supply intelligence platform with human approvals and fallback recovery. The stack is Python, FastAPI, Next.js, and PostgreSQL, with LightGBM and Azure OpenAI where they fit.',
   ],
   stack: ['Python', 'FastAPI', 'Next.js', 'PostgreSQL', 'LightGBM', 'Azure OpenAI'],
   sameAs: [

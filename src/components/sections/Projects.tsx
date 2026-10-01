@@ -1,4 +1,5 @@
 import { projects } from '@/data/site'
+import { formatCount } from '@/lib/format'
 import { cn } from '@/lib/cn'
 import { Section } from '../Section'
 import { Badge } from '../ui/Badge'
@@ -40,7 +41,7 @@ export function Projects() {
       id="projects"
       eyebrow="The work"
       title="What we build to compete."
-      lead="Five systems the team designed and built, each taken on stage against a judging panel."
+      lead={`${formatCount(projects.length, true)} systems the team designed and built for project showcases and hackathons.`}
     >
       {/* A slideshow at every width now, not just on phones — see `Carousel`
           for why it is a scroll container rather than a slide swapper. Every

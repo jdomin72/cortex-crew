@@ -1,10 +1,11 @@
-import { achievements, members, projects } from '@/data/site'
+import { achievements, competitionRecord, members, projects } from '@/data/site'
 import type { MedalTier, MemberProfile, SocialPlatform } from '@/data/types'
-import { formatShort } from '@/lib/format'
+import { formatCount, formatShort } from '@/lib/format'
 import { cn } from '@/lib/cn'
 import { SiteFooter } from '@/components/SiteFooter'
 import { SiteNav } from '@/components/SiteNav'
 import { Section } from '@/components/Section'
+import { AchievementParticipants } from '@/components/AchievementParticipants'
 import { Avatar } from '@/components/ui/Avatar'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
@@ -157,8 +158,8 @@ export function MemberPage({ profile }: { profile: MemberProfile }) {
             id="record"
             band
             eyebrow="2026 record"
-            title="Six results, with Cortex Crew."
-            lead="The team's competition sheet for 2026. Two podium finishes and four finals reached."
+            title={`${formatCount(competitionRecord.total, true)} results, with Cortex Crew.`}
+            lead={`The team's competition sheet for 2026. ${formatCount(competitionRecord.podiums, true)} podium finishes and ${formatCount(competitionRecord.finals)} finals reached.`}
           >
             <ol className="border-y border-line">
               {achievements.map((item) => (
@@ -190,6 +191,10 @@ export function MemberPage({ profile }: { profile: MemberProfile }) {
                         {item.organizer}
                         {item.builtWith ? ` · ${item.builtWith}` : null}
                       </p>
+                      {item.participants?.length && item.summary ? (
+                        <p className="mt-3 text-sm leading-relaxed text-fg-muted">{item.summary}</p>
+                      ) : null}
+                      <AchievementParticipants event={item.event} participants={item.participants} />
                     </div>
                   </div>
                 </li>

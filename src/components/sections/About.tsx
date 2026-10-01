@@ -1,4 +1,5 @@
-import { members, site } from '@/data/site'
+import { competitionRecord, members, site } from '@/data/site'
+import { formatCount } from '@/lib/format'
 import { Reveal } from '../ui/Reveal'
 
 /**
@@ -57,14 +58,17 @@ export function About() {
             </p>
 
             <p className="mt-4 text-lg leading-relaxed text-fg-muted">
-              Cortex Crew has six competition results from 2026. The team won{' '}
+              Cortex Crew has {formatCount(competitionRecord.total)} competition results from 2026.
+              The team won{' '}
               <strong className="font-semibold text-fg">Champion</strong> at the CSAD 2026 Project
               Showcasing Competition, held by the Cyber Security Centre at Daffodil International
               University, and finished{' '}
               <strong className="font-semibold text-fg">1st Runners-up</strong> at the IEEE ICADHI
               2026 Project Showcase, run by the IEEE DIU Student Branch. It reached the final round
-              at four more without placing: the AI Innovation Hackathon 2026, the AI Project
-              Competition 2026, the 5th Data Science Summit, and RoboFusion 1.0.
+              at {formatCount(competitionRecord.finals)} more: the AI Innovation Hackathon 2026,
+              the AI Project Competition 2026, the 5th Data Science Summit, RoboFusion 1.0,
+              and the BUP CSE Fest 2026 Hackathon, where Cortex Crew qualified as a{' '}
+              <strong className="font-semibold text-fg">Top 10 Finalist</strong> from 400+ teams.
             </p>
 
             <p className="mt-4 text-lg leading-relaxed text-fg-muted">

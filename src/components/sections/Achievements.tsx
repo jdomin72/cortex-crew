@@ -1,6 +1,6 @@
-import { achievements } from '@/data/site'
+import { achievements, competitionRecord } from '@/data/site'
 import type { Achievement, MedalTier } from '@/data/types'
-import { formatShort } from '@/lib/format'
+import { formatCount, formatShort } from '@/lib/format'
 import { cn } from '@/lib/cn'
 import { Section } from '../Section'
 import { Img } from '../ui/Img'
@@ -30,7 +30,7 @@ import { Reveal } from '../ui/Reveal'
  * from the About ledger, where it worked, to the section it matters most in.
  * Podium rows are set large with their evidence photo; finals are quieter and
  * tighter. The typography carries the distinction, so nobody has to read a
- * qualifier to see that four of the six were not wins.
+ * qualifier to distinguish finalist qualifications from podium finishes.
  *
  * Both groups derive from `achievements` by tier, so adding a result never
  * means touching this file.
@@ -178,8 +178,8 @@ export function Achievements() {
     <Section
       id="achievements"
       eyebrow="The record"
-      title="Six competitions. Two podiums, four finals."
-      lead="Where Cortex Crew finished, event by event — one championship, one runners-up, and four finals reached, across project showcases and hackathons at Daffodil International University and beyond."
+      title={`${formatCount(competitionRecord.total, true)} competitions. ${formatCount(competitionRecord.podiums, true)} podiums, ${formatCount(competitionRecord.finals)} finals.`}
+      lead={`Where Cortex Crew finished, event by event — one championship, one runners-up, and ${formatCount(competitionRecord.finals)} finals reached, across project showcases and hackathons at Daffodil International University and beyond.`}
     >
       {/* No <Reveal> around the sheet. Fading the whole thing in as one block
           fought the per-row rail draw — the rows need to arrive individually,

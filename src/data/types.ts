@@ -51,6 +51,8 @@ export interface Achievement {
   /** Small meta chip only — the project never leads an achievement card. */
   builtWith?: string
   photo?: ResponsiveImage
+  /** Event-specific credit, independent of the public crew roster. */
+  participants?: { name: string; role?: string }[]
 }
 
 /* ──────────────────────────────── projects ──────────────────────────────── */
